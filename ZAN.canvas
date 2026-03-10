@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"5a1a6f216278a6c7","type":"text","text":"[[DPL302_FE]]","x":-615,"y":-694,"width":250,"height":60},
+		{"id":"b6cbf73fefdc0929","type":"text","text":"làm về tựa game sử dụng các dấu câu, các chữ cái chữ số để làm công cụ vượt qua màn chơi.","x":-1520,"y":-580,"width":345,"height":240},
+		{"id":"211e0f00d87e4e7f","type":"text","text":"game giải đố gia đình, làm sao đừng để bị bad ending là đứa con sẽ chết\n","x":-1138,"y":-770,"width":250,"height":106},
+		{"id":"6485fc2e488768e4","x":-1472,"y":-795,"width":297,"height":131,"type":"text","text":"Game đếm tiền, lật từng tờ tiền lên để đếm và ghi lại kết quả. "}
+	],
+	"edges":[]
+}

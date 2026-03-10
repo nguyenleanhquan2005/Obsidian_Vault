@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"f630da243d314ffe","type":"text","text":"Information Retrieval: **searching and retrieving relevant documents or data** from a large collection, **based on a user’s query**, in order to **satisfy their information need**\n\nText Mining: **analyzing unstructured text data** to **extract useful information, patterns, or knowledge**","x":-220,"y":-320,"width":360,"height":258,"color":"6"},
+		{"id":"21dbe55dd3b8b3b1","type":"text","text":"Foundation and Architecture","x":200,"y":80,"width":300,"height":60,"color":"3"},
+		{"id":"cdbb2924abe65ad4","type":"text","text":"## Information Retrieval and Text Mining","x":40,"y":300,"width":260,"height":120},
+		{"id":"c7cec714a652d2e0","type":"text","text":" Information retrieval (IR) in computing and information science is the task of identifying and retrieving information system resources that are relevant to an information need","x":-480,"y":110,"width":325,"height":172},
+		{"id":"cfba3d9311f324af","type":"text","text":"Natural language processing\n","x":-442,"y":560,"width":250,"height":60},
+		{"id":"aea72245875d31fb","type":"text","text":"Sentiment Analysis(phân tích cảm xúc)","x":-442,"y":620,"width":250,"height":60},
+		{"id":"289931c24603525e","type":"text","text":"Lexicons: resources that contains collection of words, with attributes, meaning, connotation and sentiments","x":-192,"y":620,"width":272,"height":120},
+		{"id":"8feae484e7b1b399","type":"text","text":"Information Extraction","x":-730,"y":1060,"width":250,"height":60},
+		{"id":"1cb95ea72637fdfb","type":"text","text":"Syntactic & Semantic Parsing","x":-730,"y":1120,"width":250,"height":60},
+		{"id":"acbfa46cc19938af","type":"text","text":"Generative Tasks","x":-730,"y":1180,"width":250,"height":60},
+		{"id":"68f9aaca3dff4855","type":"text","text":"understanding sentiment effects and connotations, enabling more accurate sentiment analysis and language understanding","x":80,"y":680,"width":250,"height":160},
+		{"id":"659fc459f9f8ada5","type":"text","text":"##### Key points\n- Polarity labels: phân loại cảm xúc theo 3 cấp độ chính positive negative neutral\n- Polarity Spectrum: phổ phân cực, ngoài 3 cấp độ chính đó sẽ cho biết mức độ cảm xúc. allowing for subtle gradations of emotion\n- Sentiment Analysis: phân tích cảm xúc của từng từ để đánh giá giọng điệu toàn bộ nội dung \n- Test classification: categorize text into sentiment classes\n- Lexicon enrichment: involves adding new words and adjusting polarity labels to keep the lexicon current and reflective of evolving language use","x":330,"y":760,"width":396,"height":380},
+		{"id":"eb33bfaca42ce612","type":"text","text":"AFINN (Affective Norms for English Words and Phrases): phân loại cảm xúc dựa trên sentiment score\n","x":726,"y":760,"width":250,"height":120},
+		{"id":"f3591c3e9713c145","type":"text","text":"SentiWordNet: dựa trên sentiment scores to synet in wordnet. SentiWordNet's scores are based on a combination of WordNet's synset structure and human-annotated sentiment scores","x":726,"y":880,"width":250,"height":120},
+		{"id":"0a2e42a406ef5bdb","type":"text","text":"VADER (Valence Aware Dictionary and sEntiment Reasoner): dùng để handle negations, capitalization, punctuation, and emphasis\n","x":726,"y":1000,"width":250,"height":140},
+		{"id":"7a396315fa654651","type":"file","file":"Images/deepseek_mermaid_20250715_58d696.png","x":1580,"y":480,"width":1701,"height":680},
+		{"id":"2a6e9f12edfec1a5","type":"text","text":"Positive score & negative score","x":976,"y":840,"width":250,"height":100}
+	],
+	"edges":[
+		{"id":"fb4c9f87324d3b14","fromNode":"f630da243d314ffe","fromSide":"bottom","toNode":"21dbe55dd3b8b3b1","toSide":"top"},
+		{"id":"bdaee22f819a8fc7","fromNode":"21dbe55dd3b8b3b1","fromSide":"bottom","toNode":"cdbb2924abe65ad4","toSide":"top"},
+		{"id":"4c8c21d61b516d59","fromNode":"cfba3d9311f324af","fromSide":"right","toNode":"cdbb2924abe65ad4","toSide":"bottom"}
+	]
+}
