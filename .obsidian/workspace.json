@@ -39,18 +39,63 @@
             "id": "36a4a8414c138428",
             "type": "leaf",
             "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 1276,
+                  "y": 460,
+                  "zoom": 0
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "9e655fa5c43929c4",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "Deep Learning/Học sâu.md",
+                "file": "Computer VIsion/Lecture 1_Summarize.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Học sâu"
+              "title": "Lecture 1_Summarize"
+            }
+          },
+          {
+            "id": "160e877022ff92d5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Human Language Technology/Speech Language Processing/Chapter 02 - Review of Fundamentals of Digital Signal Processing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 02 - Review of Fundamentals of Digital Signal Processing"
+            }
+          },
+          {
+            "id": "ecf57dad85091d24",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Human Language Technology/Speech Language Processing/Chapter 01 - Introduction.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 01 - Introduction"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -209,59 +254,59 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "36a4a8414c138428",
+  "active": "160e877022ff92d5",
   "lastOpenFiles": [
-    "Deep Learning/Computer Vision.md",
-    "Deep Learning/Machine Learning.md",
-    "AWS certificate.md",
-    "Obsidian_Vault/README.md",
+    "Human Language Technology/Speech Language Processing/Chapter 01_Digital_Speech_Processing.md",
+    "Human Language Technology/Speech Language Processing/02.md",
+    "Human Language Technology/Speech Language Processing/Chapter 02 - Review of Fundamentals of Digital Signal Processing.md",
+    "Human Language Technology/Speech Language Processing/Chapter 01 - Introduction.md",
+    "Pasted image 20260324001646.png",
+    "TensorFlow.md",
+    "Human Language Technology/Speech Language Processing/Chapter 12 - Digital Speech Recognition.md",
+    "Human Language Technology/Speech Language Processing/Chapter 10 - Digital Speech Coding.md",
+    "Human Language Technology/Speech Language Processing/Chapter 13 - Natural Language Understanding.md",
+    "Human Language Technology/Speech Language Processing/Chapter 14 - Text-to-Speech Synthesis Methods.md",
+    "Human Language Technology/Speech Language Processing/Chapter 09 - Linear Predictive Analysis of Speech Signals.md",
+    "Human Language Technology/Speech Language Processing/Chapter 03 - Fundamentals of Human Speech Production.md",
+    "Human Language Technology/Speech Language Processing/Chapter 05 - Short-Time Analysis of Speech.md",
+    "Human Language Technology/Speech Language Processing/Chapter 06 - Time-Domain Methods for Speech Processing.md",
+    "Human Language Technology/Speech Language Processing/Chapter 04 - Hearing, Auditory Models, and Speech Perception.md",
+    "Human Language Technology/Speech Language Processing/Digital Speech Processing.md",
+    "Human Language Technology/Speech Language Processing/Chapter 07 - Frequency-Domain Representations.md",
+    "Pasted image 20260321233327.png",
+    "Untitled.md",
+    "Human Language Technology/Human Intelligence.md",
+    "DPL302_FE.md",
+    "Human Language Technology/Speech Language Processing",
+    "Human Language Technology/Natural Language Processing",
+    "Dictionary.md",
+    "Human Language Technology",
+    "Human Language Technology/SLP301.md",
+    "AI_Career/Machine Learning.md",
+    "AI_Career/Học sâu.md",
+    "AI_Career/Computer Vision.md",
+    "AI_Career/AI_Engineer.md",
+    "AI_Career/Deep Learning.canvas",
+    "Mathematics for ComputerScience/Calculus.md",
+    "AWS 0.canvas",
+    "Untitled.canvas",
+    "ZAN.canvas",
+    "Untitled 1.canvas",
+    "Information Retrieval",
+    "Computer VIsion",
     "Obsidian_Vault",
-    "Deep Learning/AI_Engineer.md",
-    "Mathematics for ComputerScience/Probability and Statistics.md",
-    "Machine Learning.md",
-    "Deep Learning/Deep Learning.canvas",
     "Geometry",
     "Algebra",
-    "Python fundamentals/Exercises..md",
-    "Python fundamentals/Python_Built_in_Reference.md",
-    "Deep Learning/Học sâu.md",
-    "AWS 0.canvas",
     "Images/image.png",
     "Golang fundamentals/Untitled 2.canvas",
-    "Calculus/**Precalculus foundations**.md",
     "Calculus",
-    "**Precalculus foundations.md",
-    "Mathematics for ComputerScience/Calculus.md",
     "Untitled.base",
-    "Untitled.md",
-    "Untitled 1.canvas",
-    "ZAN.canvas",
-    "Probability and Statistics/Chapter 2_Probability.md",
-    "Probability and Statistics/Chapter 1_ The Roles of Statistics in Engineering.md",
-    "Probability and Statistics/Chapter 12_Multiple Linear Regression.md",
-    "Probability and Statistics/Chapter 13_ Design and Analysis of Single-Factor Experiments The Analysis of Variance.md",
-    "Probability and Statistics/Chapter 11_ Simple Linear Regression and Correlation (Hồi quy tuyến tính).md",
-    "Probability and Statistics/Chapter 9_ Test of Hypotheses for a Single Sample.md",
-    "Probability and Statistics/Chapter 8_ Statistical Intervals for a Single Sample.md",
-    "Probability and Statistics/Chapter 6_ Descriptive Statistics (thống kê mô tả).md",
-    "Probability and Statistics/Chapter 3_ Discrete Random Variables and Probability Distributions.md",
-    "Probability and Statistics/Chapter 10_ Statistical Inference for Two Samples (Suy luận thống kê cho samples).md",
-    "Probability and Statistics/Chapter 14_ Design of Experiments with Several Factors.md",
-    "Probability and Statistics/Chapter 15_ Statistical Quality Control.md",
     "Images/image(1).png",
     "Images/image(2).png",
-    "Untitled.canvas",
-    "Mathematics for ComputerScience",
-    "Probability and Statistics",
-    "Grokking Algorithms - An illustrated guide for programmers and other curious people.pdf",
-    "Deep Learning/Spoken Language Processing -- Joseph Mariani -- 2009, 2009 -- ISTE Ltd -- 40380983 -- 896a1220f3c3905fbb34941ae800fd3b -- Anna’s Archive.pdf",
-    "100 Go Mistakes and How to Avoid Them.pdf",
     "Images/Deep Learning.png",
     "Images/deepseek_mermaid_20250715_2a90e1.png",
     "Images/deepseek_mermaid_20250715_58d696.png",
     "Images/Screenshot 2025-07-23 082107.png",
-    "Images/Pasted image 20250727203041.png",
-    "Images/Pasted image 20250723080819.png",
-    "Images/Pasted image 20250721194835.png"
+    "Images/Pasted image 20250727203041.png"
   ]
 }

@@ -8,7 +8,7 @@
 ###     **Key Subfields**:
 - [ ]  [[Machine Learning]] (ML)
 - [ ] [[Deep Learning.canvas|Deep Learning]]
-- [ ] [[Natural Language Processing]] (NLP)
+- [ ] [[Digital Speech Processing]] (NLP)
 - [ ] [[Computer Vision]]
 - [ ] [[AWS certificate]]
 - [ ] [[Robotics]]
