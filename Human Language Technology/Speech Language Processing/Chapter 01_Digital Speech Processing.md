@@ -26,6 +26,9 @@ status: complete
 - Nhận dạng tiếng nói (Speech Recognition)
 - Chuyển văn bản thành giọng nói (Text-to-Speech)
 
+**1. Ứng dụng tiêu biểu của DSP (Câu 109)**
+
+- **Đáp án A:** Tất cả các kỹ thuật STFT, LPC, Cepstrum cuối cùng đều phục vụ cho một ứng dụng khổng lồ: **Hệ thống nhận dạng giọng nói (Voice recognition systems)**. Nó là tinh hoa của ngành Xử lý tín hiệu số (DSP).
 ---
 
 ## 2. Tín Hiệu Tiếng Nói (Speech Signal)
