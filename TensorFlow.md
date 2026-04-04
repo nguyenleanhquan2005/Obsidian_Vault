@@ -1144,3 +1144,1762 @@ end to end open source platform for machine learning, deep learning. it supports
 - [ ] B. Gadget (that creates input-output mapping) may be stochastic
 - [ ] C. Constrained training facts
 - [x] D. All of the above
+
+
+Dưới đây là toàn bộ 55 câu hỏi trắc nghiệm đã được chuyển sang định dạng checkbox của Obsidian, kèm theo Callout ẩn đáp án và giải thích chi tiết. Bạn chỉ cần copy toàn bộ nội dung này dán vào file `.md` trong Obsidian.
+
+---
+
+### Multiple Choice Question 1
+
+Which activation function is most appropriate for the output layer of a multi-label classification problem where an instance can belong to multiple classes simultaneously?
+
+- [ ] A. Softmax
+    
+- [ ] B. ReLU
+    
+- [x] C. Sigmoid
+    
+- [ ] D. Tanh
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Trong multi-label classification (một vật thể có thể thuộc nhiều class cùng lúc), ta dùng Sigmoid cho layer cuối để xuất ra xác suất độc lập cho từng class. Softmax chỉ dùng cho multi-class (chỉ chọn 1 class duy nhất).
+
+---
+
+### Multiple Choice Question 2
+
+How does L2 regularization (Ridge) help mitigate overfitting in a deep neural network?
+
+- [ ] A. By randomly dropping neurons during the forward pass.
+    
+- [ ] B. By adding a penalty equivalent to the absolute value of the magnitude of weights.
+    
+- [x] C. By adding a penalty equivalent to the square of the magnitude of weights, forcing them to be small.
+    
+- [ ] D. By automatically stopping the training when the validation loss plateaus.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** L2 Regularization (Ridge) cộng thêm một hình phạt bằng bình phương trọng số vào hàm loss, ép các trọng số (weights) của mạng tiến về gần 0, giúp mô hình bớt phức tạp và giảm overfitting.
+
+---
+
+### Multiple Choice Question 3
+
+What is the primary difference between lemmatization and stemming in Natural Language Processing?
+
+- [ ] A. Stemming uses a dictionary to find the root word, while lemmatization simply chops off the ends of words.
+    
+- [x] B. Lemmatization considers the context and converts the word to its meaningful base form, whereas stemming uses crude heuristic rules that may result in non-words.
+    
+- [ ] C. Stemming is strictly used for Chinese characters, while lemmatization is used for Latin-based languages.
+    
+- [ ] D. There is no difference; they are interchangeable terms in TensorFlow.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Lemmatization dùng từ điển và ngữ cảnh để đưa từ về dạng nguyên bản có nghĩa (ví dụ: better -> good). Stemming chỉ cắt bỏ hậu tố một cách máy móc (ví dụ: caring -> car) và có thể tạo ra từ vô nghĩa.
+
+---
+
+### Multiple Choice Question 4
+
+When compiling a Keras model where your target labels are provided as integers (e.g., 0, 1, 2 for three classes), which loss function MUST you use?
+
+- [ ] A. categorical_crossentropy
+    
+- [ ] B. binary_crossentropy
+    
+- [ ] C. mean_squared_error
+    
+- [x] D. sparse_categorical_crossentropy
+    
+
+> [!success]- Đáp án: D
+> 
+> **Giải thích:** Khi nhãn (labels) là các số nguyên (0, 1, 2...), ta phải dùng sparse_categorical_crossentropy. Nếu nhãn đã được one-hot encode (vd: [0, 0, 1]), ta mới dùng categorical_crossentropy.
+
+---
+
+### Multiple Choice Question 5
+
+In time series forecasting, how can an upward or downward trend be addressed before applying a stationary statistical model?
+
+- [ ] A. By applying a Word2Vec embedding.
+    
+- [x] B. By differencing the data (subtracting the previous observation from the current observation).
+    
+- [ ] C. By duplicating the dataset to increase volume.
+    
+- [ ] D. By applying a Softmax activation to the input window.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Differencing (Lấy sai phân) là kỹ thuật trừ giá trị hiện tại cho giá trị trước đó để loại bỏ xu hướng (trend), giúp chuỗi thời gian trở nên dừng (stationary) trước khi đưa vào mô hình thống kê.
+
+---
+
+### Multiple Choice Question 6
+
+Which TensorFlow callback is specifically designed to halt the training process if the validation metric stops improving for a specified number of epochs?
+
+- [ ] A. ReduceLROnPlateau
+    
+- [ ] B. ModelCheckpoint
+    
+- [ ] C. EarlyStopping
+    
+- [ ] D. TensorBoard
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Callback EarlyStopping theo dõi một metric (thường là val_loss) và sẽ tự động dừng quá trình train nếu metric đó không cải thiện sau một số epoch (tham số patience).
+
+---
+
+### Multiple Choice Question 7
+
+What is the expected default input image resolution for the pre-trained VGG16 model in tf.keras.applications?
+
+- [ ] A. 128x128
+    
+- [ ] B. 224x224
+    
+- [ ] C. 256x256
+    
+- [ ] D. 299x299
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Các mô hình kinh điển như VGG16, ResNet50 huấn luyện trên ImageNet đều mặc định nhận ảnh đầu vào có kích thước 224x224 pixel.
+
+---
+
+### Multiple Choice Question 8
+
+When evaluating a model's learning curve, what does a consistently decreasing training loss accompanied by a sharply increasing validation loss strongly indicate?
+
+- [ ] A. The model is underfitting.
+    
+- [ ] B. The learning rate is too small.
+    
+- [ ] C. The model is overfitting the training data.
+    
+- [ ] D. The model has perfectly converged.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Loss trên tập train giảm nhưng loss trên tập validation tăng mạnh là dấu hiệu kinh điển của Overfitting (Mô hình học thuộc lòng dữ liệu train nhưng mất khả năng dự đoán trên dữ liệu mới).
+
+---
+
+### Multiple Choice Question 9
+
+In the context of the tf.data API, what is the primary purpose of the shuffle(buffer_size) method?
+
+- [ ] A. It changes the labels randomly to introduce noise.
+    
+- [ ] B. It fills a buffer with elements, randomly samples from it, and replaces the sampled elements with new ones to ensure independent and identically distributed batches.
+    
+- [ ] C. It reorganizes the dimensions of the input tensors.
+    
+- [ ] D. It repeats the dataset indefinitely.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** dataset.shuffle(buffer_size) tải trước một số lượng mẫu bằng buffer_size vào bộ nhớ, xáo trộn chúng, sau đó bốc ngẫu nhiên ra để tạo batch. Điều này đảm bảo tính ngẫu nhiên, rất quan trọng khi train Deep Learning.
+
+---
+
+### Multiple Choice Question 10
+
+What is a key advantage of using subword tokenization algorithms like Byte-Pair Encoding (BPE) or WordPiece over standard word-level tokenization?
+
+- [ ] A. They entirely eliminate the need for embedding layers.
+    
+- [ ] B. They process text faster by ignoring punctuation.
+    
+- [ ] C. They handle Out-Of-Vocabulary (OOV) words more effectively by breaking rare words into known subwords.
+    
+- [ ] D. They automatically translate text into multiple languages.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Các thuật toán BPE hay WordPiece chia từ chưa biết (Out-Of-Vocabulary) thành các mảnh nhỏ hơn đã biết (subwords) thay vì gán nhãn `<UNK>`, giúp mô hình hiểu được cấu trúc từ mới.
+
+### Multiple Choice Question 11
+
+When using the pad_sequences utility in Keras to standardize sequence lengths, what is the default behavior if a sequence is longer than the specified maxlen?
+
+- [ ]A. It raises an OutOfMemory error
+
+- [ ] B. It truncates the sequence from the beginning (pre-truncating).
+    
+- [ ] C. It truncates the sequence from the end (post-truncating).
+    
+- [ ] D. It automatically increases the maxlen to fit the longest sequence.
+
+
+> [!success]- Đáp án: B
+>
+> **Giải thích:** Theo mặc định của Keras pad_sequences, nếu chuỗi dài hơn maxlen, nó sẽ cắt bỏ các từ ở đầu chuỗi (pre-truncating).
+
+
+---
+
+### Multiple Choice Question 12
+
+Given a 2D grayscale image tensor t of shape (28, 28), which TensorFlow operation correctly adds a channel dimension to make its shape (28, 28, 1)?
+
+- [ ] A. tf.squeeze(t, axis=-1)
+    
+- [ ] B. tf.expand_dims(t, axis=-1)
+    
+- [ ] C. tf.concat(t, axis=1)
+    
+- [ ] D. tf.flatten(t)
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Hàm tf.expand_dims(t, axis=-1) sẽ thêm một chiều (dimension) vào cuối tensor, biến (28, 28) thành (28, 28, 1).
+
+---
+
+### Multiple Choice Question 13
+
+When configuring data augmentation, what is the effect of the zoom_range=0.2 parameter?
+
+- [ ] A. It changes the resolution of the image by exactly 20%.
+    
+- [ ] B. It randomly zooms inside the image by a factor between 0.8 and 1.2 during training.
+    
+- [ ] C. It crops the outer 20% of the image permanently.
+    
+- [ ] D. It moves the camera 20% closer to the object in 3D space.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** zoom_range=0.2 trong ImageDataGenerator sẽ thực hiện phóng to hoặc thu nhỏ bức ảnh một cách ngẫu nhiên trong khoảng [1 - 0.2, 1 + 0.2] tức là [0.8, 1.2].
+
+---
+
+### Multiple Choice Question 14
+
+Why is it common practice to apply tf.keras.applications.resnet50.preprocess_input before feeding images to a ResNet50 model?
+
+- [ ] A. To convert the images to text arrays.
+    
+- [ ] B. To center the pixel values around zero and scale them according to the specific way the original ResNet50 model was trained.
+    
+- [ ] C. To aggressively compress the image to save RAM.
+    
+- [ ] D. To automatically label the images if they are unannotated.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Hàm preprocess_input của ResNet50 sẽ chuẩn hóa ảnh đầu vào theo đúng chuẩn (thường là trừ đi mean RGB của ImageNet) giống hệt cách mô hình gốc đã được train, giúp transfer learning hiệu quả.
+
+---
+
+### Multiple Choice Question 15
+
+Which statistical test is commonly employed to quantitatively determine if a time series dataset is stationary?
+
+- [ ] A. Student's t-test
+    
+- [ ] B. Chi-square test
+    
+- [ ] C. Augmented Dickey-Fuller (ADF) test
+    
+- [ ] D. ANOVA
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Kiểm định Augmented Dickey-Fuller (ADF) là công cụ thống kê phổ biến nhất để kiểm tra tính dừng (stationarity) của chuỗi thời gian.
+
+---
+
+### Multiple Choice Question 16
+
+What is the difference between padding='valid' and padding='same' in a Conv2D layer?
+
+- [ ] A. 'valid' means no padding is applied, causing the output spatial dimensions to shrink; 'same' adds zeros so the output has the same spatial dimensions as the input.
+    
+- [ ] B. 'valid' pads with ones; 'same' pads with zeros.
+    
+- [ ] C. 'valid' ensures all pixels are between 0 and 1; 'same' ensures all images are the same size.
+    
+- [ ] D. There is no difference; they are aliases for the same operation.
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** 'Valid' tức là không làm gì cả, ảnh qua convolution sẽ bị nhỏ lại. 'Same' sẽ thêm các viền số 0 (zero-padding) xung quanh ảnh để output đầu ra giữ nguyên kích thước so với input.
+
+---
+
+### Multiple Choice Question 17
+
+Which type of plot is most effective for visualizing the autocorrelation of a time series at various lags?
+
+- [ ] A. Scatter plot
+    
+- [ ] B. Histogram
+    
+- [ ] C. Correlogram (ACF plot)
+    
+- [ ] D. Pie chart
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Biểu đồ ACF (Autocorrelation Function) vẽ hệ số tương quan của chuỗi thời gian với chính nó tại các độ trễ (lags) khác nhau.
+
+---
+
+### Multiple Choice Question 18
+
+Which of the following code snippets correctly sets up an Adam optimizer with a custom learning rate of 0.001?
+
+- [ ] A. optimizer = tf.keras.optimizers.Adam(lr=0.001)
+    
+- [ ] B. optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
+    
+- [ ] C. optimizer = 'adam(0.001)'
+    
+- [ ] D. optimizer = tf.train.Adam(0.001)
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Syntax hiện tại chuẩn nhất của Keras là tf.keras.optimizers.Adam(learning_rate=0.001). (Ở các bản TF cũ có thể dùng lr nhưng learning_rate là chuẩn mực hiện đại).
+
+---
+
+### Multiple Choice Question 19
+
+What hardware accelerator, freely available in Google Colab, is specifically designed by Google for high-speed tensor operations and neural network training?
+
+- [ ] A. CPU
+    
+- [ ] B. GPU
+    
+- [ ] C. TPU
+    
+- [ ] D. FPGA
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Tensor Processing Unit (TPU) là phần cứng chuyên dụng do Google phát triển để tăng tốc cực nhanh các phép toán ma trận của Deep Learning.
+
+---
+
+### Multiple Choice Question 20
+
+What is the result of multiplying a matrix of shape (3, 4) by a matrix of shape (4, 2) using tf.matmul in TensorFlow?
+
+- [ ] A. A matrix of shape (3, 2)
+    
+- [ ] B. A matrix of shape (4, 4)
+    
+- [ ] C. A vector of length 12
+    
+- [ ] D. An error will be thrown due to shape mismatch
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** Phép nhân ma trận (3, 4) x (4, 2) theo quy tắc đại số tuyến tính sẽ tạo ra một ma trận kết quả (3, 2).
+
+---
+
+### Multiple Choice Question 21
+
+In tf.keras.preprocessing.text.Tokenizer, what is the function of the oov_token parameter?
+
+- [ ] A. It defines a specific string to replace words that were not seen during the fit_on_texts phase, ensuring the sequence length is maintained.
+    
+- [ ] B. It automatically deletes out-of-vocabulary words.
+    
+- [ ] C. It triggers a web search to find the meaning of unknown words.
+    
+- [ ] D. It stands for "Only One Value" and forces the tokenizer to use a vocabulary size of 1.
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** Tham số oov_token=`<OOV>` đảm bảo những từ không có trong từ điển lúc train sẽ được thay bằng token này thay vì bị bỏ qua hoàn toàn, giúp giữ nguyên cấu trúc độ dài câu.
+
+---
+
+### Multiple Choice Question 22
+
+If a dataset contains images of cars taken strictly during sunny days, which data augmentation technique would best help the model generalize to cloudy or night-time images?
+
+- [ ] A. Random horizontal flipping
+    
+- [ ] B. Random brightness and contrast adjustments
+    
+- [ ] C. Random rotation by 90 degrees
+    
+- [ ] D. Random zooming
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Để ảnh chụp ban ngày có thể generalize (tổng quát hóa) ra điều kiện ban đêm hay nhiều mây, việc thay đổi ngẫu nhiên độ sáng (brightness) là Data Augmentation hợp lý nhất.
+
+---
+
+### Multiple Choice Question 23
+
+In the context of sequence-to-sequence models and time series forecasting, what does the "horizon" refer to?
+
+- [ ] A. The number of historical data points used as input.
+    
+- [ ] B. The number of future time steps the model is trained to predict.
+    
+- [ ] C. The horizontal axis of the loss graph.
+    
+- [ ] D. The baseline accuracy of the model.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** "Horizon" (Đường chân trời dự báo) là số lượng bước thời gian (time steps) trong tương lai mà mô hình cần phải dự báo.
+
+---
+
+### Multiple Choice Question 24
+
+What is the primary function of a MaxPooling2D layer in a Convolutional Neural Network?
+
+- [ ] A. To increase the number of channels/filters in the feature map.
+    
+- [ ] B. To reduce the spatial dimensions (width and height) of the feature map, thereby reducing parameters and computation while achieving translation invariance.
+    
+- [ ] C. To add padding to the image.
+    
+- [ ] D. To convert a 2D matrix into a 1D vector for the Dense layer.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** MaxPooling làm giảm kích thước chiều rộng/chiều cao của ảnh (downsampling), giữ lại những đặc trưng nổi bật nhất, từ đó giảm số lượng tính toán và chống nhiễu (translation invariance).
+
+---
+
+### Multiple Choice Question 25
+
+In Transfer Learning, what does the term "fine-tuning" specifically refer to?
+
+- [ ] A. Resizing the input images to match the base model.
+    
+- [ ] B. Unfreezing a few of the top layers of a frozen pre-trained base model and jointly training both the newly added classifier and these top layers at a very low learning rate.
+    
+- [ ] C. Adjusting the brightness of the training images.
+    
+- [ ] D. Deleting the pre-trained weights and training the entire architecture from scratch.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Fine-tuning không chỉ là trích xuất đặc trưng (feature extraction) mà còn là mở khóa (unfreeze) một vài layer cuối của model gốc và train lại chúng với learning rate cực nhỏ.
+
+---
+
+### Multiple Choice Question 26
+
+Which hyperparameter is crucial to tune when deciding how far back in time an LSTM layer should look to make a prediction?
+
+- [ ] A. Number of filters
+    
+- [ ] B. Pool size
+    
+- [ ] C. Window size (or time steps)
+    
+- [ ] D. Embedding dimension
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Window size (hay sequence length / look-back) xác định mô hình LSTM sẽ nhìn lại bao nhiêu bước thời gian trong quá khứ để đưa ra dự báo.
+
+---
+
+### Multiple Choice Question 27
+
+What does the texts_to_sequences method of the Keras Tokenizer class return?
+
+- [ ] A. A single string of concatenated words.
+    
+- [ ] B. A list of lists, where each inner list contains integers corresponding to the tokens in the original texts.
+    
+- [ ] C. A one-hot encoded 3D matrix.
+    
+- [ ] D. A dictionary mapping words to their frequency.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Method texts_to_sequences sẽ chuyển một danh sách các câu (string) thành một danh sách các mảng số nguyên, mỗi số tương ứng với index của từ trong từ điển.
+
+---
+
+### Multiple Choice Question 28
+
+In an imbalanced dataset where detecting the minority class is critical (e.g., fraud detection), which evaluation metric is generally more informative than plain accuracy?
+
+- [ ] A. Mean Absolute Error (MAE)
+    
+- [ ] B. Area Under the Precision-Recall Curve (AUC-PR) or F1-Score
+    
+- [ ] C. R-squared
+    
+- [ ] D. Cross-entropy loss
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Với tập dữ liệu mất cân bằng nghiêm trọng (imbalanced data), Accuracy là vô nghĩa (ví dụ đoán toàn bộ là "không lừa đảo" vẫn đúng 99%). F1-Score hoặc AUC-PR đánh giá chính xác hơn khả năng bắt được thiểu số.
+
+---
+
+### Multiple Choice Question 29
+
+During training, if the loss function oscillates wildly (spiking up and down) instead of smoothly converging, what is the most likely cause?
+
+- [ ] A. The learning rate is set too high.
+    
+- [ ] B. The batch size is exactly equal to the dataset size.
+    
+- [ ] C. The model has too few layers.
+    
+- [ ] D. The activation function is ReLU.
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** Khi loss function nhảy lên nhảy xuống liên tục (dao động mạnh), nguyên nhân chính thường do Learning Rate quá lớn khiến model bước qua điểm cực tiểu.
+
+---
+
+### Multiple Choice Question 30
+
+When decomposing a time series, what does the "residual" (or noise) component represent?
+
+- [ ] A. The long-term progression of the series.
+    
+- [ ] B. The repeating short-term cycle.
+    
+- [ ] C. The random, unpredictable variations left after extracting the trend and seasonality.
+    
+- [ ] D. The average value of the entire dataset.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Trong phân rã chuỗi thời gian (Decomposition), thành phần Residual/Noise chứa các yếu tố nhiễu ngẫu nhiên còn sót lại sau khi đã tách Trend (xu hướng) và Seasonality (mùa vụ).
+
+---
+
+### Multiple Choice Question 31
+
+Which of the following is a prominent challenge specifically associated with sentiment analysis in Natural Language Processing?
+
+- [ ] A. Identifying nouns and verbs
+    
+- [ ] B. Detecting sarcasm and irony where positive words are used in a negative context
+    
+- [ ] C. Converting text to lowercase
+    
+- [ ] D. Removing white spaces
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Phát hiện châm biếm (Sarcasm) là thử thách cực lớn trong NLP vì ngôn từ mang nghĩa tích cực (ví dụ "Tuyệt vời quá nhỉ") nhưng lại ngụ ý tiêu cực.
+
+---
+
+### Multiple Choice Question 32
+
+What is a common architectural strategy to reduce the complexity of a deep neural network to prevent overfitting?
+
+- [ ] A. Using a smaller batch size.
+    
+- [ ] B. Increasing the number of epochs.
+    
+- [ ] C. Decreasing the number of hidden layers or the number of neurons per layer.
+    
+- [ ] D. Using one-hot encoding for all inputs.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Để giảm độ phức tạp của model (giảm overfit), cách tiếp cận trực tiếp là làm mạng neural "nông" hơn hoặc "nhỏ" hơn bằng cách giảm số layer/số neuron.
+
+---
+
+### Multiple Choice Question 33
+
+How does Dropout act as a form of regularization during the training of a neural network?
+
+- [ ] A. It drops the learning rate when loss plateaus.
+    
+- [ ] B. It ignores misclassified examples.
+    
+- [ ] C. It randomly deactivates a fraction of neurons in a layer during each training step, preventing complex co-adaptations and forcing the network to learn robust features.
+    
+- [ ] D. It completely removes the validation set to focus only on training data.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Dropout tắt ngẫu nhiên một phần các neuron trong quá trình train. Điều này ép các neuron còn lại phải tự học các đặc trưng mạnh mẽ thay vì dựa dẫm vào một vài neuron cụ thể.
+
+---
+
+### Multiple Choice Question 34
+
+Why are Transformer architectures (like BERT or GPT) increasingly preferred over RNNs/LSTMs for long-sequence NLP tasks?
+
+- [ ] A. Transformers process sequences strictly one word at a time, making them easier to debug.
+    
+- [ ] B. Transformers rely heavily on the vanishing gradient problem to filter out noise.
+    
+- [ ] C. Transformers use self-attention to process entire sequences in parallel, allowing for faster training and better capture of long-range dependencies.
+    
+- [ ] D. Transformers do not require any embeddings.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Transformer dùng cơ chế Self-attention có khả năng xem xét toàn bộ các từ trong câu cùng lúc (parallel), vượt trội hơn RNN vốn phải đọc từng từ tuần tự và dễ bị quên chuỗi dài.
+
+---
+
+### Multiple Choice Question 35
+
+How does tf.keras.utils.image_dataset_from_directory primarily differ from the older ImageDataGenerator.flow_from_directory?
+
+- [ ] A. It cannot read images from subfolders.
+    
+- [ ] B. It returns a tf.data.Dataset object, which is highly optimized for performance, prefetching, and multi-threading compared to Python generators.
+    
+- [ ] C. It only supports grayscale images.
+    
+- [ ] D. It strictly requires the labels to be provided in a separate CSV file.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** image_dataset_from_directory là API mới của Keras, trả về đối tượng tf.data.Dataset hiện đại, tự động tối ưu hóa luồng I/O đa luồng, nhanh hơn nhiều so với ImageDataGenerator cũ.
+
+---
+
+### Multiple Choice Question 36
+
+In an ARIMA(p,d,q) model for time series forecasting, what does the 'p' parameter represent?
+
+- [ ] A. The order of differencing required to make the series stationary.
+    
+- [ ] B. The order of the moving average (MA) component.
+    
+- [ ] C. The order of the auto-regressive (AR) component, indicating the number of lag observations included.
+    
+- [ ] D. The period of the seasonality.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Trong cấu trúc ARIMA(p,d,q), chữ 'p' đại diện cho Auto-Regressive (bậc tự hồi quy), chỉ định số lượng các giá trị trễ (lag) trong quá khứ được đưa vào mô hình.
+
+---
+
+### Multiple Choice Question 37
+
+When instantiating a pre-trained base model like ResNet50 for transfer learning on a new dataset, why do we set include_top=False?
+
+- [ ] A. To prevent the model from using the GPU.
+    
+- [ ] B. To exclude the final fully connected classification layers that were specific to the original ImageNet classes (e.g., 1000 categories).
+    
+- [ ] C. To remove the input layer.
+    
+- [ ] D. To disable all convolutional filters.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Lớp 'top' của ResNet50 là lớp Dense gồm 1000 nơ-ron để phân loại 1000 class của ImageNet. Khi dùng cho dữ liệu mới, ta phải bỏ lớp này (include_top=False) để thêm lớp phân loại của riêng ta.
+
+---
+
+### Multiple Choice Question 38
+
+What is a major advantage of using dense, pre-trained word embeddings (like Word2Vec or GloVe) over sparse one-hot encoding?
+
+- [ ] A. Dense embeddings take up infinitely more memory.
+    
+- [ ] B. Dense embeddings represent words as continuous vectors where semantic relationships and similarities between words are captured geometrically.
+    
+- [ ] C. Dense embeddings guarantee 100% accuracy in translation tasks.
+    
+- [ ] D. Dense embeddings represent every word as a single integer, saving space.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Dense embeddings (vector dày đặc) nhóm các từ có ý nghĩa tương đồng lại gần nhau trong không gian vector đa chiều, ưu việt hơn hẳn One-hot encoding thô sơ.
+
+---
+
+### Multiple Choice Question 39
+
+What is the purpose of the save_best_only=True parameter in the ModelCheckpoint callback?
+
+- [ ] A. It saves the code of the best layer.
+    
+- [ ] B. It ensures that the model weights are only saved to disk if the monitored metric (e.g., val_loss) has improved compared to the previous best epoch.
+    
+- [ ] C. It saves the dataset that produced the best results.
+    
+- [ ] D. It stops training as soon as the best accuracy is reached.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** save_best_only=True sẽ so sánh metric hiện tại với epoch tốt nhất trước đó. Nó chỉ ghi đè file model nếu mô hình thực sự học tốt hơn, giúp bạn luôn giữ được phiên bản model "đỉnh" nhất.
+
+---
+
+### Multiple Choice Question 40
+
+When preparing images for a neural network, why might an engineer choose to convert RGB images to Grayscale?
+
+- [ ] A. Grayscale images always contain more detailed information than RGB images.
+    
+- [ ] B. To reduce the input dimensionality and computational load when color is not a distinguishing feature for the classification task.
+    
+- [ ] C. Because CNNs cannot technically process tensors with 3 color channels.
+    
+- [ ] D. To automatically increase the resolution of the image.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Nếu bài toán không phụ thuộc vào màu sắc (vd: nhận diện chữ viết tay MNIST), chuyển sang ảnh Xám (Grayscale - 1 channel) giúp giảm 3 lần khối lượng tính toán so với RGB (3 channels).
+
+---
+
+### Multiple Choice Question 41
+
+What specific problem does the Long Short-Term Memory (LSTM) architecture aim to solve compared to vanilla Recurrent Neural Networks (RNNs)?
+
+- [ ] A. The inability to process text data.
+    
+- [ ] B. The vanishing gradient problem, which makes it difficult for standard RNNs to learn long-term dependencies in a sequence.
+    
+- [ ] C. The high memory consumption of Convolutional Neural Networks.
+    
+- [ ] D. The lack of a Softmax output layer.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** LSTM sinh ra với cấu trúc các "cổng" (gates) đặc biệt để giải quyết bài toán "Tiêu biến đạo hàm" (Vanishing gradient) - căn bệnh khiến RNN truyền thống không thể nhớ được dữ liệu ở xa.
+
+---
+
+### Multiple Choice Question 42
+
+What is the effect of calling the .batch(32) method on a tf.data.Dataset object?
+
+- [ ] A. It limits the entire dataset to only 32 elements.
+    
+- [ ] B. It trains the model for 32 epochs.
+    
+- [ ] C. It groups 32 consecutive elements of the dataset into a single batch tensor for parallel processing by the model.
+    
+- [ ] D. It shuffles the data using a seed of 32.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Hàm .batch(32) sẽ gom 32 mẫu dữ liệu đơn lẻ lại thành một khối (tensor) duy nhất để đưa qua mạng nơ-ron trong 1 step.
+
+---
+
+### Multiple Choice Question 43
+
+In the context of the bias-variance tradeoff, a model that is heavily underfitting the training data and failing to capture underlying patterns is said to have:
+
+- [ ] A. High variance and low bias
+    
+- [ ] B. High bias and low variance
+    
+- [ ] C. Low bias and low variance
+    
+- [ ] D. High bias and high variance
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Underfitting xảy ra khi mô hình quá đơn giản, không học được quy luật. Trong thống kê, đây gọi là độ lệch cao (High Bias).
+
+---
+
+### Multiple Choice Question 44
+
+While standard CNNs (like ResNet or MobileNet) are used primarily for image classification, which of the following architectures is designed specifically for Object Detection tasks (finding bounding boxes)?
+
+- [ ] A. YOLO (You Only Look Once)
+    
+- [ ] B. LSTM
+    
+- [ ] C. Word2Vec
+    
+- [ ] D. ARIMA
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** YOLO là mạng nơ-ron cực kỳ nổi tiếng dành riêng cho việc vẽ bounding boxes và phân loại nhiều vật thể trong cùng một bức ảnh (Object Detection).
+
+---
+
+### Multiple Choice Question 45
+
+In sequence-to-sequence translation models, what is the core mechanism of "Attention"?
+
+- [ ] A. It sounds an alarm if the loss goes up.
+    
+- [ ] B. It forces the user to look at the screen during training.
+    
+- [ ] C. It allows the decoder to assign different weights (focus) to different parts of the input sequence for every single output step it generates.
+    
+- [ ] D. It acts as a dropout layer for recurrent units.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Cơ chế Attention giúp mô hình khi sinh ra một từ ở đầu ra (decoder) có thể "liếc nhìn" và gán trọng số cao cho những từ quan trọng tương ứng ở chuỗi đầu vào.
+
+---
+
+### Multiple Choice Question 46
+
+Which of the following data types is NOT a valid tf.DType in TensorFlow?
+
+- [ ] A. tf.string
+    
+- [ ] B. tf.float32
+    
+- [ ] C. tf.array
+    
+- [ ] D. tf.int64
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** tf.float32, tf.string, tf.int64 đều là các dtype chuẩn của TensorFlow. tf.array không tồn tại (TensorFlow dùng khái niệm Tensor).
+
+---
+
+### Multiple Choice Question 47
+
+In Computer Vision tasks like Image Segmentation, which evaluation metric is predominantly used to measure the overlap between the predicted mask and the ground truth mask?
+
+- [ ] A. Mean Squared Error (MSE)
+    
+- [ ] B. Intersection over Union (IoU)
+    
+- [ ] C. Silhouette Score
+    
+- [ ] D. Bleu Score
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Intersection over Union (IoU) là tỷ lệ diện tích phần giao (đoán đúng) chia cho phần hợp, là metric tiêu chuẩn nhất để đo lường độ chính xác của bài toán Image Segmentation.
+
+---
+
+### Multiple Choice Question 48
+
+What is a known limitation of the tf.keras.Sequential API when compared to the tf.keras.Model (Functional) API?
+
+- [ ] A. The Sequential API cannot contain Dense layers.
+    
+- [ ] B. The Sequential API cannot handle models that require multiple distinct inputs or multiple distinct outputs.
+    
+- [ ] C. The Sequential API cannot be compiled.
+    
+- [ ] D. The Sequential API cannot be run on a GPU.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Sequential API rất dễ dùng nhưng chỉ cho phép xây dựng cấu trúc đường thẳng (1 đầu vào, 1 đầu ra). Để làm mạng phân nhánh phức tạp, phải dùng Functional API.
+
+---
+
+### Multiple Choice Question 49
+
+In text preprocessing, what are "stop words"?
+
+- [ ] A. Words that cause the training to stop.
+    
+- [x] B. Common words (like 'the', 'is', 'in') that appear frequently but carry little unique semantic meaning, often removed to reduce vocabulary size.
+    
+- [ ] C. Punctuation marks exclusively.
+    
+- [ ] D. Words that represent negative sentiment.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Stop words (Từ dừng) là những từ cực kỳ phổ biến (ví dụ tiếng Việt có: "thì", "là", "mà") nhưng không mang lại nhiều giá trị phân loại nội dung, nên thường bị xóa để tối ưu tốc độ.
+
+---
+
+### Multiple Choice Question 50
+
+What is the purpose of applying a Moving Average to time series data during exploratory data analysis?
+
+- [ ] A. To convert the data into categorical labels.
+    
+- [x] B. To smooth out short-term fluctuations and noise, helping to highlight longer-term underlying trends.
+    
+- [ ] C. To increase the variance of the dataset.
+    
+- [ ] D. To automatically generate a recurrent neural network.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Đường trung bình động (Moving Average) làm "mượt" các dao động lên xuống giật cục liên tục, giúp chuyên gia nhìn rõ được xu hướng tổng thể của chuỗi thời gian.
+
+---
+
+### Multiple Choice Question 51
+
+What is the primary purpose of the Flatten() layer in a standard Convolutional Neural Network pipeline?
+
+- [x] A. To convert 2D or 3D feature maps into a 1D vector so they can be fed into standard Fully Connected (Dense) layers.
+    
+- [ ] B. To reduce the number of channels to 1.
+    
+- [ ] C. To normalize the pixel values to be between 0 and 1.
+    
+- [ ] D. To compress the image into a JPEG format.
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** Sau khi trích xuất đặc trưng bằng Convolution (ra ma trận 2D/3D), ta phải dùng Flatten để duỗi thẳng nó thành mảng 1D, vì lớp Dense (Fully Connected) chỉ nhận đầu vào 1 chiều.
+
+---
+
+### Multiple Choice Question 52
+
+Why is k-fold cross-validation typically preferred over a single train/test split when evaluating a model on a relatively small dataset?
+
+- [ ] A. It trains the model k times faster.
+    
+- [ ] B. It provides a more robust and reliable estimate of model performance by ensuring every data point has a chance to be in the validation set, reducing evaluation variance.
+    
+- [ ] C. It automatically tunes hyperparameters without human intervention.
+    
+- [ ] D. It guarantees that the model will not overfit.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** K-fold cross validation chia nhỏ tập dữ liệu ra train/test nhiều lần luân phiên. Nó giúp đánh giá độ chính xác đáng tin cậy hơn trên dữ liệu nhỏ so với việc chỉ cắt tập train/test 1 lần ngẫu nhiên.
+
+---
+
+### Multiple Choice Question 53
+
+When building a text generator, why is the CategoricalCrossentropy loss function often used over MeanSquaredError?
+
+- [ ] A. Because text generation is inherently a regression problem.
+    
+- [ ] B. Because predicting the next word is treated as a multi-class classification problem across the entire vocabulary.
+    
+- [ ] C. Because MeanSquaredError cannot be calculated on GPUs.
+    
+- [ ] D. Because CategoricalCrossentropy automatically tokenizes the words.
+    
+
+> [!success]- Đáp án: B
+> 
+> **Giải thích:** Bài toán sinh chữ (Text Generation) thực chất là đoán "từ tiếp theo" từ một bộ từ vựng (ví dụ có 10,000 từ). Đây là bài toán phân loại đa lớp quy mô lớn, do đó phải dùng CategoricalCrossentropy.
+
+---
+
+### Multiple Choice Question 54
+
+In TensorFlow, if you want to deploy a trained Keras model to a mobile device or a web browser, which ecosystem tool is specifically designed for this?
+
+- [ ] A. TensorFlow Lite / TensorFlow.js
+    
+- [ ] B. TensorFlow Datasets
+    
+- [ ] C. TensorBoard
+    
+- [ ] D. TensorFlow Hub
+    
+
+> [!success]- Đáp án: A
+> 
+> **Giải thích:** TensorFlow Lite được tối ưu để nhúng vào Mobile/IoT, còn TensorFlow.js dùng để chạy thẳng mô hình trên trình duyệt web.
+
+---
+
+### Multiple Choice Question 55
+
+Which of the following techniques is considered a "Data-Centric" approach to improving a deep learning model's performance, rather than a "Model-Centric" approach?
+
+- [ ] A. Changing the activation function from ReLU to Leaky ReLU.
+    
+- [ ] B. Adding more layers to the neural network.
+    
+- [ ] C. Carefully cleaning mislabeled data and acquiring more high-quality samples for the minority class.
+    
+- [ ] D. Switching from Adam optimizer to SGD with momentum.
+    
+
+> [!success]- Đáp án: C
+> 
+> **Giải thích:** Cải thiện chất lượng dữ liệu, làm sạch nhãn sai (Cleaning mislabeled data) là cốt lõi của phong trào "Data-Centric AI", khác biệt so với Model-Centric (chỉ tập trung thay đổi kiến trúc layer, optimizer, loss).
+
+
+
+Multiple Choice Question 50
+
+How can you implement a learning rate schedule using callbacks in TensorFlow?
+
+A. By using the ModelCheckpoint callback
+
+B. By using the EarlyStopping callback
+
+C. By using the ReduceLROnPlateau callback
+
+D. Learning rate schedules cannot be implemented with callbacks
+
+Multiple Choice Question 5
+
+What is the purpose of stemming in text processing?
+
+A. Expanding words to their full forms
+
+B. Reducing words to their root or base form
+
+C. Analyzing sentence structure
+
+D. Identifying entities in text
+
+Multiple Choice Question 4
+
+In the context of creating a new model with a pre-trained model in TensorFlow, what is the benefit of transfer learning?
+
+A. It avoids using pre-trained models altogether.
+
+B. It allows the model to ignore the knowledge from the pre-trained model.
+
+C. It transfers knowledge from the pre-trained model to improve performance on a new task.
+
+D. Transfer learning has no impact on model performance.
+
+Multiple Choice Question 3
+
+How can seasonality be addressed in time series analysis?
+
+A. By removing all time-dependent features
+
+B. By using a rolling mean to smooth the data
+
+C. By incorporating dummy variables for each season
+
+D. By applying dimensionality reduction techniques
+
+Multiple Choice Question 2
+
+Which activation has range [0,∞)?
+
+A. Tanh
+
+B. Sigmoid
+
+C. ReLU
+
+D. Softsign
+
+  
+
+Multiple Choice Question 1
+
+How is the softmax activation function typically used in next-word prediction models?
+
+A. To normalize the output probabilities over multiple words
+
+B. To apply non-linearity to the input sequences
+
+C. To control the learning rate during training
+
+D. To calculate the loss function
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Query successful
+
+Gemini said
+
+  
+
+Tiếp tục là nội dung văn bản của các câu hỏi tiếp theo mà bạn đã gửi:
+
+  
+
+Multiple Choice Question 11
+
+How does increasing the size of the training dataset contribute to preventing overfitting?
+
+A. It has no impact on overfitting.
+
+B. It increases the risk of overfitting.
+
+C. It helps the model generalize better to new data.
+
+D. It makes the model more prone to memorizing noise.
+
+Multiple Choice Question 10
+
+What does the term "sequence length" refer to in the context of text-to-sequence conversion?
+
+A. The length of each word in a document
+
+B. The number of words in a sentence or document
+
+C. The size of the vocabulary
+
+D. The embedding dimension of the vectors
+
+Multiple Choice Question 9
+
+What is a potential use case for the SplitMergeTokenizer?
+
+A. Tokenizing text into subword units for language modeling
+
+B. Tokenizing multilingual text with different scripts
+
+C. Tokenizing text into individual words based on whitespaces
+
+D. Tokenizing text based on learned subword units for WordPiece models
+
+Multiple Choice Question 8
+
+What does the repeat method do when applied to a TensorFlow dataset?
+
+A. It repeats the dataset multiple times during training.
+
+B. It adds noise to the dataset.
+
+C. It repeats the feature-label pairs within each batch.
+
+D. It reshapes the dataset.
+
+Multiple Choice Question 7
+
+Typical input size for ImageNet-pretrained InceptionV3 is:
+
+A. 224×224
+
+B. 256×256
+
+C. 299×299
+
+D. 331×331
+
+Multiple Choice Question 6
+
+What is a typical representation of training and validation accuracies on a plot?
+
+A. A single line indicating both training and validation accuracies
+
+B. Two separate lines for training and validation accuracies
+
+C. A bar chart comparing training and validation accuracies
+
+D. A scatter plot showing individual data points
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Query successful
+
+Gemini said
+
+  
+
+Dưới đây là nội dung văn bản được trích xuất từ các hình ảnh mới mà bạn đã cung cấp:
+
+  
+
+Multiple Choice Question 20
+
+What is the purpose of the Dropout layer in a ConvNet?
+
+A. It drops neurons during training to prevent overfitting.
+
+B. It adjusts the learning rate dynamically.
+
+C. It adds random noise to the input data.
+
+D. It reduces the spatial dimensions of the input.
+
+Multiple Choice Question 19
+
+Which type of padding preserves the spatial dimensions of the input in a convolutional layer?
+
+A. Zero padding
+
+B. Same padding
+
+C. Valid padding
+
+D. Symmetric padding
+
+Multiple Choice Question 18
+
+What is the benefit of using Google Colab for collaborative projects?
+
+A. It restricts access to only one user at a time.
+
+B. It allows real-time collaboration with multiple users on the same notebook.
+
+C. It requires users to download and upload notebooks for sharing.
+
+D. It only supports offline collaboration.
+
+Multiple Choice Question 17
+
+What is the purpose of the SplitMergeTokenizer in TensorFlow?
+
+A. Tokenizing based on whitespace
+
+B. Tokenizing using pre-trained models from TensorFlow Hub
+
+C. Tokenizing using Sentencepiece
+
+D. Tokenizing by splitting and merging text
+
+Multiple Choice Question 16
+
+What is Transfer Learning in the context of Computer Vision and TensorFlow?
+
+A. Copying and pasting code from one project to another
+
+B. Training a model on a specific task and then using it as a starting point for a different but related task
+
+C. Moving data from one storage location to another
+
+D. Adjusting the brightness and contrast of images during preprocessing
+
+Multiple Choice Question 15
+
+When creating a windowed dataset for time series prediction, what does the target window represent?
+
+A. The window before the input window
+
+B. The window after the input window
+
+C. The window at the same time as the input window
+
+D. The entire time series without windowing
+
+Multiple Choice Question 14
+
+Given a training dataset with exclusively left-facing individuals, what strategies can prevent overfitting when classifying right-facing individuals?
+
+A. Use the 'horizontal_flip' parameter
+
+B. Use the 'flip' parameter and set 'horizontal'
+
+C. Use the 'flip_vertical' parameter around the Y axis
+
+D. Use the 'flip' parameter
+
+Multiple Choice Question 13
+
+In a multiclass classification problem, how are categorical labels typically represented in TensorFlow?
+
+A. As strings
+
+B. As integer values
+
+C. Using one-hot encoding
+
+D. Using floating-point numbers
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Query successful
+
+Gemini said
+
+  
+
+Dưới đây là nội dung văn bản trích xuất từ loạt hình ảnh cuối cùng bạn đã gửi:
+
+  
+
+Multiple Choice Question 30
+
+How can increasing the amount of training data help prevent overfitting?
+
+A. By making the training process slower
+
+B. By introducing more noise into the model
+
+C. By improving the model's generalization to new data
+
+D. Increasing data size has no effect on overfitting
+
+Multiple Choice Question 29
+
+Which Python library is commonly used for plotting training and validation accuracies in the context of evaluating model performance?
+
+A. NumPy
+
+B. Matplotlib
+
+C. Scikit-learn
+
+D. TensorFlow
+
+Multiple Choice Question 28
+
+How can you compile a sequential model with LSTM layers for classification in TensorFlow?
+
+A. tf.keras.Sequential.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+B. tf.keras.compile(model, optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+C. tf.keras.Sequential().compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+D. tf.keras.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])(Lưu ý: Trong thực tế thường là model.compile(...) sau khi đã khởi tạo đối tượng model).
+
+Multiple Choice Question 27
+
+How can you visualize time series data effectively?
+
+A. Scatter plots
+
+B. Bar charts
+
+C. Line charts
+
+D. Pie charts
+
+Multiple Choice Question 26
+
+What is padding in the context of machine learning and TensorFlow?
+
+A. A technique to remove unnecessary zeros from a dataset
+
+B. Adding extra data to the input to ensure consistent dimensions
+
+C. The process of smoothing out noisy data
+
+D. Resizing images to a fixed size during preprocessing
+
+Multiple Choice Question 25
+
+What is stationarity in the context of time series data?
+
+A. The absence of temporal patterns
+
+B. The presence of seasonality in the data
+
+C. The constancy of statistical properties over time
+
+D. The rapid changes in the time series
+
+Multiple Choice Question 24
+
+Which method within the Image Generator performs image normalization?
+
+A. rescale
+
+B. normalize_image
+
+C. normalize
+
+D. rescale_image
+
+Multiple Choice Question 23
+
+When exploring the impact of image compression in TensorFlow, what metric is commonly used to measure the trade-off between compression and image quality?
+
+A. Accuracy Score
+
+B. Compression Ratio
+
+C. Signal-to-Noise Ratio (SNR)
+
+D. Learning Rate
+
+Multiple Choice Question 22
+
+What is the purpose of the "ImageDataGenerator" in TensorFlow's Computer Vision applications?
+
+A. Generating random numbers for image pixel values
+
+B. Preprocessing image data for model training
+
+C. Creating animated GIFs from image sequences
+
+D. Designing custom image filters
+
+Multiple Choice Question 21
+
+To reshape a vector v with length 12 into a 3x4 matrix in TensorFlow, which function should be used?
+
+A. tf.reshape(v, (3, 4))
+
+B. tf.resize(v, (3, 4))
+
+C. tf.transform(v, (3, 4))
+
+D. tf.matrixize(v, (3, 4))
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Query successful
+
+Gemini said
+
+  
+
+Dưới đây là nội dung văn bản trích xuất từ loạt hình ảnh bạn vừa gửi:
+
+  
+
+Multiple Choice Question 40
+
+What role does the base model play when creating a new model with a pre-trained base in TensorFlow?
+
+A. It serves as the output layer of the new model
+
+B. It replaces the need for custom layers in the new model
+
+C. It initializes the weights of the entire new model
+
+D. It acts as a feature extractor for the new model
+
+Multiple Choice Question 39
+
+What is the result of adding two vectors of the same dimension in TensorFlow?
+
+A. A scalar value
+
+B. A matrix
+
+C. Another vector
+
+D. A higher-dimensional tensor
+
+Multiple Choice Question 38
+
+What happens if the num_words parameter is set in the Tokenizer class?
+
+A. It defines the out-of-vocabulary token.
+
+B. It determines the sequence length.
+
+C. It controls the learning rate during training.
+
+D. It limits the vocabulary size to a specified number of words.
+
+Multiple Choice Question 37
+
+Which of the following is a common transformation applied during image data augmentation?
+
+A. Random rotation
+
+B. Image compression
+
+C. Grayscale conversion
+
+D. Pixel normalization
+
+Multiple Choice Question 36
+
+What is the significance of convergence?
+
+A. The process of getting very close to the correct answer.
+
+B. A dramatic increase in loss.
+
+C. A programming API for AI.
+
+D. An analysis that corresponds too closely or exactly to a particular set of data.
+
+Multiple Choice Question 35
+
+What is the primary challenge in analyzing time series data?
+
+A. Dealing with spatial variations
+
+B. Managing high-dimensional features
+
+C. Accounting for temporal dependencies
+
+D. Handling categorical variables
+
+Multiple Choice Question 34
+
+What is the role of hyperparameter tuning in time series forecasting using machine learning?
+
+A. To select the appropriate lag values
+
+B. To optimize the learning rate of the model
+
+C. To find the best model architecture
+
+D. To identify the optimal time period for analysis
+
+Multiple Choice Question 33
+
+What does the tokenize method of the BertTokenizer return?
+
+A. The original text without tokenization
+
+B. A list of tokens obtained from the text
+
+C. Token indices representing the text
+
+D. A tokenized sequence in a matrix form
+
+Multiple Choice Question 32
+
+What is the purpose of using one-hot encoding for the target variable in a multi-class classification task?
+
+A. To increase model complexity
+
+B. To speed up training
+
+C. To represent categorical labels as numerical vectors
+
+D. One-hot encoding is not applicable for multi-class classification
+
+Multiple Choice Question 31
+
+Which statistical measure is commonly used to decompose a time series into trend, seasonality, and residual components?
+
+A. Mean Absolute Deviation (MAD)
+
+B. Mean Squared Error (MSE)
+
+C. Autocorrelation Function (ACF)
+
+D. Moving Average (MA)
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Query successful
+
+Gemini said
+
+  
+
+Dưới đây là nội dung văn bản trích xuất từ các hình ảnh câu hỏi trắc nghiệm mới nhất của bạn:
+
+Multiple Choice Question 50
+
+How can you implement a learning rate schedule using callbacks in TensorFlow?
+
+A. By using the ModelCheckpoint callback
+
+B. By using the EarlyStopping callback
+
+C. By using the ReduceLROnPlateau callback
+
+D. Learning rate schedules cannot be implemented with callbacks
+
+Multiple Choice Question 49
+
+How does reducing the complexity of a model contribute to preventing overfitting?
+
+A. It increases the risk of overfitting.
+
+B. It has no impact on overfitting.
+
+C. It makes the model more prone to memorizing noise.
+
+D. It encourages the model to capture general patterns rather than noise.
+
+Multiple Choice Question 48
+
+What does the F1 Score metric consider when evaluating the performance of a forecasting model?
+
+A. The balance between precision and recall
+
+B. The ratio of true positive predictions to total predicted positives
+
+C. The overall accuracy of the model
+
+D. The correlation between predicted and actual values
+
+Multiple Choice Question 47
+
+What is the goal of sentiment analysis in text understanding?
+
+A. Identifying grammatical errors
+
+B. Extracting meaning from text
+
+C. Determining the emotional tone of the text
+
+D. Summarizing the text content
+
+Multiple Choice Question 46
+
+How can you identify overfitting by examining a model's performance metrics?
+
+A. If the training accuracy is high but the validation accuracy is low.
+
+B. If both training and validation accuracies are high.
+
+C. If the model has a low learning rate.
+
+D. If the number of epochs is too small.
+
+Multiple Choice Question 45
+
+How does the lack of regularization contribute to overfitting in machine learning models?
+
+A. Regularization has no impact on overfitting.
+
+B. Lack of regularization allows the model to fit the training data too closely.
+
+C. Regularization leads to underfitting rather than overfitting.
+
+D. Lack of regularization increases the learning rate.
+
+Multiple Choice Question 44
+
+What does the rescale parameter in ImageDataGenerator do?
+
+A. It resizes images to a specified shape.
+
+B. It normalizes pixel values to a specified range.
+
+C. It rotates images randomly during training.
+
+D. It converts images to grayscale.
+
+Multiple Choice Question 43
+
+Which deep learning architecture is commonly used for predicting the next word in a sequence?
+
+A. Convolutional Neural Network (CNN)
+
+B. Recurrent Neural Network (RNN)
+
+C. Support Vector Machine (SVM)
+
+D. Decision Tree
+
+Multiple Choice Question 42
+
+What is the primary purpose of the ImageDataGenerator in TensorFlow?
+
+A. Generating synthetic images for training
+
+B. Resizing images to a fixed dimension
+
+C. Preprocessing and augmenting image data for model training
+
+D. Loading images from external URLs
+
+Multiple Choice Question 41
+
+How does autocorrelation play a role in time series analysis?
+
+A. It measures the correlation between different time series.
+
+B. It helps identify patterns within a single time series at different lags.
+
+C. It calculates the average correlation across multiple time series.
+
+D. It assesses the correlation between time series and external factors.

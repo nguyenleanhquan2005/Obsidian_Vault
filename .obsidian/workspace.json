@@ -58,47 +58,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer VIsion/Lecture 1_Summarize.md",
+                "file": "Machine Learning/Deep Learning/Activation Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lecture 1_Summarize"
-            }
-          },
-          {
-            "id": "160e877022ff92d5",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "AI_Career/Deep Learning.canvas",
-                "viewState": {
-                  "x": 760.785794824798,
-                  "y": -985.5036636737318,
-                  "zoom": -0.958506520246197
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Deep Learning"
-            }
-          },
-          {
-            "id": "ecf57dad85091d24",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Human Language Technology/Speech Language Processing/Chapter 01 - Introduction.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 01 - Introduction"
+              "title": "Activation Functions"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -257,45 +226,50 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "160e877022ff92d5",
+  "active": "9e655fa5c43929c4",
   "lastOpenFiles": [
-    "Human Language Technology/Speech Language Processing/Digital Speech Processing.md",
-    "Human Language Technology/Speech Language Processing/Untitled.md",
-    "Human Language Technology/Speech Language Processing/Chapter 02_Review of Fundamentals of Digital Signal Processing.md",
-    "Human Language Technology/Speech Language Processing/02.md",
-    "Human Language Technology/Speech Language Processing/Chapter 14_Automatic Speech Recognition and NLU.md",
-    "Human Language Technology/Speech Language Processing/Chapter 12 - Digital Speech Recognition.md",
-    "Human Language Technology/Speech Language Processing/Chapter 12_Frequency-Domain Coding of Speech and Audio.md",
-    "Human Language Technology/Speech Language Processing/Chapter 01_Digital Speech Processing.md",
-    "Human Language Technology/Speech Language Processing/Chapter 11_Digital Coding of Speech Signals.md",
-    "Human Language Technology/Speech Language Processing/Chapter 10_Algorithms for Estimating Speech Parameters.md",
-    "Human Language Technology/Speech Language Processing/Chapter 10 - Digital Speech Coding.md",
-    "Human Language Technology/Speech Language Processing/Chapter 09_Linear Predictive Analysis of Speech Signals.md",
-    "Human Language Technology/Speech Language Processing/Chapter 06_Time-Domain Methods for Speech Processing.md",
-    "Human Language Technology/Speech Language Processing/Chapter 04_Hearing, Auditory Models, and Speech Perception.md",
-    "Human Language Technology/Speech Language Processing/Chapter05_Short-Time_Analysis_of_Speech(1).md",
-    "Human Language Technology/Speech Language Processing/Chapter 13_Text-to-Speech Synthesis Methods.md",
-    "Human Language Technology/Speech Language Processing/Chapter 08_The Cepstrum and Homomorphic Speech Processing.md",
-    "Human Language Technology/Speech Language Processing/Chapter 07_Frequency-Domain Representations.md",
-    "Human Language Technology/Speech Language Processing/Chapter 05_Sound Propagation in the Human Vocal Tract.md",
-    "Human Language Technology/Speech Language Processing/Chapter 03_Fundamentals of Human Speech Production.md",
-    "Human Language Technology/Speech Language Processing/Chapter 09 - Linear Predictive Analysis of Speech Signals.md",
-    "Human Language Technology/Speech Language Processing/Chapter 11 - Digital Speaker Recognition.md",
-    "Human Language Technology/Speech Language Processing/Chapter 14 - Text-to-Speech Synthesis Methods.md",
-    "Human Language Technology/Speech Language Processing/Chapter 13 - Natural Language Understanding.md",
-    "Pasted image 20260325222934.png",
-    "Pasted image 20260325222808.png",
-    "Human Language Technology/Speech Language Processing/Chapter 07 - Frequency-Domain Representations.md",
-    "Human Language Technology/Speech Language Processing/Chapter 05 - Short-Time Analysis of Speech.md",
-    "Pasted image 20260325151810.png",
-    "Pasted image 20260324001646.png",
-    "Pasted image 20260321233327.png",
+    "Machine Learning/Time Series Forecasting.md",
+    "Machine Learning/Feature Engineering Overview.md",
+    "Machine Learning/Data Preprocessing Overview.md",
+    "Machine Learning/Deep Learning/Activation Functions.md",
+    "daoham.png",
+    "daoham1.png",
+    "daoham3.png",
+    "daoham2.png",
+    "canvas3.png",
+    "canvas2.png",
+    "canvas1.png",
+    "canvas.png",
+    "Machine Learning/Deep Learning/Backpropagation.md",
+    "Machine Learning/Grid Search & Random Search.md",
+    "Machine Learning/Imbalanced Data.md",
+    "Machine Learning/Missing Values & Outliers.md",
+    "Machine Learning/NLP Applications.md",
+    "Machine Learning/Ordinary Least Squares Regression.md",
+    "Machine Learning/Overfitting & Underfitting.md",
+    "Machine Learning/Reinforcement Learning Overview.md",
+    "Machine Learning/Scikit-learn Pipeline.md",
+    "Machine Learning/Semi-Supervised Learning.md",
+    "Machine Learning/Stepwise Regression.md",
+    "Machine Learning/Train Val Test Split.md",
+    "Machine Learning/VAE - Variational Autoencoder.md",
+    "Writing.md",
+    "DPL302_FE.md",
+    "2026-01-13.md",
+    "Probability and Statistics/Chapter 1_ The Roles of Statistics in Engineering.md",
+    "Machine Learning/🗺️ MOC - Machine Learning.md",
+    "AI_Career/Math_Foundation.md",
+    "Machine Learning/Math Foundation/Linear Discriminant Analysis.md",
+    "Machine Learning/Math Foundation/Linear Algebra Overview.md",
+    "Machine Learning/Math Foundation/Duality in Optimization.md",
+    "Pasted image 20260330193408.png",
+    "Untitled.canvas",
+    "Images/Pasted image 20260325222934.png",
+    "AI_Career/Deep Learning.canvas",
     "Human Language Technology/Speech Language Processing",
     "Human Language Technology/Natural Language Processing",
     "Human Language Technology",
-    "AI_Career/Deep Learning.canvas",
     "AWS 0.canvas",
-    "Untitled.canvas",
     "ZAN.canvas",
     "Untitled 1.canvas",
     "Information Retrieval",
@@ -303,13 +277,8 @@
     "Obsidian_Vault",
     "Geometry",
     "Algebra",
-    "Images/image.png",
     "Golang fundamentals/Untitled 2.canvas",
     "Calculus",
-    "Untitled.base",
-    "Images/image(1).png",
-    "Images/image(2).png",
-    "Images/Deep Learning.png",
-    "Images/deepseek_mermaid_20250715_2a90e1.png"
+    "Untitled.base"
   ]
 }
