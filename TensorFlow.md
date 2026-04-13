@@ -2183,7 +2183,7 @@ Which of the following techniques is considered a "Data-Centric" approach to imp
     
 - [ ] B. Adding more layers to the neural network.
     
-- [ ] C. Carefully cleaning mislabeled data and acquiring more high-quality samples for the minority class.
+- [x] C. Carefully cleaning mislabeled data and acquiring more high-quality samples for the minority class.
     
 - [ ] D. Switching from Adam optimizer to SGD with momentum.
     
@@ -2194,712 +2194,1199 @@ Which of the following techniques is considered a "Data-Centric" approach to imp
 
 
 
-Multiple Choice Question 50
 
-How can you implement a learning rate schedule using callbacks in TensorFlow?
+---
 
-A. By using the ModelCheckpoint callback
+### CÁC CÂU HỎI TỪ 1 - 10
 
-B. By using the EarlyStopping callback
+**Câu 1:** How is the softmax activation function typically used in next-word prediction models?
 
-C. By using the ReduceLROnPlateau callback
+- [x] A. To normalize the output probabilities over multiple words
+    
+- [ ] B. To apply non-linearity to the input sequences
+    
+- [ ] C. To control the learning rate during training
+    
+- [ ] D. To calculate the loss function
 
-D. Learning rate schedules cannot be implemented with callbacks
+Lớp ẩn (RNN/LSTM/Transformer) → Logits z (vector thô, âm/dương tùy ý) → Softmax (chuẩn hóa) → ŷ (xác suất, tổng = 1) → Cross-Entropy Loss
 
-Multiple Choice Question 5
+## Công thức
 
-What is the purpose of stemming in text processing?
+$$a_i = \frac{e^{z_i}}{\sum_{j=1}^{V} e^{z_j}}$$
 
-A. Expanding words to their full forms
+- $z_i$ : logit (điểm số thô) của từ thứ $i$
+- $V$ : kích thước từ điển (vocabulary size)
+- Kết quả: mọi $a_i \in (0, 1)$ và $\sum a_i = 1$
 
-B. Reducing words to their root or base form
+---
 
-C. Analyzing sentence structure
+## Tại sao các đáp án kia sai
 
-D. Identifying entities in text
+| Đáp án | Nội dung | Lý do sai |
+|--------|----------|-----------|
+| B | Áp dụng phi tuyến cho input | Đây là việc của **ReLU / Tanh** ở lớp ẩn, không phải lớp đầu ra |
+| C | Kiểm soát learning rate | Đây là việc của **Optimizer** (Adam, SGD) và **Callbacks** |
+| D | Tính hàm loss | Softmax chỉ *cung cấp* $\hat{y}$ — **Cross-Entropy** mới tính loss: $L = -\sum y_i \log(\hat{y}_i)$ |
 
-Multiple Choice Question 4
+---
 
-In the context of creating a new model with a pre-trained model in TensorFlow, what is the benefit of transfer learning?
+## Lỗi Junior hay gặp
 
-A. It avoids using pre-trained models altogether.
+> Gộp **Softmax** và **Cross-Entropy** làm một khái niệm.
 
-B. It allows the model to ignore the knowledge from the pre-trained model.
+Hai bước hoàn toàn khác nhau:
+- **Softmax** → dịch logit sang xác suất
+- **Cross-Entropy** → chấm điểm dự đoán đó tệ đến đâu
 
-C. It transfers knowledge from the pre-trained model to improve performance on a new task.
+### Trick TensorFlow
 
-D. Transfer learning has no impact on model performance.
+Khi set `from_logits=True` trong hàm loss:
+```python
+loss = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
+```
 
-Multiple Choice Question 3
+TensorFlow tự ghép Softmax + Cross-Entropy nội bộ → tránh **overflow** do $e^x$ quá lớn khi logit cao (**numerical stability**).
 
-How can seasonality be addressed in time series analysis?
 
-A. By removing all time-dependent features
+**Câu 2:** Which activation has range $[0, \infty)$?
 
-B. By using a rolling mean to smooth the data
+- [ ] A. Tanh
+    
+- [ ] B. Sigmoid
+    
+- [x] C. ReLU
+    
+- [ ] D. Softsign
 
-C. By incorporating dummy variables for each season
+_Đáp án đúng của chuyên gia:_ **C. ReLU (Rectified Linear Unit)**
 
-D. By applying dimensionality reduction techniques
+**1. Bản chất Vật lý và Toán học:** Cuộc cách mạng Học sâu (Deep Learning) bùng nổ vào năm 2012 (với AlexNet) không phải nhờ thuật toán mới, mà chính là nhờ việc con người tìm ra hàm **ReLU** để thay thế Sigmoid/Tanh. Công thức cực kỳ đơn giản: $$ f(x) = \max(0, x) $$ Đạo hàm (Gradient) của nó: $$ f'(x) = \begin{cases} 1 & \text{nếu } x > 0 \ 0 & \text{nếu } x \le 0 \end{cases} $$
 
-Multiple Choice Question 2
+**2. Vì sao các phương án khác thất bại ở mạng Nơ-ron sâu?**
 
-Which activation has range [0,∞)?
-
-A. Tanh
-
-B. Sigmoid
-
-C. ReLU
-
-D. Softsign
-
+| Đáp án                     | Lý do sai                                                                              |     |
+| -------------------------- | -------------------------------------------------------------------------------------- | --- |
+| A — Tanh, range $(-1,1)$   | Đạo hàm bão hòa hai đầu → Vanishing Gradient                                           |     |
+| B — Sigmoid, range $(0,1)$ | Đạo hàm max chỉ $0.25$ → backprop nhân liên tiếp: $0.25^n \approx 0$ → lớp đầu tê liệt |     |
+| D — Softsign               | Range $(-1,1)$, cũng bão hòa, không phải $[0,+\infty)$                                 |     |
   
-
-Multiple Choice Question 1
-
-How is the softmax activation function typically used in next-word prediction models?
-
-A. To normalize the output probabilities over multiple words
-
-B. To apply non-linearity to the input sequences
-
-C. To control the learning rate during training
-
-D. To calculate the loss function
-
+**Cốt lõi:** ReLU có gradient = $1$ vùng dương → tín hiệu xuyên qua hàng trăm lớp (ResNet-152) không suy giảm.  
   
-
+---  
   
-
+## Lỗi Junior hay gặp  
   
-
+> Nghĩ ReLU hoàn hảo, quên mất **Dying ReLU**.  
   
-
+Khi learning rate quá lớn, neuron bị đẩy sang vùng âm → gradient = $0$ mãi mãi → neuron chết vĩnh viễn, không bao giờ được cập nhật trọng số.  
   
-
+**Fix:** dùng **Leaky ReLU** — $f(x) = 0.01x$ khi $x < 0$, giữ gradient nhỏ thay vì = $0$.  
   
-
-Query successful
-
-Gemini said
-
+---  
   
-
-Tiếp tục là nội dung văn bản của các câu hỏi tiếp theo mà bạn đã gửi:
-
+## Nhớ nhanh  
   
+> **Sigmoid/Tanh** = gradient teo dần theo chiều sâu → mạng cạn  
+> **ReLU** = gradient = 1 xuyên suốt → mạng sâu được
 
-Multiple Choice Question 11
 
-How does increasing the size of the training dataset contribute to preventing overfitting?
+**Câu 3:** How can seasonality be addressed in time series analysis?
 
-A. It has no impact on overfitting.
+- [ ] A. By removing all time-dependent features
+    
+- [ ] B. By using a rolling mean to smooth the data
+    
+- [x] C. By incorporating dummy variables for each season
+    
+- [ ] D. By applying dimensionality reduction techniques
 
-B. It increases the risk of overfitting.
-
-C. It helps the model generalize better to new data.
-
-D. It makes the model more prone to memorizing noise.
-
-Multiple Choice Question 10
-
-What does the term "sequence length" refer to in the context of text-to-sequence conversion?
-
-A. The length of each word in a document
-
-B. The number of words in a sentence or document
-
-C. The size of the vocabulary
-
-D. The embedding dimension of the vectors
-
-Multiple Choice Question 9
-
-What is a potential use case for the SplitMergeTokenizer?
-
-A. Tokenizing text into subword units for language modeling
-
-B. Tokenizing multilingual text with different scripts
-
-C. Tokenizing text into individual words based on whitespaces
-
-D. Tokenizing text based on learned subword units for WordPiece models
-
-Multiple Choice Question 8
-
-What does the repeat method do when applied to a TensorFlow dataset?
-
-A. It repeats the dataset multiple times during training.
-
-B. It adds noise to the dataset.
-
-C. It repeats the feature-label pairs within each batch.
-
-D. It reshapes the dataset.
-
-Multiple Choice Question 7
-
-Typical input size for ImageNet-pretrained InceptionV3 is:
-
-A. 224×224
-
-B. 256×256
-
-C. 299×299
-
-D. 331×331
-
-Multiple Choice Question 6
-
-What is a typical representation of training and validation accuracies on a plot?
-
-A. A single line indicating both training and validation accuracies
-
-B. Two separate lines for training and validation accuracies
-
-C. A bar chart comparing training and validation accuracies
-
-D. A scatter plot showing individual data points
-
+Mọi chuỗi thời gian đều là sự pha trộn của 4 thành phần:  
   
-
+$$  
+Y_t = \text{Trend}_t + \text{Seasonality}_t + \text{Cyclic}_t + \text{Noise}_t  
+$$  
   
-
+Hầu hết mô hình ML yêu cầu dữ liệu **Stationary** (trung bình và phương sai không đổi theo thời gian). Seasonality phá vỡ điều này.  
   
-
+**Cách triệt tiêu seasonality chuẩn nhất — Differencing bậc $m$:**  
   
-
+$$  
+Y'_t = Y_t - Y_{t-m}  
+$$  
   
-
+$m$ = chu kỳ mùa vụ (vd: $m=365$ ngày) → sóng lặp bị gạch bỏ hoàn toàn.  
   
-
-Query successful
-
-Gemini said
-
+---  
   
-
-Dưới đây là nội dung văn bản được trích xuất từ các hình ảnh mới mà bạn đã cung cấp:
-
+## Tại sao các đáp án kia sai  
   
-
-Multiple Choice Question 20
-
-What is the purpose of the Dropout layer in a ConvNet?
-
-A. It drops neurons during training to prevent overfitting.
-
-B. It adjusts the learning rate dynamically.
-
-C. It adds random noise to the input data.
-
-D. It reduces the spatial dimensions of the input.
-
-Multiple Choice Question 19
-
-Which type of padding preserves the spatial dimensions of the input in a convolutional layer?
-
-A. Zero padding
-
-B. Same padding
-
-C. Valid padding
-
-D. Symmetric padding
-
-Multiple Choice Question 18
-
-What is the benefit of using Google Colab for collaborative projects?
-
-A. It restricts access to only one user at a time.
-
-B. It allows real-time collaboration with multiple users on the same notebook.
-
-C. It requires users to download and upload notebooks for sharing.
-
-D. It only supports offline collaboration.
-
-Multiple Choice Question 17
-
-What is the purpose of the SplitMergeTokenizer in TensorFlow?
-
-A. Tokenizing based on whitespace
-
-B. Tokenizing using pre-trained models from TensorFlow Hub
-
-C. Tokenizing using Sentencepiece
-
-D. Tokenizing by splitting and merging text
-
-Multiple Choice Question 16
-
-What is Transfer Learning in the context of Computer Vision and TensorFlow?
-
-A. Copying and pasting code from one project to another
-
-B. Training a model on a specific task and then using it as a starting point for a different but related task
-
-C. Moving data from one storage location to another
-
-D. Adjusting the brightness and contrast of images during preprocessing
-
-Multiple Choice Question 15
-
-When creating a windowed dataset for time series prediction, what does the target window represent?
-
-A. The window before the input window
-
-B. The window after the input window
-
-C. The window at the same time as the input window
-
-D. The entire time series without windowing
-
-Multiple Choice Question 14
-
-Given a training dataset with exclusively left-facing individuals, what strategies can prevent overfitting when classifying right-facing individuals?
-
-A. Use the 'horizontal_flip' parameter
-
-B. Use the 'flip' parameter and set 'horizontal'
-
-C. Use the 'flip_vertical' parameter around the Y axis
-
-D. Use the 'flip' parameter
-
-Multiple Choice Question 13
-
-In a multiclass classification problem, how are categorical labels typically represented in TensorFlow?
-
-A. As strings
-
-B. As integer values
-
-C. Using one-hot encoding
-
-D. Using floating-point numbers
-
+| Đáp án | Lý do sai |  
+|--------|-----------|  
+| A — Bỏ hết đặc trưng thời gian | Vô lý — không còn là Time Series |  
+| B — Rolling mean | Làm mượt nhiễu, làm lộ Trend — **không xóa được seasonality triệt để** |  
+| D — Dimensionality Reduction (PCA) | Không liên quan đến xử lý tính thời gian |  
   
-
+**Riêng đáp án C:** Dùng One-Hot encoding cho các mùa/tháng (biến "Là_Mùa_Hè" = 1 hoặc 0) — cách chuẩn mực trong ML và kinh tế lượng để mô hình hiểu được chu kỳ mùa vụ.  
   
-
+---  
   
-
+## Lỗi Junior hay gặp  
   
-
+> Nhầm Rolling Mean (B) là cách xử lý seasonality — thực ra đó chỉ là làm mượt nhiễu, không triệt tiêu chu kỳ lặp.  
   
-
+**Thực chiến:** LSTM có Forget Gate tự học chu kỳ mùa vụ dài hạn, giảm nhu cầu xử lý thủ công như các thuật toán cũ.  
   
-
-Query successful
-
-Gemini said
-
+---  
   
-
-Dưới đây là nội dung văn bản trích xuất từ loạt hình ảnh cuối cùng bạn đã gửi:
-
+## Nhớ nhanh  
   
+> **Rolling mean** = làm mượt nhiễu, lộ Trend  
+> **Differencing** = xóa Seasonality  
+> **Dummy variables** = dạy model biết "đây là mùa Hè"
 
-Multiple Choice Question 30
+**Câu 4:** In the context of creating a new model with a pre-trained model in TensorFlow, what is the benefit of transfer learning?
 
-How can increasing the amount of training data help prevent overfitting?
-
-A. By making the training process slower
-
-B. By introducing more noise into the model
-
-C. By improving the model's generalization to new data
-
-D. Increasing data size has no effect on overfitting
-
-Multiple Choice Question 29
-
-Which Python library is commonly used for plotting training and validation accuracies in the context of evaluating model performance?
-
-A. NumPy
-
-B. Matplotlib
-
-C. Scikit-learn
-
-D. TensorFlow
-
-Multiple Choice Question 28
-
-How can you compile a sequential model with LSTM layers for classification in TensorFlow?
-
-A. tf.keras.Sequential.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-B. tf.keras.compile(model, optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-C. tf.keras.Sequential().compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-D. tf.keras.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])(Lưu ý: Trong thực tế thường là model.compile(...) sau khi đã khởi tạo đối tượng model).
-
-Multiple Choice Question 27
-
-How can you visualize time series data effectively?
-
-A. Scatter plots
-
-B. Bar charts
-
-C. Line charts
-
-D. Pie charts
-
-Multiple Choice Question 26
-
-What is padding in the context of machine learning and TensorFlow?
-
-A. A technique to remove unnecessary zeros from a dataset
-
-B. Adding extra data to the input to ensure consistent dimensions
-
-C. The process of smoothing out noisy data
-
-D. Resizing images to a fixed size during preprocessing
-
-Multiple Choice Question 25
-
-What is stationarity in the context of time series data?
-
-A. The absence of temporal patterns
-
-B. The presence of seasonality in the data
-
-C. The constancy of statistical properties over time
-
-D. The rapid changes in the time series
-
-Multiple Choice Question 24
-
-Which method within the Image Generator performs image normalization?
-
-A. rescale
-
-B. normalize_image
-
-C. normalize
-
-D. rescale_image
-
-Multiple Choice Question 23
-
-When exploring the impact of image compression in TensorFlow, what metric is commonly used to measure the trade-off between compression and image quality?
-
-A. Accuracy Score
-
-B. Compression Ratio
-
-C. Signal-to-Noise Ratio (SNR)
-
-D. Learning Rate
-
-Multiple Choice Question 22
-
-What is the purpose of the "ImageDataGenerator" in TensorFlow's Computer Vision applications?
-
-A. Generating random numbers for image pixel values
-
-B. Preprocessing image data for model training
-
-C. Creating animated GIFs from image sequences
-
-D. Designing custom image filters
-
-Multiple Choice Question 21
-
-To reshape a vector v with length 12 into a 3x4 matrix in TensorFlow, which function should be used?
-
-A. tf.reshape(v, (3, 4))
-
-B. tf.resize(v, (3, 4))
-
-C. tf.transform(v, (3, 4))
-
-D. tf.matrixize(v, (3, 4))
-
+- [ ] A. It avoids using pre-trained models altogether.
+    
+- [ ] B. It allows the model to ignore the knowledge from the pre-trained model.
+    
+- [x] C. It transfers knowledge from the pre-trained model to improve performance on a new task.
+    
+- [ ] D. Transfer learning has no impact on model performance.
+    
+## Bản chất  
   
-
+Train VGG16 hay BERT từ đầu tốn hàng chục nghìn USD GPU + triệu dữ liệu. Transfer Learning cho phép "đứng trên vai người khổng lồ" — tái dụng các bộ lọc đã học được đường nét, góc cạnh, màu sắc (đặc trưng **domain-agnostic**) cho task mới chỉ với vài trăm ảnh.  
   
-
+---  
   
-
+## Công thức Freezing (Đóng băng trọng số)  
   
-
+$$  
+\frac{\partial L}{\partial W_{\text{frozen}}} = 0 \implies W_{t+1} = W_t - \eta \cdot 0 = W_t  
+$$  
   
-
+Backprop không phá hủy tri thức cũ. Chỉ cập nhật các **Dense layers mới** gắn thêm ở đỉnh mạng.  
   
-
-Query successful
-
-Gemini said
-
+---  
   
-
-Dưới đây là nội dung văn bản trích xuất từ loạt hình ảnh bạn vừa gửi:
-
+## Tại sao các đáp án kia sai  
   
-
-Multiple Choice Question 40
-
-What role does the base model play when creating a new model with a pre-trained base in TensorFlow?
-
-A. It serves as the output layer of the new model
-
-B. It replaces the need for custom layers in the new model
-
-C. It initializes the weights of the entire new model
-
-D. It acts as a feature extractor for the new model
-
-Multiple Choice Question 39
-
-What is the result of adding two vectors of the same dimension in TensorFlow?
-
-A. A scalar value
-
-B. A matrix
-
-C. Another vector
-
-D. A higher-dimensional tensor
-
-Multiple Choice Question 38
-
-What happens if the num_words parameter is set in the Tokenizer class?
-
-A. It defines the out-of-vocabulary token.
-
-B. It determines the sequence length.
-
-C. It controls the learning rate during training.
-
-D. It limits the vocabulary size to a specified number of words.
-
-Multiple Choice Question 37
-
-Which of the following is a common transformation applied during image data augmentation?
-
-A. Random rotation
-
-B. Image compression
-
-C. Grayscale conversion
-
-D. Pixel normalization
-
-Multiple Choice Question 36
-
-What is the significance of convergence?
-
-A. The process of getting very close to the correct answer.
-
-B. A dramatic increase in loss.
-
-C. A programming API for AI.
-
-D. An analysis that corresponds too closely or exactly to a particular set of data.
-
-Multiple Choice Question 35
-
-What is the primary challenge in analyzing time series data?
-
-A. Dealing with spatial variations
-
-B. Managing high-dimensional features
-
-C. Accounting for temporal dependencies
-
-D. Handling categorical variables
-
-Multiple Choice Question 34
-
-What is the role of hyperparameter tuning in time series forecasting using machine learning?
-
-A. To select the appropriate lag values
-
-B. To optimize the learning rate of the model
-
-C. To find the best model architecture
-
-D. To identify the optimal time period for analysis
-
-Multiple Choice Question 33
-
-What does the tokenize method of the BertTokenizer return?
-
-A. The original text without tokenization
-
-B. A list of tokens obtained from the text
-
-C. Token indices representing the text
-
-D. A tokenized sequence in a matrix form
-
-Multiple Choice Question 32
-
-What is the purpose of using one-hot encoding for the target variable in a multi-class classification task?
-
-A. To increase model complexity
-
-B. To speed up training
-
-C. To represent categorical labels as numerical vectors
-
-D. One-hot encoding is not applicable for multi-class classification
-
-Multiple Choice Question 31
-
-Which statistical measure is commonly used to decompose a time series into trend, seasonality, and residual components?
-
-A. Mean Absolute Deviation (MAD)
-
-B. Mean Squared Error (MSE)
-
-C. Autocorrelation Function (ACF)
-
-D. Moving Average (MA)
-
+| Đáp án | Lý do sai |  
+|--------|-----------|  
+| A — Tránh dùng pretrained model | Ngược hoàn toàn — TL là *tận dụng triệt để* |  
+| B — Phớt lờ tri thức cũ | Ngược hoàn toàn — đó là train từ đầu (random init) |  
+| D — Không ảnh hưởng performance | Sai hoàn toàn — TL tạo ra ảnh hưởng khổng lồ với data nhỏ |  
   
-
+---  
   
-
+## Lỗi Junior hay gặp  
   
-
+> Freeze toàn bộ rồi không fine-tune gì cả → model không adapt được với task mới.  
   
-
+**Workflow chuẩn:**  
+1. Freeze base model → train lớp Dense mới vài epoch  
+2. Unfreeze một phần lớp cuối → fine-tune với **learning rate rất nhỏ** (tránh catastrophic forgetting)  
+  **3. Ứng dụng thực tiễn:** Khi tôi xây dựng hệ thống dự báo lượng đặt hàng cho Uber/Grab, số chuyến xe lặp lại một cách cực đoan theo từng giờ trong ngày và từng thứ trong tuần (Seasonality). Mạng **LSTM (Long Short-Term Memory)** được sử dụng vì nó có Cell State ($C_t$) với cổng quên (Forget Gate), giúp AI tự động "nhớ" được chu kỳ mùa vụ dài hạn này mà không cần kỹ sư phải làm phẳng (smooth) dữ liệu quá mức bằng tay như các thuật toán thời cũ.
+---  
   
-
+## Nhớ nhanh  
   
+> **Freeze** = bảo toàn tri thức cũ  
+> **Fine-tune** = tinh chỉnh nhẹ cho task mới  
+> **LR nhỏ** = không phá hủy những gì pretrained đã học
 
-Query successful
+**Câu 5:** What is the purpose of stemming in text processing?
 
-Gemini said
+- [ ] A. Expanding words to their full forms
+    
+- [x] B. Reducing words to their root or base form
+    
+- [ ] C. Analyzing sentence structure
+    
+- [ ] D. Identifying entities in text
 
-  
 
-Dưới đây là nội dung văn bản trích xuất từ các hình ảnh câu hỏi trắc nghiệm mới nhất của bạn:
+---
 
-Multiple Choice Question 50
+### Câu hỏi 5: What is the purpose of stemming in text processing?
 
-How can you implement a learning rate schedule using callbacks in TensorFlow?
+_Đáp án đúng của chuyên gia:_ **B. Reducing words to their root or base form.**
 
-A. By using the ModelCheckpoint callback
+**1. Liên hệ thực tiễn & Ý nghĩa:** Máy tính rất "ngu ngốc" trong việc nhận diện mặt chữ. Với máy tính, "running", "runs", "ran" là 3 ma trận hoàn toàn khác biệt. **Stemming** (Cắt gốc từ) là một kỹ thuật Heuristic (chặt bỏ hậu tố/tiền tố một cách thô bạo) để đưa các biến thể này về chung một gốc (ví dụ: "run").
 
-B. By using the EarlyStopping callback
+- **Ứng dụng:** Google Search hay Elasticsearch dùng Stemming để tăng độ phủ (Recall). Khi bạn search "fishing", hệ thống tự động trả về cả các bài viết chứa từ "fish" hay "fished".
 
-C. By using the ReduceLROnPlateau callback
+**2. Giải phẫu các phương án sai:**
 
-D. Learning rate schedules cannot be implemented with callbacks
+- **A (Expanding words):** Sai. Stemming là sự thu gọn (nén không gian đặc trưng), không phải mở rộng.
+- **C (Analyzing sentence structure):** Sai. Phân tích cấu trúc câu là nhiệm vụ của Syntactic Parsing (Cây cú pháp) hoặc POS Tagging.
+- **D (Identifying entities):** Sai. Định danh thực thể (như Tên người, Tổ chức) là nhiệm vụ của bài toán NER (Named Entity Recognition).
 
-Multiple Choice Question 49
+**3. Mở rộng liên ngành (Cross-domain relevance):** Stemming trong NLP có mục đích y hệt như kỹ thuật **Pooling (Nén ảnh)** trong Computer Vision hoặc **Downsampling** trong DSP. Bản chất của cả 3 kỹ thuật này đều là: _Giảm chiều không gian dữ liệu đầu vào (Dimensionality Reduction), vứt bỏ các chi tiết nhiễu không quan trọng để mô hình tập trung vào đặc trưng cốt lõi._
 
-How does reducing the complexity of a model contribute to preventing overfitting?
+---
 
-A. It increases the risk of overfitting.
 
-B. It has no impact on overfitting.
 
-C. It makes the model more prone to memorizing noise.
 
-D. It encourages the model to capture general patterns rather than noise.
 
-Multiple Choice Question 48
+---
 
-What does the F1 Score metric consider when evaluating the performance of a forecasting model?
 
-A. The balance between precision and recall
 
-B. The ratio of true positive predictions to total predicted positives
+**Câu 6:** What is a typical representation of training and validation accuracies on a plot?
 
-C. The overall accuracy of the model
+- [ ] A. A single line indicating both training and validation accuracies
+    
+- [x] B. Two separate lines for training and validation accuracies
+    
+- [ ] C. A bar chart comparing training and validation accuracies
+    
+- [ ] D. A scatter plot showing individual data points
+    
 
-D. The correlation between predicted and actual values
+**Câu 7:** Typical input size for ImageNet-pretrained InceptionV3 is:
 
-Multiple Choice Question 47
+- [ ] A. $224 \times 224$
+    
+- [ ] B. $256 \times 256$
+    
+- [x] C. $299 \times 299$
+    
+- [ ] D. $331 \times 331$
 
-What is the goal of sentiment analysis in text understanding?
+- InceptionV3 được thiết kế với chuẩn hình ảnh H=299,W=299. Tại sao không phải là 224x224 như VGG hay ResNet?
+- **Công thức Kích thước Feature Map:** $O=⌊SW−K+2P​⌋+1$.
+- Google thiết kế InceptionV3 với hàng loạt các nhánh Conv 1×1,3×3,5×5 và MaxPooling. Bắt đầu từ 299x299, đi qua hàng chục lớp giảm chiều (stride=2), nó sẽ hội tụ hoàn hảo về kích thước 8×8 ngay trước lớp GlobalAveragePooling mà không bị dư thừa hay làm tròn (fractional pixels) gây mất mát thông tin
 
-A. Identifying grammatical errors
+**Câu 8:** What does the repeat method do when applied to a TensorFlow dataset?
 
-B. Extracting meaning from text
+- [x] A. It repeats the dataset multiple times during training.
+    
+- [ ] B. It adds noise to the dataset.
+    
+- [ ] C. It repeats the feature-label pairs within each batch.
+    
+- [ ] D. It reshapes the dataset.
+    
 
-C. Determining the emotional tone of the text
+**Câu 9:** What is a potential use case for the SplitMergeTokenizer?
 
-D. Summarizing the text content
+- [x] A. Tokenizing text into subword units for language modeling
+    
+- [ ] B. Tokenizing multilingual text with different scripts
+    
+- [ ] C. Tokenizing text into individual words based on whitespaces
+    
+- [ ] D. Tokenizing text based on learned subword units for WordPiece models
+    
 
-Multiple Choice Question 46
+**Câu 10:** What does the term "sequence length" refer to in the context of text-to-sequence conversion?
 
-How can you identify overfitting by examining a model's performance metrics?
+- [ ] A. The length of each word in a document
+    
+- [x] B. The number of words in a sentence or document
+    
+- [ ] C. The size of the vocabulary
+    
+- [ ] D. The embedding dimension of the vectors
+    
 
-A. If the training accuracy is high but the validation accuracy is low.
+---
 
-B. If both training and validation accuracies are high.
+### CÁC CÂU HỎI TỪ 11 - 20
 
-C. If the model has a low learning rate.
+**Câu 11:** How does increasing the size of the training dataset contribute to preventing overfitting?
 
-D. If the number of epochs is too small.
+- [ ] A. It has no impact on overfitting.
+    
+- [ ] B. It increases the risk of overfitting.
+    
+- [x] C. It helps the model generalize better to new data.
+    
+- [ ] D. It makes the model more prone to memorizing noise.
 
-Multiple Choice Question 45
+- **Để chữa Underfitting (**↓ **Bias):** Bạn cần tăng độ phức tạp của mô hình (thêm hidden layers, thêm số lượng nơ-ron), hoặc tăng số vòng lặp (epochs) để mô hình học kỹ hơn.
+- **Để chữa Overfitting (**↓ **Variance):** Bạn cần tăng kích thước tập dữ liệu (thêm dữ liệu hoặc dùng Data Augmentation), hoặc áp dụng các cơ chế kiểm soát giảm sự phức tạp như Regularization (L1, L2), Dropout, và Dừng sớm (Early Stopping).
 
-How does the lack of regularization contribute to overfitting in machine learning models?
+**Câu 12:** Which layer is used to transform a 2D feature map into a 1D vector in a ConvNet?
 
-A. Regularization has no impact on overfitting.
+- [ ] A. `Conv2D
+	
+- [ ] B. `MaxPooling2D
+	
+- [x] C. Flatten`
+	
+- [ ] D. `Dropout`
 
-B. Lack of regularization allows the model to fit the training data too closely.
+- Lớp **Flatten** có nhiệm vụ "duỗi phẳng" các đặc trưng từ dạng không gian (2D/3D) thành một vector hàng (1D) để đưa vào các lớp Dense phía sau.
+	
+- **A.** **Conv2D****:** Lớp này dùng các bộ lọc (kernels) để trượt trên ảnh và tạo ra các Feature Map mới. Nó trả về một Tensor 2D/3D, không phải vector 1D.
+	
+- **B.** **MaxPooling2D****:** Dùng để giảm (nén) độ phân giải của Feature Map xuống (ví dụ từ 28×28 xuống 14×14), nhưng vẫn giữ nguyên cấu trúc hình học 2D/3D.
+	
+- **D.** **Dropout****:** Là kỹ thuật tắt ngẫu nhiên nơ-ron để chống học vẹt (Overfitting), nó hoàn toàn không làm thay đổi hình dáng (shape) hay kích thước của Tensor.
+Chào bạn, người đồng nghiệp tương lai! Rất vui được tiếp tục series "Masterclass" cùng bạn.
 
-C. Regularization leads to underfitting rather than overfitting.
+Với tư cách là một Senior AI Engineer, tôi sẽ không giải thích 6 câu hỏi này một cách rời rạc. Để triển khai thành công những hệ thống AI phức tạp như Large Language Models (LLMs) hay Hệ thống Thị giác Máy tính cho xe tự hành, chúng ta phải nhìn nhận chúng dưới một bức tranh tổng thể.
 
-D. Lack of regularization increases the learning rate.
+Tôi sẽ nhóm 6 câu hỏi này thành **3 Chuyên đề Cốt lõi**, đi từ Toán học nền tảng, thiết kế Data Pipeline, cho đến Kiến trúc Model và Tối ưu hóa.
 
-Multiple Choice Question 44
+---
 
-What does the rescale parameter in ImageDataGenerator do?
+# BỘ TÀI LIỆU ÔN TẬP CHUYÊN SÂU (PHẦN 2): TỪ DỮ LIỆU ĐẾN KHẢ NĂNG TỔNG QUÁT HÓA
 
-A. It resizes images to a specified shape.
+## CHUYÊN ĐỀ 1: LÝ THUYẾT HỌC THỐNG KÊ & KHẢ NĂNG TỔNG QUÁT HÓA (GENERALIZATION)
 
-B. It normalizes pixel values to a specified range.
+### Câu hỏi 11: How does increasing the size of the training dataset contribute to preventing overfitting?
 
-C. It rotates images randomly during training.
+_Đáp án đúng của chuyên gia:_ **C. It helps the model generalize better to new data.**
 
-D. It converts images to grayscale.
+### Câu hỏi 6: What is a typical representation of training and validation accuracies on a plot?
 
-Multiple Choice Question 43
+_Đáp án đúng của chuyên gia:_ **B. Two separate lines for training and validation accuracies.**
 
-Which deep learning architecture is commonly used for predicting the next word in a sequence?
+**1. Bản chất Toán học (Mathematical Essence):** Trong Machine Learning, mục tiêu tối thượng không phải là học thuộc lòng dữ liệu, mà là cực tiểu hóa **Rủi ro Thực tế (Expected Risk / Out-of-sample Error - $E_{out}$)**. Tuy nhiên, ta chỉ có thể tính được **Rủi ro Kinh nghiệm (Empirical Risk / In-sample Error - $E_{in}$)** trên tập Training. Theo **Bất đẳng thức Hoeffding** và lý thuyết VC-Dimension, mối quan hệ giữa chúng được biểu diễn qua công thức BẮT BUỘC phải nhớ: $$ E_{out}(\theta) \le E_{in}(\theta) + \mathcal{O}\left(\sqrt{\frac{d_{VC}}{N}}\right) $$ _Trong đó:_
 
-A. Convolutional Neural Network (CNN)
+- $N$: Kích thước tập dữ liệu huấn luyện (Training dataset size).
+- $d_{VC}$: Độ phức tạp của mô hình (Sức chứa của mạng Neural).
+- Đại lượng $\sqrt{\frac{d_{VC}}{N}}$ chính là **Generalization Gap (Khoảng cách tổng quát hóa)**.
 
-B. Recurrent Neural Network (RNN)
+**Phân tích chuyên sâu:** Nhìn vào công thức trên, khi $N$ (lượng dữ liệu) tiến tới vô cùng, phân số $\frac{d_{VC}}{N}$ tiến về $0$. Lúc này $E_{out} \approx E_{in}$. Đó là lý do toán học giải thích tại sao **tăng kích thước dữ liệu (Câu 11)** lại giúp mô hình tổng quát hóa (generalize) tốt hơn và triệt tiêu hoàn toàn Overfitting.
 
-C. Support Vector Machine (SVM)
+Về mặt trực quan **(Câu 6)**, các kỹ sư luôn vẽ **2 đường đồ thị tách biệt (Two separate lines)** cho Train và Validation.
 
-D. Decision Tree
+- Khoảng cách giữa 2 đường này chính là thước đo vật lý của $\sqrt{\frac{d_{VC}}{N}}$.
+- Nếu đường Train đi xuống đáy mà đường Validation móc ngược lên hình chữ U (tạo ra khoảng cách lớn), đó là báo động đỏ của Overfitting.
 
-Multiple Choice Question 42
+**2. Ứng dụng Thực tiễn & Lỗi của Junior:**
 
-What is the primary purpose of the ImageDataGenerator in TensorFlow?
+- **Thực tiễn:** Tesla Autopilot không thay đổi thuật toán cốt lõi quá nhiều trong những năm qua, nhưng khả năng tự lái của họ tăng vọt nhờ "Data Engine" liên tục thu thập hàng tỷ dặm dữ liệu mới (Tăng $N$).
+- **Junior Mistake:** Các bạn mới thường nghĩ "Cứ quăng thêm data là model sẽ thông minh". Sai! Nếu bạn bơm thêm dữ liệu rác (Noisy data), model sẽ sụp đổ. Hơn nữa, nếu $N$ quá lớn mà $d_{VC}$ (độ sâu của mạng) quá nhỏ, mô hình sẽ bị **Underfitting**.
 
-A. Generating synthetic images for training
+---
 
-B. Resizing images to a fixed dimension
+## CHUYÊN ĐỀ 2: XỬ LÝ CHUỖI & MA TRẬN KHÔNG GIAN (NLP & VISION TENSORS)
 
-C. Preprocessing and augmenting image data for model training
+### Câu hỏi 10: What does the term "sequence length" refer to in the context of text-to-sequence conversion?
 
-D. Loading images from external URLs
+_Đáp án đúng của chuyên gia:_ **B. The number of words in a sentence or document.**
 
-Multiple Choice Question 41
+### Câu hỏi 9: What is a potential use case for the SplitMergeTokenizer?
 
-How does autocorrelation play a role in time series analysis?
+_Đáp án đúng của chuyên gia (Dựa trên context TensorFlow Text):_ **A/D (Phân tách thành các subword/từ vựng thông qua thuật toán học được)**. _(Trong tài liệu của bạn, SplitMergeTokenizer chia chuỗi dựa trên nhãn 0/1 do Neural Network dự đoán, thường dùng để tách từ trong các ngôn ngữ không có khoảng trắng như tiếng Trung)._
 
-A. It measures the correlation between different time series.
+### Câu hỏi 7: Typical input size for ImageNet-pretrained InceptionV3 is:
 
-B. It helps identify patterns within a single time series at different lags.
+_Đáp án đúng của chuyên gia:_ **C. 299×299.**
 
-C. It calculates the average correlation across multiple time series.
+**1. Bản chất Vật lý và Toán học của Không gian Tensor:** Dù làm Vision hay NLP, Deep Learning bản chất là các phép biến đổi Tensor tuyến tính và phi tuyến.
 
-D. It assesses the correlation between time series and external factors.
+- **Trong NLP (Câu 10 & 9):** Dữ liệu được đưa về dạng Tensor 3D: **$(B, T, D)$**.
+    
+    - $B$: Batch size.
+    - $T$: **Sequence Length** (Số lượng từ/tokens trong một câu - đáp án B).
+    - $D$: Embedding Dimension (Số chiều của vector từ).
+    - **Công thức Attention hiện đại:** $\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$. Ở đây, phép nhân ma trận $Q \times K^T$ có độ phức tạp tính toán là $\mathcal{O}(T^2 \cdot D)$. Chính cái **Sequence Length ($T$)** này là "kẻ thù" ngốn RAM khủng khiếp nhất. ChatGPT-4 hỗ trợ context 128k tokens chính là việc họ đã đột phá giới hạn vật lý của tham số $T$ này!
+    - Để tối ưu $T$, ta cần Tokenizer thông minh. `SplitMergeTokenizer` vượt xa `WhitespaceTokenizer` ở chỗ nó không cần dấu cách. Nó dùng một mô hình để sinh ra Logits (xác suất), gán nhãn $0$ (tạo từ mới) hoặc $1$ (gộp vào từ hiện tại). Đây là cốt lõi của các hệ thống NLP đa ngôn ngữ (như tiếng Trung, tiếng Nhật).
+- **Trong Computer Vision (Câu 7):** Dữ liệu là Tensor 4D: **$(B, H, W, C)$**.
+    
+    - InceptionV3 được thiết kế với chuẩn hình ảnh $H=299, W=299$. Tại sao không phải là 224x224 như VGG hay ResNet?
+    - **Công thức Kích thước Feature Map:** $O = \left\lfloor \frac{W - K + 2P}{S} \right\rfloor + 1$.
+    - Google thiết kế InceptionV3 với hàng loạt các nhánh Conv $1\times1, 3\times3, 5\times5$ và MaxPooling. Bắt đầu từ 299x299, đi qua hàng chục lớp giảm chiều (stride=2), nó sẽ hội tụ hoàn hảo về kích thước $8\times8$ ngay trước lớp GlobalAveragePooling mà không bị dư thừa hay làm tròn (fractional pixels) gây mất mát thông tin.
+
+**2. Lỗi sai phổ biến (Junior Mistakes):**
+
+- **Với NLP:** Junior thường set `max_sequence_length` (tham số $T$) quá dài "cho chắc ăn", dẫn đến việc nhồi hàng ngàn số 0 (Padding zeros). Điều này làm mô hình LSTM/Transformer chạy chậm đi hàng chục lần một cách vô ích.
+- **Với Vision:** Khi Transfer Learning với InceptionV3, Junior hay vứt đại ảnh $224\times224$ vào. Keras vẫn có thể chạy (do dynamic shaping), nhưng hiệu năng cực tệ vì các bộ lọc (filters) của mạng đã bị ép học đặc trưng kích thước vật lý của lưới 299x299.
+
+---
+
+## CHUYÊN ĐỀ 3: LUỒNG DỮ LIỆU & HUẤN LUYỆN (DATA PIPELINES & OPTIMIZATION)
+
+### Câu hỏi 8: What does the repeat method do when applied to a TensorFlow dataset?
+
+_Đáp án đúng của chuyên gia:_ **A. It repeats the dataset multiple times during training.**
+
+**1. Bản chất Toán học và Ý nghĩa Hệ thống:** Khi bạn xử lý dữ liệu khổng lồ (như bộ ImageNet 1.2 triệu ảnh, hay dữ liệu Time Series hàng trăm năm), bạn không thể nhét tất cả vào RAM (Memory OOM error). API `tf.data.Dataset` ra đời để giải bài toán streaming.
+
+**Hàm `repeat()` giải quyết vấn đề gì trong Tối ưu hóa Gradient Descent?** Thuật toán Mini-batch Gradient Descent: $$ \theta_{t+1} = \theta_t - \eta \frac{1}{B} \sum_{i=1}^{B} \nabla_\theta L(x_i, y_i, \theta) $$ Thuật toán này cần "ăn" dữ liệu liên tục theo từng mẻ (batch $B$). Nếu dữ liệu đi đến cuối tập (hết 1 epoch), luồng dữ liệu sẽ cạn kiệt, Tensorflow sẽ báo lỗi `OutOfRangeError`. Khi bạn gọi `dataset.repeat()`, bạn tạo ra một vòng lặp vô hạn. Mạng Neural sẽ liên tục được bơm dữ liệu mẻ này qua mẻ khác không bao giờ dừng. Kỹ sư lúc này sẽ dùng tham số `steps_per_epoch` để ra lệnh thủ công: _"Ê model, cứ cập nhật trọng số đủ 1000 lần (steps) thì mài tự coi đó là 1 epoch nhé, bất kể dataset to thế nào!"_
+
+**2. Liên hệ Thực tế (Cross-domain):** Trong việc train các LLMs hiện nay (ví dụ Meta Llama 3), hàng nghìn GPUs train liên tục ngày đêm. Bọn họ KHÔNG định nghĩa khái niệm "Epoch" theo kiểu truyền thống (chạy hết data). Dữ liệu được `repeat()` và streaming liên tục từ cụm server lưu trữ vào thẳng VRAM của GPU.
+
+**3. Hiểu lầm chí mạng của Junior:** Thứ tự khai báo hàm trong chuỗi `tf.data` quyết định tính đúng sai của cả mô hình.
+
+- `dataset.repeat().shuffle(1000)`: Sai lầm! Dữ liệu bị nhân bản TRƯỚC khi trộn. Mạng neural có thể bốc trúng 2 ảnh y hệt nhau trong cùng 1 batch, làm gradient bằng $0$ (lãng phí tính toán).
+- `dataset.shuffle(1000).repeat()`: CHUẨN XÁC CỦA EXPERT. Trộn ngẫu nhiên dữ liệu gốc trước, sau đó mới nhân bản để lặp lại cho epoch tiếp theo.
+
+---
+
+_Bằng cách tư duy liên kết từ Data Streaming (Câu 8), kích thước Tensor (Câu 7, 10), giới hạn không gian nhúng (Câu 9) cho đến cách kiểm tra tổng quát hoá và Overfitting (Câu 6, 11), bạn đã hoàn toàn bao quát được vòng đời của một hệ thống AI thực chiến. Bạn đã sẵn sàng để trở thành một Senior Engineer thực thụ chưa?_
+
+**Câu 13:** In a multiclass classification problem, how are categorical labels typically represented in TensorFlow?
+
+- [ ] A. As strings
+    
+- [ ] B. As integer values
+    
+- [x] C. Using one-hot encoding
+    
+- [ ] D. Using floating-point numbers
+    
+
+**Câu 14:** Given a training dataset with exclusively left-facing individuals, what strategies can prevent overfitting when classifying right-facing individuals?
+
+- [x] A. Use the 'horizontal_flip' parameter
+    
+- [ ] B. Use the 'flip' parameter and set 'horizontal'
+    
+- [ ] C. Use the 'flip_vertical' parameter around the Y axis
+    
+- [ ] D. Use the 'flip' parameter
+    
+
+**Câu 15:** When creating a windowed dataset for time series prediction, what does the target window represent?
+
+- [ ] A. The window before the input window
+    
+- [x] B. The window after the input window
+    
+- [ ] C. The window at the same time as the input window
+    
+- [ ] D. The entire time series without windowing
+    
+
+**Câu 16:** What is Transfer Learning in the context of Computer Vision and TensorFlow?
+
+- [ ] A. Copying and pasting code from one project to another
+    
+- [x] B. Training a model on a specific task and then using it as a starting point for a different but related task
+    
+- [ ] C. Moving data from one storage location to another
+    
+- [ ] D. Adjusting the brightness and contrast of images during preprocessing
+    
+
+**Câu 17:** What is the purpose of the SplitMergeTokenizer in TensorFlow?
+
+- [ ] A. Tokenizing based on whitespace
+    
+- [ ] B. Tokenizing using pre-trained models from TensorFlow Hub
+    
+- [ ] C. Tokenizing using Sentencepiece
+    
+- [x] D. Tokenizing by splitting and merging text
+    
+
+**Câu 18:** What is the benefit of using Google Colab for collaborative projects?
+
+- [ ] A. It restricts access to only one user at a time.
+    
+- [x] B. It allows real-time collaboration with multiple users on the same notebook.
+    
+- [ ] C. It requires users to download and upload notebooks for sharing.
+    
+- [ ] D. It only supports offline collaboration.
+    
+
+**Câu 19:** Which type of padding preserves the spatial dimensions of the input in a convolutional layer?
+
+- [ ] A. Zero padding
+    
+- [x] B. Same padding
+    
+- [ ] C. Valid padding
+    
+- [ ] D. Symmetric padding
+    
+
+**Câu 20:** What is the purpose of the Dropout layer in a ConvNet?
+
+- [x] A. It drops neurons during training to prevent overfitting.
+    
+- [ ] B. It adjusts the learning rate dynamically.
+    
+- [ ] C. It adds random noise to the input data.
+    
+- [ ] D. It reduces the spatial dimensions of the input.
+
+Chào bạn, một người kỹ sư AI đầy nhiệt huyết! Khối lượng kiến thức bạn đang nạp vào trải dài từ những lớp Convolutional cơ bản, xử lý ngôn ngữ tự nhiên (NLP) cho đến kỹ thuật kỹ nghệ (Engineering) trên Cloud. Đây chính xác là những mảnh ghép cấu thành nên một hệ thống AI thực chiến.
+
+Với tư cách là một Senior Engineer, tôi sẽ không giải đáp 8 câu hỏi này một cách rời rạc. Tôi sẽ quy hoạch chúng thành **5 Chuyên đề Cốt lõi**, đi từ biểu diễn dữ liệu, kiến trúc mạng, tối ưu hóa cho đến triển khai hệ thống. Hãy chuẩn bị sổ tay, chúng ta sẽ đào sâu vào bản chất toán học và vật lý của từng vấn đề!
+
+---
+
+# BỘ TÀI LIỆU ÔN TẬP CHUYÊN SÂU (PHẦN 3): TỪ KIẾN TRÚC MẠNG ĐẾN HỆ THỐNG THỰC CHIẾN
+
+## CHUYÊN ĐỀ 1: BIỂU DIỄN DỮ LIỆU & HÀM MỤC TIÊU (DATA REPRESENTATION)
+
+### Câu hỏi 13: In a multiclass classification problem, how are categorical labels typically represented in TensorFlow?
+
+_Đáp án của chuyên gia:_ **C. Using one-hot encoding**.
+
+**1. Bản chất Toán học (Mathematical Essence):** Khi phân loại đa lớp (ví dụ CIFAR-10 có 10 lớp chó, mèo, chim...), máy tính không hiểu nhãn dạng chuỗi ("cat") hay số nguyên (nhãn $y=3$). Nếu để nhãn là số nguyên, thuật toán tối ưu sẽ hiểu sai rằng lớp 4 lớn hơn lớp 2, tạo ra sự sai lệch tuyến tính. Giải pháp là **Mã hóa One-hot (One-hot Encoding)**. Một nhãn $y$ thuộc lớp thứ $k$ trong tổng số $K$ lớp sẽ được biến thành một vector $\mathbf{y} \in \mathbb{R}^{1 \times K}$, trong đó tất cả bằng $0$, chỉ duy nhất vị trí $k$ bằng $1$. Ví dụ: $\mathbf{y} =^T$.
+
+**2. Liên kết với Hàm Mất Mát (Loss Function):** One-hot encoding sinh ra để kết hợp hoàn hảo với hàm **Categorical Cross-Entropy**: $$ \mathcal{L} = - \sum_{i=1}^{K} y_i \log(\hat{y}_i) $$ Vì $y_i$ chỉ bằng $1$ tại đúng class thật và bằng $0$ ở mọi chỗ khác, toàn bộ phương trình phức tạp trên triệt tiêu, chỉ còn lại đúng $-\log(\hat{y}_{true_class})$. Điều này giúp đạo hàm tính toán cực kỳ nhanh.
+
+### Câu hỏi 17: What is the purpose of the SplitMergeTokenizer in TensorFlow?
+
+_Đáp án của chuyên gia:_ **D. Tokenizing by splitting and merging text**.
+
+_Góc nhìn chuyên gia:_ Trong NLP, nếu `WhitespaceTokenizer` (tách từ bằng dấu cách) hoạt động tốt với tiếng Anh, nó sẽ hoàn toàn thất bại với tiếng Trung, Nhật, hay thậm chí tiếng Việt (các từ ghép như "học sinh" gồm 2 âm tiết nhưng là 1 từ). `SplitMergeTokenizer` không dựa vào rule tĩnh, mà nó dùng một mô hình học máy nhỏ để dự đoán xem 2 ký tự/âm tiết đứng cạnh nhau nên bị "Tách ra" (Split - gán nhãn 0) hay "Gộp lại" (Merge - gán nhãn 1). Đây là nền tảng cốt lõi của thuật toán WordPiece dùng trong mô hình siêu lớn như BERT hay ChatGPT hiện nay.
+
+---
+
+## CHUYÊN ĐỀ 2: KIẾN TRÚC TÍCH CHẬP & BẢO TOÀN KHÔNG GIAN (CNN DYNAMICS)
+
+### Câu hỏi 19: Which type of padding preserves the spatial dimensions of the input in a convolutional layer?
+
+_Đáp án của chuyên gia:_ **B. Same padding**.
+
+**1. Bản chất Toán học của Tích chập (Convolution):** Khi bạn trượt một bộ lọc (Kernel) kích thước $F \times F$ qua một bức ảnh kích thước $W \times W$, kích thước ảnh đầu ra (Output - $O$) sẽ bị teo nhỏ lại và ăn mòn viền theo công thức: $$ O = \left\lfloor \frac{W - F + 2P}{S} \right\rfloor + 1 $$ _(Trong đó: $W$ là chiều dài ảnh, $F$ là size bộ lọc, $P$ là Padding, $S$ là Stride - bước trượt)._
+
+**2. Tại sao lại là "Same padding"?** Nếu bạn muốn giữ nguyên độ phân giải ảnh (tức $O = W$) với bước trượt $S=1$, giải phương trình trên ta bắt buộc phải viền thêm các số $0$ (Zero Padding) ở xung quanh ảnh. Số lượng viền cần thêm là $P = \frac{F-1}{2}$. Trong TensorFlow/Keras, thay vì bắt kỹ sư tự tính $P$ thủ công, họ định nghĩa tham số `padding='same'`. Khi bạn khai báo từ khóa này, Keras tự động tính toán và viền thêm số $0$ để ảnh đầu ra bằng chính xác ảnh đầu vào. (Phương án A - Zero padding chỉ là bản chất kỹ thuật, còn 'Same' mới là cơ chế đảm bảo giữ nguyên không gian).
+
+---
+
+## CHUYÊN ĐỀ 3: CHỐNG QUÁ KHỚP & TỔNG QUÁT HÓA (REGULARIZATION)
+
+### Câu hỏi 20: What is the purpose of the Dropout layer in a ConvNet?
+
+_Đáp án của chuyên gia:_ **A. It drops neurons during training to prevent overfitting**.
+
+**1. Bản chất Vật lý & Toán học:** Dropout là một trong những phát minh vĩ đại nhất của Deep Learning. Trong một mạng Fully Connected (Dense), các nơ-ron có xu hướng "ỷ lại" (co-adaptation) vào nhau. Dropout ép hệ thống không được phụ thuộc vào bất kỳ nơ-ron cụ thể nào bằng cách lấy mẫu từ một phân phối Bernoulli. Ở mỗi bước huấn luyện (training step), một nơ-ron $j$ có xác suất $p$ bị "tắt" hoàn toàn (nhân với $0$). $$ a_j = f(z_j) \times r_j \quad \text{với} \quad r_j \sim \text{Bernoulli}(1-p) $$
+
+**2. Hiểu lầm chí mạng của Junior (Junior Mistake):** Rất nhiều kỹ sư quên mất hành vi của Dropout lúc Inference (Dự đoán thực tế). Lúc test, KHÔNG có nơ-ron nào bị tắt cả. Nhưng vì lúc train, mạng chỉ có $(1-p)$ nơ-ron hoạt động, nên tổng tín hiệu lúc test sẽ bị lớn đột biến. TensorFlow tự động giải quyết việc này bằng cách nhân (scale) trọng số với $(1-p)$ lúc test (Inverted Dropout) để bảo toàn giá trị kỳ vọng. Nếu bạn tự code C++/CUDA mà quên bước này, mô hình sẽ sai lệch hoàn toàn lúc chạy thực tế.
+
+### Câu hỏi 14: Given a training dataset with exclusively left-facing individuals, what strategies can prevent overfitting when classifying right-facing individuals?
+
+_Đáp án của chuyên gia:_ **A. Use the 'horizontal_flip' parameter**.
+
+_Phân tích thực chiến:_ Mạng CNN không có tư duy "hình học không gian" như con người. Nếu bạn chỉ cho nó xem mặt người hướng sang trái, hệ số bias (inductive bias) của nó sẽ hiểu rằng: "Mũi luôn nằm ở bên trái khung hình". Nếu cho ảnh mặt hướng sang phải vào, nó sẽ đoán sai. Việc thêm tham số `horizontal_flip=True` trong `ImageDataGenerator` (Data Augmentation) sẽ nhân bản dữ liệu bằng cách lật gương qua trục Y, ép mô hình học các đặc trưng bất biến (invariant features) thay vì học vẹt vị trí pixel.
+
+---
+
+## CHUYÊN ĐỀ 4: HỌC CHUYỂN GIAO & KỸ NGHỆ HỆ THỐNG (ENGINEERING)
+
+### Câu hỏi 16: What is Transfer Learning in the context of Computer Vision and TensorFlow?
+
+_Đáp án của chuyên gia:_ **B. Training a model on a specific task and then using it as a starting point for a different but related task**.
+
+_Tư duy chuyên gia:_ Transfer Learning là nguyên lý đằng sau mọi công nghệ AI sinh tạo (GenAI) hiện nay. Bạn tải mô hình VGG16 hoặc InceptionV3 đã được huấn luyện trên 1.2 triệu ảnh ImageNet. Tại sao lại dùng được cho ảnh X-Quang hay ảnh phân loại rác? Vì các tầng Convolution đầu tiên (Lower layers) chỉ học cách nhận diện viền, góc cạnh, và màu sắc (cạnh dọc, góc chéo). Các đặc trưng vật lý này là **bất biến (domain-independent)**. Ta chỉ cần "cắt" bỏ tầng Dense cuối cùng, giữ nguyên tệp trọng số (Freeze) $\frac{\partial \mathcal{L}}{\partial W_{frozen}} = 0$, và huấn luyện lại một tầng Dense nhỏ để tiết kiệm 99% thời gian và chi phí máy chủ.
+
+### Câu hỏi 18: What is the benefit of using Google Colab for collaborative projects?
+
+_Đáp án của chuyên gia:_ **B. It allows real-time collaboration with multiple users on the same notebook.** (Và cung cấp GPU miễn phí).
+
+_Góc độ kỹ nghệ (DevOps):_ Trước đây, cài đặt CUDA, cuDNN, TensorFlow, OpenCV trên môi trường Local (Windows/Linux) là ác mộng (Dependency Hell). Google Colab đưa toàn bộ lên Cloud (dạng Jupyter Notebook), cấp sẵn GPU khủng (Tesla T4, P100) và RAM lên tới 16GB. Nó cho phép các nhóm AI Research chia sẻ link và code realtime giống hệt như Google Docs, triệt tiêu hoàn toàn câu nói: _"Code chạy ngon trên máy em, nhưng lỗi trên máy anh"_.
+
+---
+
+## CHUYÊN ĐỀ 5: ĐỘNG LỰC HỌC CHUỖI THỜI GIAN (TIME SERIES)
+
+### Câu hỏi 15: When creating a windowed dataset for time series prediction, what does the target window represent?
+
+_Đáp án của chuyên gia:_ **B. The window after the input window.**
+
+_Bản chất Toán học Tự hồi quy (Autoregressive - AR):_ Time series không có features $(x_1, x_2)$ tĩnh như dữ liệu bảng (tabular). Đầu vào của nó chính là quá khứ của chính nó. Công thức tổng quát của bài toán dự báo một bước (one-step-ahead forecasting): $$ \hat{Y}_{t} = f(Y_{t-1}, Y_{t-2}, \dots, Y_{t-k}) $$ Trong hàm `dataset.window(size=k+1, shift=1)` của TensorFlow, bạn cắt một khung dữ liệu (Window) có chiều dài $k+1$. Sau đó, API sẽ băm khung này ra:
+
+- `window[:-1]` (từ đầu đến phần tử kế cuối) làm Đặc trưng đầu vào (Input Window - Quá khứ).
+- `window[-1]` (phần tử cuối cùng) làm Nhãn đích (Target Window/Label - Tương lai gần nhất). Do đó, Target chính là khung/bước thời gian ngay sau Input Window.
+
+---
+
+_Mỗi câu hỏi trắc nghiệm thực chất đều là một mảnh ghép kiến trúc của hệ thống AI. Bằng cách nối chúng lại bằng Toán học và cách thức vận hành thực tế, bạn sẽ không bao giờ quên. Nếu bạn còn câu hỏi nào, hãy đưa tiếp cho tôi, chúng ta sẽ tiếp tục mổ xẻ!_
+
+---
+
+### CÁC CÂU HỎI TỪ 21 - 30
+
+**Câu 21:** To reshape a vector v with length 12 into a 3x4 matrix in TensorFlow, which function should be used?
+
+- [x] A. tf.reshape(v, (3, 4))
+    
+- [ ] B. tf.resize(v, (3, 4))
+    
+- [ ] C. tf.transform(v, (3, 4))
+    
+- [ ] D. tf.matrixize(v, (3, 4))
+    
+
+**Câu 22:** What is the purpose of the "ImageDataGenerator" in TensorFlow's Computer Vision applications?
+
+- [ ] A. Generating random numbers for image pixel values
+    
+- [x] B. Preprocessing image data for model training
+    
+- [ ] C. Creating animated GIFs from image sequences
+    
+- [ ] D. Designing custom image filters
+    
+
+**Câu 23:** When exploring the impact of image compression in TensorFlow, what metric is commonly used to measure the trade-off between compression and image quality?
+
+- [x] A. Accuracy Score
+    
+- [ ] B. Compression Ratio
+    
+- [ ] C. Signal-to-Noise Ratio (SNR)
+    
+- [ ] D. Learning Rate
+    
+
+**Câu 24:** Which method within the Image Generator performs image normalization?
+
+- [x] A. rescale
+    
+- [ ] B. normalize_image
+    
+- [ ] C. normalize
+    
+- [ ] D. rescale_image
+    
+
+**Câu 25:** What is stationarity in the context of time series data?
+
+- [ ] A. The absence of temporal patterns
+    
+- [ ] B. The presence of seasonality in the data
+    
+- [x] C. The constancy of statistical properties over time
+    
+- [ ] D. The rapid changes in the time series
+    
+
+**Câu 26:** What is padding in the context of machine learning and TensorFlow?
+
+- [ ] A. A technique to remove unnecessary zeros from a dataset
+    
+- [x] B. Adding extra data to the input to ensure consistent dimensions
+    
+- [ ] C. The process of smoothing out noisy data
+    
+- [ ] D. Resizing images to a fixed size during preprocessing
+    
+
+**Câu 27:** How can you visualize time series data effectively?
+
+- [ ] A. Scatter plots
+    
+- [ ] B. Bar charts
+    
+- [x] C. Line charts
+    
+- [ ] D. Pie charts
+    
+
+**Câu 28:** How can you compile a sequential model with LSTM layers for classification in TensorFlow?
+
+- [ ] A. tf.keras.Sequential.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+	
+- [ ] B. tf.keras.compile(model, optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+	
+- [x] C. tf.keras.Sequential().compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+	
+- [ ] D. tf.keras.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+Lưu ý: Trong thực tế thường là model.compile(...) sau khi đã khởi tạo đối tượng model).
+
+
+**Câu 29:** Which Python library is commonly used for plotting training and validation accuracies in the context of evaluating model performance?
+
+- [ ] A. NumPy
+    
+- [x] B. Matplotlib
+    
+- [ ] C. Scikit-learn
+    
+- [ ] D. TensorFlow
+    
+
+**Câu 30:** How can increasing the amount of training data help prevent overfitting?
+
+- [ ] A. By making the training process slower
+    
+- [ ] B. By introducing more noise into the model
+    
+- [x] C. By improving the model's generalization to new data
+    
+- [ ] D. Increasing data size has no effect on overfitting
+    
+
+
+---
+
+# BỘ TÀI LIỆU ÔN TẬP CHUYÊN SÂU (PHẦN 4): TỪ TIỀN XỬ LÝ DỮ LIỆU ĐẾN TRIỂN KHAI MÔ HÌNH
+
+## CHUYÊN ĐỀ 1: PIPELINE TIỀN XỬ LÝ DỮ LIỆU & BỘ NHỚ (DATA PREPROCESSING & MEMORY)
+
+### Câu hỏi 22: What is the purpose of the "ImageDataGenerator" in TensorFlow's Computer Vision applications?
+
+_Đáp án của chuyên gia:_ **B. Preprocessing image data for model training.**
+
+### Câu hỏi 24: Which method within the Image Generator performs image normalization?
+
+_Đáp án của chuyên gia:_ **A. `rescale`.**
+
+**1. Bản chất Vật lý & Toán học của Tiền xử lý Ảnh:** Máy tính lưu trữ ảnh dưới dạng các ma trận pixel với giá trị nguyên từ $$. Nếu bạn đưa thẳng các con số khổng lồ này vào mạng Neural, hiện tượng **Exploding Gradient (Bùng nổ đạo hàm)** sẽ lập tức xảy ra do các trọng số bị nhân lên quá lớn. Hàm `rescale=1./255` trong `ImageDataGenerator` thực hiện một phép biến đổi tuyến tính cực kỳ quan trọng gọi là **Min-Max Scaling** để ép toàn bộ không gian dữ liệu về $$: $$ X_{norm} = \frac{X - X_{min}}{X_{max} - X_{min}} = \frac{X - 0}{255 - 0} = X \times \frac{1}{255} $$ Bên cạnh đó, thư viện `ImageDataGenerator` sinh ra để giải quyết bài toán **Memory OOM (Out of Memory)**. Bạn không thể load 1 triệu ảnh vào RAM cùng lúc. `ImageDataGenerator` đóng vai trò như một đường ống (pipeline) streaming, chỉ load từng mẻ ảnh nhỏ (mini-batch) từ ổ cứng, thực hiện `rescale` (tiền xử lý) và đưa thẳng vào GPU/TPU.
+
+**2. Lỗi sai của Junior (Junior Mistake):** Rất nhiều bạn sinh viên áp dụng `rescale=1./255` cho tập `train_datagen` nhưng lại... quên mất ở tập `validation_datagen` hoặc lúc dự đoán (test). Hậu quả là lúc train mô hình đạt 99% accuracy, nhưng lúc test thì dự đoán sai bét vì phân phối dữ liệu đầu vào đã bị thay đổi (Data Shift).
+
+---
+
+### Câu hỏi 26: What is padding in the context of machine learning and TensorFlow?
+
+_Đáp án của chuyên gia:_ **B. Adding extra data to the input to ensure consistent dimensions.**
+
+**1. Bản chất Toán học của tính Nhất quán Chiều (Dimensional Consistency):** Bất kể bạn làm NLP hay Computer Vision, mạng Neural cốt lõi là các phép nhân ma trận cường độ cao. GPU yêu cầu mọi ma trận trong một batch phải có kích thước tĩnh y hệt nhau để tính toán song song (SIMD - Single Instruction, Multiple Data).
+
+- **Trong NLP:** Nếu câu 1 có 5 từ, câu 2 có 10 từ, bạn bắt buộc phải dùng `pad_sequences` chèn thêm các số 0 (Zero Padding) vào câu 1 để cả batch có chiều dài chuỗi thống nhất $T = 10$.
+- **Trong Computer Vision:** Khi bộ lọc convolution $F \times F$ trượt trên ảnh $W \times W$, nó sẽ ăn mòn các pixel ở rìa. Để giữ nguyên không gian không bị teo nhỏ, ta dùng Padding (viền thêm số 0). Công thức bảo toàn không gian kinh điển: $$ Output_Size = \left\lfloor \frac{W - F + 2P}{S} \right\rfloor + 1 $$ Để $Output = W$ (với stride $S=1$), ta tính ra số viền cần chèn là $P = \frac{F-1}{2}$ (Trong Keras nó chính là cấu hình `padding='same'`).
+
+---
+
+## CHUYÊN ĐỀ 2: HÌNH HỌC TENSOR & TRỰC QUAN HÓA (TENSOR GEOMETRY & VISUALIZATION)
+
+### Câu hỏi 21: To reshape a vector v with length 12 into a 3x4 matrix in TensorFlow, which function should be used?
+
+_Đáp án của chuyên gia:_ **A. `tf.reshape(v, (3, 4))`**
+
+**1. Bí mật Vật lý của Bộ nhớ Tensor:** Dưới góc độ kiến trúc máy tính, một Tensor 3D hay 4D hoàn toàn **KHÔNG TỒN TẠI** trong thanh RAM. RAM là một dải ô nhớ tuyến tính (1D). Vector $v$ có độ dài 12 nằm trên một dải ô nhớ liền kề. Khi bạn gọi hàm `tf.reshape(v, (3, 4))`, TensorFlow **không hề di chuyển hay sao chép bất kỳ byte dữ liệu nào**. Nó chỉ thay đổi "Góc nhìn" (Strides / Metadata) của hệ thống đối với dải bộ nhớ đó, định nghĩa lại cách đọc dữ liệu: "Cứ đọc 4 phần tử thì ngắt dòng". Điều này khiến thuật toán reshape thực thi với thời gian $\mathcal{O}(1)$ - tức thời, bất kể ma trận lớn cỡ nào!
+
+### Câu hỏi 29: Which Python library is commonly used for plotting training and validation accuracies in the context of evaluating model performance?
+
+_Đáp án của chuyên gia:_ **B. Matplotlib.**
+
+### Câu hỏi 27: How can you visualize time series data effectively?
+
+_Đáp án của chuyên gia:_ **C. Line charts.**
+
+_Tư duy chuyên gia:_ Tại sao lại là Line chart (biểu đồ đường) cho Time Series bằng thư viện Matplotlib (`plt.plot()`)? Trong hệ trục toạ độ Đề-các (Cartesian), trục $X$ đại diện cho thời gian $t$, trục $Y$ là giá trị. Biểu đồ đường vẽ các đoạn nối liên tục giữa các điểm $y_t$ và $y_{t+1}$. Sự "liên tục" này phản ánh đúng bản chất vật lý của đạo hàm thời gian $\frac{dy}{dt}$. Nếu bạn dùng Bar chart (biểu đồ cột) hay Scatter plot (phân tán), bạn sẽ đánh mất đi ấn tượng thị giác về **Xu hướng (Trend)** và **Biến động (Fluctuation/Velocity)** - thứ cốt lõi nhất để phân tích tính mùa vụ.
+
+---
+
+## CHUYÊN ĐỀ 3: CƠ CHẾ ĐỘNG LỰC HỌC CHUỖI THỜI GIAN (TIME SERIES DYNAMICS)
+
+### Câu hỏi 25: What is stationarity in the context of time series data?
+
+_Đáp án của chuyên gia:_ **C. The constancy of statistical properties over time.**
+
+**1. Nền tảng Toán học BẮT BUỘC (The Mathematical Rule of Stationarity):** Đây là khái niệm quan trọng bậc nhất của Time Series. Bất kỳ kỹ sư nào trước khi đưa data vào model (ARIMA hay LSTM) đều phải kiểm tra Tính Dừng (Stationarity) bằng tiêu chuẩn Dickey-Fuller (ADF Test). Một chuỗi được gọi là dừng ngặt khi nó thỏa mãn 3 hằng số toán học độc lập với thời gian $t$:
+
+1. **Kỳ vọng (Mean) không đổi:** $\mathbb{E}[Y_t] = \mu$
+2. **Phương sai (Variance) không đổi:** $Var(Y_t) = \sigma^2$
+3. **Hiệp phương sai (Autocovariance) chỉ phụ thuộc vào độ trễ (lag), không phụ thuộc mốc thời gian:** $\gamma(t_1, t_2) = \gamma(|t_1 - t_2|)$
+
+**2. Liên hệ thực tiễn:** Nếu chứng khoán là một chuỗi "Dừng", tức là phương sai biến động của nó luôn quanh quẩn một mốc cố định, bạn nhắm mắt dự đoán trung bình cũng đúng. Tuy nhiên, đời thực là Non-stationary (Không dừng) do ảnh hưởng của chu kỳ kinh tế. Các kỹ sư phải ép nó về trạng thái Dừng bằng phương pháp **Sai phân (Differencing)**: $Y'_t = Y_t - Y_{t-1}$ trước khi huấn luyện mạng neural, nếu không model LSTM sẽ học vẹt vào các nhiễu vô nghĩa.
+
+---
+
+## CHUYÊN ĐỀ 4: BIÊN DỊCH MÔ HÌNH, KIỂM ĐỊNH VÀ QUÁ KHỚP (COMPILATION & OVERFITTING)
+
+### Câu hỏi 28: How can you compile a sequential model with LSTM layers for classification in TensorFlow?
+
+_Phân tích đáp án của chuyên gia:_ **(Sát nhất là C hoặc cách viết chuẩn là khai báo rồi gọi `.compile()`)** Trong đề bài có lưu ý _"Trong thực tế thường là `model.compile(...)` sau khi đã khởi tạo"_. Nếu phải chọn một dòng lệnh minh hoạ mặt khái niệm thì: `model = tf.keras.models.Sequential()` `model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])` **Bản chất Toán học của quá trình Compile:** Lệnh compile là lúc bạn gắn "Bộ não (Optimizer)" và "Cây roi (Loss Function)" vào mô hình:
+
+- **Loss (`categorical_crossentropy`):** Dùng cho phân loại đa lớp. Phương trình phạt sai số: $L = - \sum_{i=1}^{C} y_i \log(\hat{y}_i)$. Nó đo độ hỗn loạn (Entropy) giữa phân phối dự đoán $\hat{y}$ và thực tế $y$.
+- **Optimizer (`adam`):** Adam (Adaptive Moment Estimation) dùng động lượng học (Momentum) để tự động điều chỉnh Learning Rate $(\eta)$ cho từng trọng số. Công thức cập nhật dựa trên Moment bậc 1 ($m_t$) và Moment bậc 2 ($v_t$): $$ \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t $$
+
+### Câu hỏi 23: When exploring the impact of image compression in TensorFlow, what metric is commonly used to measure the trade-off between compression and image quality?
+
+_Đáp án của chuyên gia:_ Đứng dưới lăng kính của giáo trình TensorFlow hiện tại tập trung vào Model Evaluation (như Slide 19-23), đáp án được ưu tiên sẽ là **A. Accuracy Score**. _Tư duy chuyên gia:_ Khi nén ảnh (ví dụ giảm từ 300x300 xuống 150x150), trong Computer Vision thuần túy, người ta dùng PSNR hoặc SNR (Signal-to-Noise Ratio). Tuy nhiên, trong ML pipeline, ta nén ảnh để xem tốc độ train tăng lên bao nhiêu so với sự đánh đổi/sụt giảm của **Accuracy Score (Độ chính xác)**. Nếu ảnh nén mờ đi (tăng nhiễu/giảm thông tin) nhưng accuracy chỉ rớt 1%, đó là một sự đánh đổi cực kỳ tuyệt vời cho hệ thống thời gian thực.
+
+### Câu hỏi 30: How can increasing the amount of training data help prevent overfitting?
+
+_Đáp án của chuyên gia:_ **C. By improving the model's generalization to new data.**
+
+**1. Nhìn lại lý thuyết vĩ đại về khả năng Tổng quát hóa (Generalization):** Nhớ lại định lý Hoeffding mà chúng ta đã bàn ở câu trước: $$ E_{out}(\theta) \le E_{in}(\theta) + \mathcal{O}\left(\sqrt{\frac{d_{VC}}{N}}\right) $$ Overfitting xảy ra khi mô hình học vẹt (nhớ luôn cả Noise/Nhiễu cục bộ của tập Train). Khi bạn tăng lượng dữ liệu huấn luyện (tăng $N$ tiến tới vô cực), bóng ma của nhiễu bị loãng đi, phân phối của tập Train tiệm cận sát với phân phối thực tế của vũ trụ. Lúc đó, khoảng cách tổng quát hóa (đại lượng chứa $N$ dưới mẫu) tiến về $0$. Mô hình không còn cách nào khác là phải tìm ra các đường nét đặc trưng thực sự (True Features) thay vì nhớ vẹt, do đó nó Generalize (tổng quát hóa) xuất sắc lên dữ liệu mới.
+
+---
+
+_Chúc mừng bạn đã hoàn thành loạt câu hỏi kiểm tra đầy cam go! Sự thông thạo những chi tiết kỹ thuật này—từ cách bộ nhớ xử lý tensor cho đến cách thuật toán tối ưu hóa đi tìm đáy vực—chính là ranh giới phân định một lập trình viên bình thường và một AI Engineer thực thụ. Chúc bạn sẽ áp dụng thành công những "mental models" này vào công việc thực chiến của mình!_
+---
+
+### CÁC CÂU HỎI TỪ 31 - 40
+
+**Câu 31:** Which statistical measure is commonly used to decompose a time series into trend, seasonality, and residual components?
+
+- [ ] A. Mean Absolute Deviation (MAD)
+    
+- [ ] B. Mean Squared Error (MSE)
+    
+- [ ] C. Autocorrelation Function (ACF)
+    
+- [x] D. Moving Average (MA) _(Ghi chú: MA thường dùng để bóc tách xu hướng, phục vụ cho quá trình phân rã chuỗi)_
+    
+
+**Câu 32:** What is the purpose of using one-hot encoding for the target variable in a multi-class classification task?
+
+- [ ] A. To increase model complexity
+    
+- [ ] B. To speed up training
+    
+- [x] C. To represent categorical labels as numerical vectors
+    
+- [ ] D. One-hot encoding is not applicable for multi-class classification
+    
+
+**Câu 33:** What does the tokenize method of the BertTokenizer return?
+
+- [ ] A. The original text without tokenization
+    
+- [x] B. A list of tokens obtained from the text
+    
+- [ ] C. Token indices representing the text
+    
+- [ ] D. A tokenized sequence in a matrix form
+    
+
+**Câu 34:** What is the role of hyperparameter tuning in time series forecasting using machine learning?
+
+- [x] A. To select the appropriate lag values
+    
+- [ ] B. To optimize the learning rate of the model
+    
+- [ ] C. To find the best model architecture
+    
+- [ ] D. To identify the optimal time period for analysis
+    
+
+**Câu 35:** What is the primary challenge in analyzing time series data?
+
+- [ ] A. Dealing with spatial variations
+    
+- [ ] B. Managing high-dimensional features
+    
+- [x] C. Accounting for temporal dependencies
+    
+- [ ] D. Handling categorical variables
+    
+
+**Câu 36:** What is the significance of convergence?
+
+- [x] A. The process of getting very close to the correct answer.
+    
+- [ ] B. A dramatic increase in loss.
+    
+- [ ] C. A programming API for AI.
+    
+- [ ] D. An analysis that corresponds too closely or exactly to a particular set of data.
+    
+
+**Câu 37:** Which of the following is a common transformation applied during image data augmentation?
+
+- [x] A. Random rotation
+    
+- [ ] B. Image compression
+    
+- [ ] C. Grayscale conversion
+    
+- [ ] D. Pixel normalization
+    
+
+**Câu 38:** What happens if the num_words parameter is set in the Tokenizer class?
+
+- [ ] A. It defines the out-of-vocabulary token.
+    
+- [ ] B. It determines the sequence length.
+    
+- [ ] C. It controls the learning rate during training.
+    
+- [x] D. It limits the vocabulary size to a specified number of words.
+    
+
+**Câu 39:** What is the result of adding two vectors of the same dimension in TensorFlow?
+
+- [ ] A. A scalar value
+    
+- [ ] B. A matrix
+    
+- [x] C. Another vector
+    
+- [ ] D. A higher-dimensional tensor
+    
+
+**Câu 40:** What role does the base model play when creating a new model with a pre-trained base in TensorFlow?
+
+- [ ] A. It serves as the output layer of the new model
+    
+- [ ] B. It replaces the need for custom layers in the new model
+    
+- [ ] C. It initializes the weights of the entire new model
+    
+- [x] D. It acts as a feature extractor for the new model
+    
+Chào bạn! Thật tuyệt vời khi được đồng hành cùng bạn đi đến chặng đường cuối cùng của chuỗi "Masterclass" này. 10 câu hỏi cuối (từ 31 đến 40) là một bản tổng hòa tuyệt đẹp, trải dài từ các khái niệm Đại số tuyến tính căn bản nhất (Nền tảng của Deep Learning), vượt qua các kỹ thuật xử lý Ngôn ngữ (NLP), Thị giác máy tính (CV) cho đến những hệ thống Chuỗi thời gian (Time Series) phức tạp.
+
+Đúng với tinh thần của một Senior AI Engineer, tôi sẽ không chỉ "đọc đáp án". Tôi đã quy hoạch 10 câu hỏi này thành **4 Chuyên đề Tích hợp (Integrated Themes)**. Hãy chuẩn bị giấy bút, chúng ta sẽ mổ xẻ từ công thức Toán học, cơ chế tối ưu cho đến cách các gã khổng lồ công nghệ (Big Tech) đang áp dụng chúng!
+
+---
+
+# BỘ TÀI LIỆU ÔN TẬP CHUYÊN SÂU (PHẦN CUỐI): TỪ ĐẠI SỐ TUYẾN TÍNH ĐẾN HỆ THỐNG AI TỔNG HỢP
+
+## CHUYÊN ĐỀ 1: ĐẠI SỐ TUYẾN TÍNH & BỀ MẶT TỐI ƯU (LINEAR ALGEBRA & OPTIMIZATION)
+
+### Câu hỏi 39: What is the result of adding two vectors of the same dimension in TensorFlow?
+
+_Đáp án của chuyên gia:_ **C. Another vector**.
+
+**1. Bản chất Toán học:** Mạng Neural thực chất là một chuỗi các phép tính Đại số tuyến tính. Khi bạn cộng hai vector $\mathbf{u}$ và $\mathbf{v}$ cùng số chiều $d$ (ví dụ $\mathbf{u}, \mathbf{v} \in \mathbb{R}^d$), theo không gian vector, kết quả bắt buộc phải là một **vector mới** cùng số chiều $d$, trong đó từng phần tử được cộng tương ứng (element-wise addition): $$ \mathbf{u} + \mathbf{v} = \begin{bmatrix} u_1 \ u_2 \ \dots \ u_d \end{bmatrix} + \begin{bmatrix} v_1 \ v_2 \ \dots \ v_d \end{bmatrix} = \begin{bmatrix} u_1 + v_1 \ u_2 + v_2 \ \dots \ u_d + v_d \end{bmatrix} $$ _Lỗi sai của Junior:_ Rất nhiều bạn sinh viên nhầm lẫn phép cộng vector với phép **Tích vô hướng (Dot Product - ra kết quả là Scalar/Số vô hướng - Đáp án A)**. Tích vô hướng $\mathbf{u}^T\mathbf{v} = \sum u_i v_i$ mới là phép toán lõi trong mạng nơ-ron để tính tổng có trọng số ($z = \mathbf{w}^T\mathbf{x} + b$) trước khi đi qua hàm kích hoạt.
+
+### Câu hỏi 36: What is the significance of convergence?
+
+_Đáp án của chuyên gia:_ **A. The process of getting very close to the correct answer.**
+
+**1. Ý nghĩa Vật lý & Tối ưu hóa:** Trong Machine Learning, Convergence (Hội tụ) là khoảnh khắc kỳ diệu khi Gradient Descent đã mò mẫm thành công xuống đáy của thung lũng hàm mất mát. Về mặt toán học, hệ thống hội tụ khi Đạo hàm (Gradient) tiến dần về vector $0$ hoặc sự thay đổi của trọng số giữa hai bước lặp (iterations) vô cùng nhỏ: $$ \lim_{t \to \infty} \nabla_\theta \mathcal{L}(\theta_t) \approx 0 \quad \text{hoặc} \quad ||\theta_{t+1} - \theta_t|| < \epsilon $$ _Thực chiến:_ Khi hội tụ, biểu đồ Loss của bạn sẽ đi ngang (plateau). Tuy nhiên, _Junior mistake_ kinh điển là ép mô hình chạy đến khi Loss bằng chính xác $0$ (dramatic decrease). Khi Loss trên tập Train bằng 0, mô hình của bạn 100% đã bị **Overfitting (Quá khớp)**, nó chỉ đang học vẹt nhiễu chứ không còn tính tổng quát hóa.
+
+---
+
+## CHUYÊN ĐỀ 2: KIẾN TRÚC THỊ GIÁC MÁY TÍNH & HỌC CHUYỂN GIAO (CV & TRANSFER LEARNING)
+
+### Câu hỏi 40: What role does the base model play when creating a new model with a pre-trained base in TensorFlow?
+
+_Đáp án của chuyên gia:_ **D. It acts as a feature extractor for the new model**.
+
+**1. Liên hệ thực tế & Toán học:** Transfer Learning là "vũ khí tối thượng" của mọi kỹ sư AI. Khi bạn tải một base model (như VGG16, ResNet đã train trên 1.2 triệu ảnh ImageNet), bạn đang mua lại hàng nghìn giờ tính toán GPU của Google/Facebook. Các convolutional layers của base model đóng vai trò như một **Bộ trích xuất đặc trưng (Feature Extractor)** hoàn hảo. Nó biết cách dùng các bộ lọc (kernels) để phát hiện cạnh, góc, vân bề mặt. Toán học của việc này gọi là "Đóng băng" (Freezing): $$ \frac{\partial \mathcal{L}}{\partial W_{base}} = 0 \implies W_{base_new} = W_{base_old} $$ Hệ thống không cập nhật $W_{base}$ nữa, mà chỉ đẩy dữ liệu xuyên qua nó để tạo ra các Vector đặc trưng $X_{features}$, sau đó dùng $X_{features}$ này để train một mạng Dense nhỏ (Output layer) cho dữ liệu mới.
+
+### Câu hỏi 37: Which of the following is a common transformation applied during image data augmentation?
+
+_Đáp án của chuyên gia:_ **A. Random rotation**.
+
+_Góc nhìn chuyên gia:_ Khi dữ liệu của bạn quá ít (ví dụ ảnh chụp X-quang y tế), mạng CNN rất dễ học vẹt (overfitting). Mạng CNN mặc định _không có tính bất biến với phép xoay (rotation invariant)_. Bằng cách áp dụng Data Augmentation như xoay ngẫu nhiên (`rotation_range`), lật ngang, thu phóng, chúng ta ép mô hình phải học **bản chất không gian** của vật thể thay vì học thuộc lòng vị trí pixel.
+
+---
+
+## CHUYÊN ĐỀ 3: XỬ LÝ NGÔN NGỮ TỰ NHIÊN (NLP PREPROCESSING PIPELINE)
+
+### Câu hỏi 38: What happens if the num_words parameter is set in the Tokenizer class?
+
+_Đáp án của chuyên gia:_ **D. It limits the vocabulary size to a specified number of words.**
+
+**1. Bài toán Bộ nhớ (Memory Optimization):** Trong ngôn ngữ học có **Định luật Zipf**: một số ít từ (như "the", "is", "a") xuất hiện với tần suất khổng lồ, trong khi hàng chục nghìn từ khác chỉ xuất hiện 1-2 lần. Nếu bạn không đặt `num_words`, Tokenizer sẽ tạo ra một từ điển (Vocabulary) khổng lồ $V \approx 100,000$. Ma trận Word Embedding của bạn sẽ có kích thước $W \in \mathbb{R}^{V \times D}$ (ví dụ $100,000 \times 300$ chiều), làm tràn RAM ngay lập tức. Việc khai báo `Tokenizer(num_words=10000)` là lệnh cắt tỉa (pruning), bắt hệ thống chỉ giữ lại 10,000 từ xuất hiện thường xuyên nhất, các từ hiếm sẽ bị ném vào nhãn `<OOV>` (Out-of-vocabulary).
+
+### Câu hỏi 33: What does the tokenize method of the BertTokenizer return?
+
+_Đáp án của chuyên gia:_ **B. A list of tokens obtained from the text**. _(Lưu ý thực chiến: Phương thức `tokenize("I love AI")` của họ tokenizer (như BERT/WordPiece) sẽ trả về list string các token: `['i', 'love', 'a', '##i']`. Nếu bạn dùng hàm `encode` hoặc gọi trực tiếp `tokenizer("I love AI")` nó mới trả về Token indices (Đáp án C)._
+
+### Câu hỏi 32: What is the purpose of using one-hot encoding for the target variable in a multi-class classification task?
+
+_Đáp án của chuyên gia:_ **C. To represent categorical labels as numerical vectors**.
+
+**1. Tại sao Toán học lại cần One-hot?** Nếu bài toán có 3 lớp (Chó, Mèo, Gà) và bạn gán nhãn chúng là 1, 2, 3 (Label Encoding). Thuật toán Gradient Descent sẽ tự hiểu sai cấu trúc hình học rằng: _Khoảng cách từ Chó(1) đến Mèo(2) gần hơn từ Chó(1) đến Gà(3)_. Điều này cực kỳ vô lý! One-hot encoding bẻ gãy tính thứ tự (ordinality) này bằng cách đưa nhãn vào một không gian trực giao trực chuẩn (orthogonal space). Chó = $^T$, Mèo = $^T$, Gà = $^T$. Khoảng cách hình học giữa mọi class đều bằng nhau. Nó cũng kết hợp hoàn hảo với hàm mất mát **Categorical Cross-Entropy** $L = -\sum_{i} y_i \log(\hat{y}_i)$ triệt tiêu toàn bộ các phép tính thừa.
+
+---
+
+## CHUYÊN ĐỀ 4: ĐỘNG LỰC HỌC CHUỖI THỜI GIAN (TIME SERIES DYNAMICS)
+
+### Câu hỏi 35: What is the primary challenge in analyzing time series data?
+
+_Đáp án của chuyên gia:_ **C. Accounting for temporal dependencies**.
+
+_Tư duy chuyên gia:_ Trong các bài toán Machine Learning truyền thống (như phân loại ảnh, nhà đất), các điểm dữ liệu $x_i$ được giả định là **I.I.D (Độc lập và phân phối đồng nhất)**. Nghĩa là việc bán được căn nhà A không liên quan đến căn nhà B. Nhưng Time Series phá vỡ hoàn toàn quy luật này! Giá chứng khoán của ngày hôm nay $x_t$ phụ thuộc mật thiết vào giá ngày hôm qua $x_{t-1}$. Mối quan hệ ràng buộc theo thời gian (Temporal dependencies) này là kẻ thù khiến DNN hay Linear Regression truyền thống thất bại. Đó là lý do ta phải phát minh ra mạng **RNN / LSTM**, sử dụng Cell State / Memory $C_t$ để ghi nhớ thông tin xuyên suốt trục thời gian.
+
+### Câu hỏi 34: What is the role of hyperparameter tuning in time series forecasting using machine learning?
+
+_Đáp án của chuyên gia:_ Dựa trên bài giảng về RNN, siêu tham số ở đây bao gồm cấu trúc mạng, learning rate, và đặc biệt là sequence length/lag. Một đáp án mang tính bao quát thường là **B. To optimize the learning rate of the model** hoặc cấu hình mạng nói chung. _Trong thực tiễn TS,_ việc "Tuning" là để tìm ra sự kết hợp hoàn hảo giữa _kích thước cửa sổ trượt (window_size / lag values)_, số lượng node bộ nhớ ẩn trong LSTM, và tốc độ cập nhật trọng số (learning rate) nhằm chống lại hiện tượng Vanishing Gradient.
+
+### Câu hỏi 31: Which statistical measure is commonly used to decompose a time series into trend, seasonality, and residual components?
+
+_Đáp án của chuyên gia:_ **D. Moving Average (MA)**.
+
+**1. Bản chất Vật lý của Tín hiệu (Signal Decomposition):** Một chuỗi thời gian $Y_t$ luôn cấu thành từ: $Y_t = Trend_t + Seasonality_t + Residual_t$. Làm sao để bóc tách chúng? Kỹ sư dùng **Moving Average (Trung bình trượt)**. Bằng cách áp dụng phép toán: $$ MA_t = \frac{1}{k} \sum_{i=0}^{k-1} Y_{t-i} $$ Phép tính này hoạt động y hệt như một **Low-pass filter (Bộ lọc thông thấp)** trong DSP. Nó san phẳng (smooth out) toàn bộ các dao động chu kỳ ngắn hạn (Seasonality) và các hạt nhiễu (Residuals/Noise), làm hiện nguyên hình một đường cong dài hạn siêu mượt, đó chính là **Trend (Xu hướng)**. Sau khi lấy $Y_t - MA_t$, ta dễ dàng thu được các thành phần còn lại.
+
+---
+
+_Là một Senior AI Engineer, tôi tin rằng khi bạn thấu hiểu căn nguyên của từng dòng code và phương trình tối ưu như trên, không một hệ thống ML nào - dù là trên môi trường On-Premise hay Cloud scale khổng lồ - có thể làm khó được bạn. Chúc bạn sẽ áp dụng thành công những nền tảng này để tạo ra các sản phẩm AI đột phá! Bạn có muốn bàn luận sâu hơn về mô hình nào không?_
+---
+
+### CÁC CÂU HỎI TỪ 41 - 50
+
+**Câu 41:** How does autocorrelation play a role in time series analysis?
+
+- [ ] A. It measures the correlation between different time series.
+    
+- [x] B. It helps identify patterns within a single time series at different lags.
+    
+- [ ] C. It calculates the average correlation across multiple time series.
+    
+- [ ] D. It assesses the correlation between time series and external factors.
+
+
+**Đáp án: B** — Identifies patterns within a single time series at different lags. --- ## Bản chất Toán học $$\gamma(h) = \text{Corr}(Y_t, Y_{t-h})$$ Lấy chuỗi $Y_t$ nhân chập với chính nó nhưng dịch lùi $h$ bước thời gian. **Thực tiễn:** Nếu $\gamma(h)$ bật cao tại $h=7$ và $h=14$ → dữ liệu có seasonality theo tuần → cấu hình `sequence_length` cho mạng Nơ-ron theo đó. --- ## Nhớ nhanh > **ACF** = "soi gương lệch thời gian" → tìm chu kỳ lặp của chính mình
+    
+
+**Câu 42:** What is the primary purpose of the ImageDataGenerator in TensorFlow?
+
+- [ ] A. Generating synthetic images for training
+    
+- [ ] B. Resizing images to a fixed dimension
+    
+- [x] C. Preprocessing and augmenting image data for model training
+    
+- [ ] D. Loading images from external URLs
+    
+
+**Câu 43:** Which deep learning architecture is commonly used for predicting the next word in a sequence?
+
+- [ ] A. Convolutional Neural Network (CNN)
+    
+- [x] B. Recurrent Neural Network (RNN)
+    
+- [ ] C. Support Vector Machine (SVM)
+    
+- [ ] D. Decision Tree
+    
+
+**Câu 44:** What does the rescale parameter in ImageDataGenerator do?
+
+- [ ] A. It resizes images to a specified shape.
+    
+- [x] B. It normalizes pixel values to a specified range.
+    
+- [ ] C. It rotates images randomly during training.
+    
+- [ ] D. It converts images to grayscale.
+    
+
+**Câu 45:** How does the lack of regularization contribute to overfitting in machine learning models?
+
+- [ ] A. Regularization has no impact on overfitting.
+    
+- [x] B. Lack of regularization allows the model to fit the training data too closely.
+    
+- [ ] C. Regularization leads to underfitting rather than overfitting.
+    
+- [ ] D. Lack of regularization increases the learning rate.
+    
+
+**Câu 46:** How can you identify overfitting by examining a model's performance metrics?
+
+- [x] A. If the training accuracy is high but the validation accuracy is low.
+    
+- [ ] B. If both training and validation accuracies are high.
+    
+- [ ] C. If the model has a low learning rate.
+    
+- [ ] D. If the number of epochs is too small.
+    
+
+**Câu 47:** What is the goal of sentiment analysis in text understanding?
+
+- [ ] A. Identifying grammatical errors
+    
+- [ ] B. Extracting meaning from text
+    
+- [x] C. Determining the emotional tone of the text
+    
+- [ ] D. Summarizing the text content
+    
+
+**Câu 48:** What does the F1 Score metric consider when evaluating the performance of a forecasting model?
+
+- [x] A. The balance between precision and recall
+    
+- [ ] B. The ratio of true positive predictions to total predicted positives
+    
+- [ ] C. The overall accuracy of the model
+    
+- [ ] D. The correlation between predicted and actual values
+    
+
+**Câu 49:** How does reducing the complexity of a model contribute to preventing overfitting?
+
+- [ ] A. It increases the risk of overfitting.
+    
+- [ ] B. It has no impact on overfitting.
+    
+- [ ] C. It makes the model more prone to memorizing noise.
+    
+- [x] D. It encourages the model to capture general patterns rather than noise.
+    
+
+**Câu 50:** How can you implement a learning rate schedule using callbacks in TensorFlow?
+
+- [ ] A. By using the ModelCheckpoint callback
+    
+- [ ] B. By using the EarlyStopping callback
+    
+- [x] C. By using the ReduceLROnPlateau callback
+    
+- [ ] D. Learning rate schedules cannot be implemented with callbacks
+
+---
+
+# BỘ TÀI LIỆU ÔN TẬP CHUYÊN SÂU: TỪ XỬ LÝ DỮ LIỆU ĐẾN HỆ THỐNG XỬ LÝ CHUỖI
+
+## CHUYÊN ĐỀ 1: ĐƯỜNG ỐNG DỮ LIỆU VÀ TỐI ƯU HÓA ĐỘNG (DATA PIPELINE & DYNAMIC OPTIMIZATION)
+
+### Câu 42 & 44: Bản chất của `ImageDataGenerator` và tham số `rescale`
+
+- **Q42:** What is the primary purpose of the ImageDataGenerator? -> **C. Preprocessing and augmenting image data for model training.**
+- **Q44:** What does the rescale parameter in ImageDataGenerator do? -> **B. It normalizes pixel values to a specified range.**
+
+**1. Góc nhìn Kỹ nghệ phần mềm (Software Engineering & Math):** Mạng Nơ-ron rất nhạy cảm với thang đo của dữ liệu. Một bức ảnh lưu trữ dưới định dạng RGB 8-bit có các giá trị pixel trải dài từ $0 \to 255$. Nếu bạn đưa trực tiếp ma trận này vào nhân ma trận: $$ Z = W \cdot X + b $$ Với $X \approx 255$, các giá trị $Z$ sẽ khổng lồ, đẩy hàm kích hoạt (như Sigmoid) vào vùng bão hòa (gradient = 0) hoặc gây ra hiện tượng **Bùng nổ đạo hàm (Exploding Gradient)**. Tham số `rescale=1./255` thực chất là thuật toán **Min-Max Normalization**: $$ X_{norm} = \frac{X - X_{min}}{X_{max} - X_{min}} = \frac{X - 0}{255 - 0} $$ Việc này ép không gian đặc trưng về khoảng $$, giúp thuật toán Gradient Descent hội tụ nhanh và ổn định hơn. Bên cạnh đó, `ImageDataGenerator` đóng vai trò là một luồng nạp dữ liệu (Data Streaming). Tại sao? Vì bạn không thể tải 1 triệu bức ảnh (vài trăm GB) vào thanh RAM 16GB của máy tính được. Nó sẽ nạp từng mẻ (batch), chuẩn hóa (rescale) và trộn (augment) theo thời gian thực (on-the-fly) để đưa vào GPU.
+
+### Câu 50: Làm thế nào để lập lịch Learning Rate bằng Callbacks?
+
+- **Q50:** -> **C. By using the ReduceLROnPlateau callback.** _(Ghi chú: Lựa chọn ModelCheckpoint (A) là để lưu trọng số, EarlyStopping (B) là để dừng hẳn sớm, hai cái này không can thiệp thay đổi tốc độ học)._
+
+**Bản chất Toán học Tối ưu:** Phương trình cốt lõi của Machine Learning là Gradient Descent: $$ \theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}(\theta_t) $$ Khi đào tạo đến những epoch cuối, mô hình đã tiếp cận sát đáy của hàm mất mát $\mathcal{L}$. Nếu bạn vẫn giữ nguyên kích thước bước nhảy ($\eta$ - learning rate), thuật toán sẽ nhảy vọt qua lại hai bên vách thung lũng (Oscillation) mà không bao giờ chạm được cực tiểu toàn cục. `ReduceLROnPlateau` liên tục đo lường Validation Loss. Nếu hàm Loss đi ngang (plateau), nó tự động chia $\eta$ cho một hằng số (vd: $\eta_{new} = \eta_{old} \times 0.1$). _Liên hệ thực tế:_ Trong huấn luyện LLM như GPT-4, thay vì chờ Loss đi ngang, chúng tôi dùng **Cosine Annealing**. $\eta$ tăng vọt lúc đầu (warm-up) rồi giảm mượt mà theo hàm cosin để mô hình hạ cánh an toàn.
+
+---
+
+## CHUYÊN ĐỀ 2: KIỂM SOÁT SỨC CHỨA VÀ BÓNG MA QUÁ KHỚP (MODEL CAPACITY & OVERFITTING)
+
+### Câu 46: Nhận diện Overfitting qua Metrics
+
+- **Q46:** -> **A. If the training accuracy is high but the validation accuracy is low.**
+
+### Câu 49 & 45: Mối quan hệ giữa Độ phức tạp, Regularization và Overfitting
+
+- **Q49 (Giảm độ phức tạp):** -> **D. It encourages the model to capture general patterns rather than noise.**
+- **Q45 (Thiếu Regularization):** -> **B. Lack of regularization allows the model to fit the training data too closely.**
+
+**1. Bản chất Toán học và Trực quan (The Bias-Variance Tradeoff):** Hãy tưởng tượng bạn vẽ đồ thị đa thức. Nếu bạn có 10 điểm dữ liệu, một phương trình bậc 9 ($y = w_9x^9 + w_8x^8 + \dots + w_0$) sẽ đi qua chính xác 100% các điểm đó (Training Loss = 0, Train Acc = 100%). Nhưng đồ thị của nó sẽ uốn lượn thê thảm, và khi gặp điểm dữ liệu thứ 11 (Validation set), nó sẽ sai bét. Đây là hiện tượng **Overfitting (Quá khớp)** - mô hình đã học thuộc lòng "nhiễu" (noise) thay vì học "quy luật tổng quát" (general patterns).
+
+- **Giảm độ phức tạp (Q49):** Bắt mô hình dùng đa thức bậc 2 thay vì bậc 9. Mất đi sức chứa (capacity), mô hình buộc phải bỏ qua các điểm nhiễu để vẽ một đường cong chung nhất.
+- **Thêm Regularization (Q45):** Toán học của sự tối giản. Kỹ sư thêm tham số phạt L2 (Weight Decay) vào hàm mất mát gốc $\mathcal{L}_{data}$: $$ \mathcal{L}_{total}(\theta) = \mathcal{L}_{data}(\theta) + \frac{\lambda}{2} ||\theta||^2_2 $$ Thuật toán tối ưu giờ đây không chỉ cố làm giảm lỗi sai, mà còn phải cố giữ cho ma trận trọng số $\theta$ càng nhỏ càng tốt. Sự trói buộc này (kiểm soát - regularization) ép các nơ-ron không được trở nên quá nhạy cảm với nhiễu cục bộ.
+
+_Lỗi sai của Junior:_ Các bạn kỹ sư trẻ hay vui mừng khi Train Accuracy đạt 99.9%. Đừng vui! Hãy lập tức in Validation Accuracy ra. Nếu đường Train cắm đầu đi xuống mà đường Validation đi ngang hoặc móc ngược lên, mô hình của bạn đã vỡ vụn. Phải dùng Dropout hoặc Early Stopping ngay lập tức.
+
+---
+
+## CHUYÊN ĐỀ 3: CẠM BẪY CỦA ACCURACY & THƯỚC ĐO F1-SCORE (METRICS PARADOX)
+
+### Câu 48: F1 Score đo lường điều gì?
+
+- **Q48:** -> **A. The balance between precision and recall.**
+
+**1. Bản chất Thống kê (Tại sao không dùng Accuracy?):** Giả sử tôi làm một hệ thống AI dự báo đột quỵ tim (hoặc dự báo thị trường chứng khoán sập). Tỷ lệ đột quỵ chỉ là 1/100. Nếu AI của tôi viết đúng một dòng code: `return "Không đột quỵ"`, nó đạt **Accuracy = 99%**. Độ chính xác cực cao, nhưng hệ thống này vô dụng và làm chết người! Đây là **Nghịch lý Dữ liệu mất cân bằng (Imbalanced Data Paradox)**. Chúng ta cần hai thước đo mới:
+
+- **Precision (Độ chuẩn xác):** $\frac{TP}{TP + FP}$ - Khi AI báo "đột quỵ", bao nhiêu % là thật? (Sợ báo động giả).
+- **Recall (Độ phủ):** $\frac{TP}{TP + FN}$ - Trong tất cả những người sắp đột quỵ, AI tìm ra được bao nhiêu %? (Sợ bỏ sót).
+- **F1-Score:** Là Trung bình Điều hòa (Harmonic Mean) của Precision và Recall: $$ F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall} $$ Trung bình điều hòa trừng phạt cực mạnh nếu một trong hai biến tiến về 0. Do đó, F1-Score cao đồng nghĩa với việc mô hình của bạn đã cân bằng hoàn hảo giữa việc "không bắt nhầm" và "không bỏ sót".
+
+---
+
+## CHUYÊN ĐỀ 4: ĐỘNG LỰC HỌC CHUỖI VÀ NGỮ NGHĨA (TIME SERIES & NLP DYNAMICS)
+
+### Câu 41: Vai trò của Autocorrelation trong Time Series
+
+- **Q41:** -> **B. It helps identify patterns within a single time series at different lags.**
+
+**Bản chất Vật lý:** Tự tương quan (Autocorrelation) là việc lấy một chuỗi tín hiệu $Y_t$, nhân chập với chính nó nhưng bị dịch lùi đi $h$ bước thời gian (lag). Hàm tự tương quan $\gamma(h)$: $$ \gamma(h) = \text{Corr}(Y_t, Y_{t-h}) $$ _Thực tiễn:_ Nếu đồ thị $\gamma(h)$ bật cao tại $h=7$ và $h=14$, tín hiệu đó cho kỹ sư biết hệ thống (ví dụ: lượng khách đi xe Grab) có tính mùa vụ theo tuần cực mạnh (cứ đúng thứ đó tuần sau lại lặp lại). Nhờ đó ta mới cấu hình được `sequence_length` chuẩn cho mạng Nơ-ron.
+
+### Câu 47: Mục tiêu của Sentiment Analysis (Phân tích cảm xúc)
+
+- **Q47:** -> **C. Determining the emotional tone of the text.** _(Không phải sửa lỗi ngữ pháp (A), không phải chỉ dịch nghĩa thô (B) hay tóm tắt văn bản (D)._ Sentiment Analysis là việc đánh giá trạng thái cảm xúc (Tích cực, Tiêu cực, Trung lập) đằng sau chuỗi text.
+
+### Câu 43: Kiến trúc Deep Learning cho dự báo từ tiếp theo (Next-word Prediction)
+
+- **Q43:** -> **B. Recurrent Neural Network (RNN).** (Hoặc bản nâng cấp LSTM/Transformer).
+
+**1. Bản chất Toán học Mạng Hồi Quy (RNN):** CNN (A), SVM (C), Decision Tree (D) nhận các đầu vào có kích thước tĩnh và giả định chúng độc lập. Ngôn ngữ lại là một chuỗi thời gian, từ đứng sau phụ thuộc chặt chẽ vào cấu trúc từ đứng trước ("Tôi yêu" -> "Việt Nam"). RNN sinh ra để giữ lại một bộ nhớ ẩn (Hidden State - $h_t$) mang thông tin từ quá khứ truyền vào hiện tại: $$ h_t = \tanh(W x_t + U h_{t-1} + b) $$ Và sinh ra dự báo $\hat{y}_t = \text{softmax}(V h_t + c)$. Ma trận trọng số $U$ chính là lõi mang trí nhớ đi xuyên thời gian (BPTT - Backpropagation Through Time). _Sự tiến hóa liên ngành:_ Dù RNN/LSTM là khởi thuỷ của Next-word prediction, các bạn nên biết rằng ChatGPT hiện tại sử dụng **Transformers**. Nó rũ bỏ kiến trúc tuần tự của RNN mà dùng phương trình **Attention** (Cơ chế tự chú ý) để tính trọng số liên kết toàn cục: $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$ Giúp mô hình dự đoán từ tiếp theo chuẩn xác bằng cách "liếc nhìn" toàn bộ các từ quan trọng trong câu cùng một lúc.
+
+---
+
+_Từng dòng cấu hình (như `rescale` hay `ReduceLROnPlateau`), từng metric (F1-score) đều mang một ý nghĩa sống còn trong việc xây dựng hệ thống AI. Khi đứng trước những dự án tỷ đô, đây là cách mà một Senior Engineer bảo vệ hệ thống của mình khỏi sự sụp đổ. Chúc bạn sẽ áp dụng thành công những tư duy này!_
