@@ -1,70 +1,56 @@
 {
   "main": {
-    "id": "a662baddead2fa37",
+    "id": "6148227fec463c6b",
     "type": "split",
     "children": [
       {
-        "id": "14dfbe38ad5ae837",
+        "id": "03e3684ff8e77917",
         "type": "tabs",
         "children": [
           {
-            "id": "792862c91293d183",
+            "id": "8a5ffe1d849bd769",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Deep Learning/Computer Vision.md",
+                "file": "REL301m_Master_Syllabus.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Computer Vision"
+              "title": "REL301m_Master_Syllabus"
             }
           },
           {
-            "id": "357db60117f103cf",
+            "id": "f3a87b32a4291b1f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python fundamentals/Tài liệu tham khảo Python cho NLP.md",
+                "file": "REL301m_Master_Syllabus.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tài liệu tham khảo Python cho NLP"
-            }
-          },
-          {
-            "id": "36a4a8414c138428",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PMG201c_Full_Exam_With_Answers.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PMG201c_Full_Exam_With_Answers"
+              "title": "REL301m_Master_Syllabus"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "b0c5d247c7e9feb9",
+    "id": "6677c759c27ed443",
     "type": "split",
     "children": [
       {
-        "id": "d035338edab6d0d1",
+        "id": "e7b92804ccd6b830",
         "type": "tabs",
         "children": [
           {
-            "id": "6b1ec598a5ac5793",
+            "id": "1cde7f876aa52da9",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -77,12 +63,12 @@
             }
           },
           {
-            "id": "acf94cad13919647",
+            "id": "6d6f301c6bdfd9b0",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#AWS",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +80,7 @@
             }
           },
           {
-            "id": "08f4a348ffb09be1",
+            "id": "ac71a06708af2cb6",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -107,25 +93,24 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "a6407428bf0479c6",
+    "id": "9bf0170a30b5d47b",
     "type": "split",
     "children": [
       {
-        "id": "b1d0a9a000f7235c",
+        "id": "a05f6a27c3b86a6c",
         "type": "tabs",
         "children": [
           {
-            "id": "0ea56c2b61a7c5ea",
+            "id": "bd09543e603ba1f2",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Deep Learning/Deep Learning.canvas",
                 "collapseAll": false,
-                "extraContext": true,
+                "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -133,25 +118,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Deep Learning"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "69bafe6d3c89a278",
+            "id": "8d6ddafbd7a8e9ab",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Deep Learning/Deep Learning.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Deep Learning"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "781416c27c5f2c8a",
+            "id": "33982131024351b2",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -166,102 +150,64 @@
             }
           },
           {
-            "id": "ca2c2a24295b8e83",
+            "id": "7d8a86ec9cbbcced",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "aecc64bc4f75c0ba",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Deep Learning/Deep Learning.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Deep Learning"
-            }
-          },
-          {
-            "id": "489d902d74573929",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "Outline"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "obsidian-git:Open Git source control": false
+      "bases:Create new base": false
     }
   },
-  "active": "36a4a8414c138428",
+  "active": "f3a87b32a4291b1f",
   "lastOpenFiles": [
-    "PMG201c_Charter_Template.md",
-    "PMG201c_Deep_Study_Upgraded.md",
-    "PMG201c_Full_Exam_With_Answers.md",
-    "Untitled.canvas",
-    "PMG201c_Practice_Exams.md",
-    "PMG201c_Practice_Exams_ANSWERS.md",
     "README - Setup Guide.md",
-    "2026-04-15.md",
-    "2026-01-13.md",
-    "PMG201c_De_Cuong_On_Thi.md",
-    "Writing.md",
-    "TensorFlow.md",
-    "Machine Learning/Deep Learning/Activation Functions.md",
-    "DPL302_FE.md",
+    "Untitleddd.md",
+    "REL301m_Master_Syllabus.md",
+    "IMP302_Master_Syllabus.md",
+    "IMP302_Image_Video_Processing.md",
+    "DPL302_TensorFlow_All_In_One.md",
+    "PMG201c_All_In_One.md",
     "Dictionary.md",
-    "AWS certificate.md",
-    "Images/canvas.png",
-    "Machine Learning/Time Series Forecasting.md",
-    "Machine Learning/Feature Engineering Overview.md",
-    "Machine Learning/Data Preprocessing Overview.md",
-    "Images/daoham.png",
-    "Images/daoham1.png",
-    "Images/daoham3.png",
-    "Images/daoham2.png",
-    "Images/canvas3.png",
-    "Images/canvas2.png",
-    "Images/canvas1.png",
-    "Machine Learning/Deep Learning/Backpropagation.md",
-    "Machine Learning/Grid Search & Random Search.md",
-    "Machine Learning/Imbalanced Data.md",
-    "Machine Learning/Missing Values & Outliers.md",
-    "Machine Learning/NLP Applications.md",
-    "Machine Learning/Ordinary Least Squares Regression.md",
-    "Machine Learning/Overfitting & Underfitting.md",
-    "Machine Learning/Reinforcement Learning Overview.md",
-    "Pasted image 20260330193408.png",
-    "Images/Pasted image 20260325222934.png",
     "AI_Career/Deep Learning.canvas",
-    "Human Language Technology/Speech Language Processing",
-    "Human Language Technology/Natural Language Processing",
-    "Human Language Technology",
-    "AWS 0.canvas",
-    "ZAN.canvas",
-    "Untitled 1.canvas",
-    "Information Retrieval",
-    "Computer VIsion",
-    "Obsidian_Vault",
-    "Geometry",
-    "Algebra",
-    "Golang fundamentals/Untitled 2.canvas",
-    "Calculus",
-    "Untitled.base"
+    "AI_Career/Computer Vision.md",
+    "AI_Career/AI_Engineer.md",
+    "ZAN.canvas"
   ]
 }
