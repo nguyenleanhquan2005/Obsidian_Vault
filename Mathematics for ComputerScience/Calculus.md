@@ -87,7 +87,7 @@ A function is continuous at a point if the limit exists and equals the function'
 
 ### Outline: Calculus (high-level map)
 
-1. [[**Precalculus foundations**]]
+1. [[Precalculus foundations]]
     - Functions and graphs (polynomials, rational, exponential, logarithmic, trig, inverse trig)
     - Transformations, composition, inverses
     - Coordinate geometry and basic modeling
