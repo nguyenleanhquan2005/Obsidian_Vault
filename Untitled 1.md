@@ -156,3 +156,7 @@ Anh đã từng phỏng vấn và thấy rất nhiều junior mắc 2 lỗi trí
     - _Hậu quả:_ Nếu lỡ bắt trúng 1 bức hình bị lỗi camera (ảnh đen hoàn toàn hoặc trắng xóa, $A = B$), hệ thống sẽ báo lỗi `NaN` (Not a Number). Lỗi này len lỏi vào quá trình training sẽ làm hàm Loss nổ thành `NaN`, sập toàn bộ quá trình huấn luyện mà không hiểu tại sao.
 
 Hiểu rõ những nguyên lý cốt lõi từ năm 1970s này, em sẽ thấy các thư viện như OpenCV hay PyTorch thực ra vô cùng trong sáng và dễ kiểm soát. Em còn thắc mắc đoạn nào về công thức của Otsu không?
+
+
+
+ddjaidjsisaod 2 bai  dsaofj hgifohg jfkpsa 
