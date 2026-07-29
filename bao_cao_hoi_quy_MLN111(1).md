@@ -405,3 +405,85 @@ Từ các kết luận thống kê trên, đề xuất hướng tới việc nâ
 
 *Báo cáo được tạo tự động từ dữ liệu khảo sát thực tế (n = 60) bằng Python 3.12 — statsmodels OLS, scipy.stats.pearsonr.*  
 *Ngày phân tích: tháng 6 năm 2026*
+
+
+### **Key thời gian :**​[](https://fuoverflow.com/members/minthep.4808/#-key-thoi-gian "Permanent link")
+
+- Cách mạng công nghiệp lần thứ tư được đề cập lần đầu tiên: **Tại đức Năm 2011**  
+- Mô hình công nghiệp hóa của Nhật Bản và các nước công nghiệp mới diễn ra trong khoảng bao nhiêu năm? **Từ 20-30 năm**  
+- Mô hình công nghiệp hóa kiểu Liên Xô được bắt đầu trong thời gian nào? **Từ đầu những năm 1930**  
+- Quá trình công nghiệp hóa của các nước tư bản cổ điển diễn ra trong thời gian khoảng bao nhiêu năm? **Từ 60-80 năm**  
+- Thuật ngữ "Kinh tế chính trị" được sử dụng lần đầu tiên vào năm nào? **1615**  
+- Việt Nam gia nhập tổ chức ASEAN khi nào? **1995**  
+- Việt Nam trở thành thành viên chính thức của tổ chức thương mại kinh tế thế giới WTO khi nào? **2007**  
+- Cuộc khủng hoảng nào đã làm phá sản doanh nghiệp vừa và nhỏ, các doanh nghiệp lớn còn tồn tại dẫn tới hình thành các doanh nghiệp độc quyền đầu tiên? **Khủng hoảng kinh tế năm 1873**  
+- Hình thức độc quyền dưới dạng Cartel được phổ biến ở Châu âu vào thời gian nào? **Cuối thế kỷ XIX**  
+
+### **Key con số đáng sợ
+
+**-** Năm 2007, Việt Nam chính thức là thành viên của tổ chức nào sau đây? **WTO**  
+- Đến nay thế giới trải qua bao nhiêu cuộc cách mạng công nghiệp? **Ba cuộc cách mạng công nghiệp**  
+- Có mấy nguyên nhân chính dẫn đến sự hình thành độc quyền nhà nước trong chủ nghĩa tư bản? **B. Bốn nguyên nhân**  
+  
+- Để thực hiện hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam cần hoàn thành mấy nhiệm vụ chủ yếu? **Năm nhiệm vụ**  
+- Sản xuất hàng hóa ra đời dựa trên: **Hai điều kiện**  
+- Tiền tệ có mấy chức năng? **Năm chức năng**  
+- Tổng kết thực tiễn vai trò của độc quyền trong nền kinh tế các nước tư bản phát triển giai đoạn cuối thế kỷ XIX đầu thế kỷ XX, **V. I. Lênin đã khái quát độc quyền tư bản chủ nghĩa** thành: **Năm đặc điểm**  
+- Tuần hoàn của tư bản công nghiệp trải qua mấy giai đoạn? **Ba giai đoạn**  
+- Hàng hóa có bao nhiêu thuộc tính? Hai thuộc tính  
+- "Nghiên cứu về cách mạng công nghiệp lần thứ nhất, C. Mác đã khái quát tính quy luật của cách mạng công nghiệp qua mấy giai đoạn phát triển? **Ba giai đoạn  
+-** Quan điểm về "xây dựng nền kinh tế tự chủ phải dựa trên cơ sở làm chủ công nghệ và chủ động, tích cực hội nhập, đa dạng hóa thị trường, nâng cao khả năng thích ứng của nền kinh tế" **Chiến lược phát triển kinh tế - xã hội 2021-2030**  
+
+### **Key Đại hội đảng:**​[](https://fuoverflow.com/members/minthep.4808/#-key-dai-hoi-dang "Permanent link")
+
+**- Đổi mới cơ chế quản lý kinh tế -> Đảng 6**  
+- Kinh tế thị trường vừa dựa trên cơ sở -> Đảng 9  
+- Đảng 10 -> kte tri thức  
+- Hàng hoá nhiều thành phần -> Đại hội 11 (2011)  
+**- Quyết định xây dựng định hướng xã hội -> Đảng 6**  
+- Khoa học và công nghệ sẽ có bước tiến nhảy vọt -> Đảng 9  
+- Lần đầu tiên được Đảng đưa ra -> đảng 9  
+- Dân là gốc -> đảng 12  
+  
+  
+**Cách mạng công nghiệp lần thứ nhất**: Với sự ra đời của máy hơi nước, máy kéo sợi, động cơ cơ khí…  
+**Cách mạng công nghiệp lần thứ hai**: Phát minh về điện, động cơ đốt trong, dây chuyền sản xuất…  
+**Cách mạng công nghiệp lần thứ ba**: Công nghệ thông tin, máy tính, tự động hóa…  
+**Cách mạng công nghiệp lần thứ tư (4.0)**: Trí tuệ nhân tạo, IoT, dữ liệu lớn, công nghệ nano...  
+
+### ​[](https://fuoverflow.com/members/minthep.4808/#- "Permanent link")
+
+### **Công cuộc đại phân công lao động xã hội lần thứ:**​[](https://fuoverflow.com/members/minthep.4808/#-cong-cuoc-dai-phan-cong-lao-dong-xa-hoi-lan-thu "Permanent link")
+
+### **lần thứ nhất là chăn nuôi tách trông trọt**​[](https://fuoverflow.com/members/minthep.4808/#-lan-thu-nhat-la-chan-nuoi-tach-trong-trot "Permanent link")
+
+lần thứ hai là **Thủ công nghiệp tách khỏi nông nghiệp**  
+lần thứ ba là **ngành thương nghiệp ra đời**.  
+  
+  
+
+### Hình thức liên kết độc quyền: Cartel → Syndicate → Trust → Consortium.​[](https://fuoverflow.com/members/minthep.4808/#-hinh-thuc-lien-ket-doc-quyen-cartel-syndicate-trust-consortium "Permanent link")
+
+Cartel → thỏa thuận ngầm  
+Syndicate → phân phối tập trung  
+Trust → mất quyền độc lập  
+Consortium → liên minh dự án ngắn hạn  
+  
+
+### Mối quan hệ giữa giá trị và cường độ, năng suất lao động:​[](https://fuoverflow.com/members/minthep.4808/#-moi-quan-he-giua-gia-tri-va-cuong-do-nang-suat-lao-dong "Permanent link")
+
+**Năng suất** tăng → **giá trị** giảm  
+**Cường độ** tăng → **giá trị** không đổi (**Note:** Tổng sản phẩm vẫn tăng nha)  
+  
+
+### Kinh tế thị trường​[](https://fuoverflow.com/members/minthep.4808/#-kinh-te-thi-truong "Permanent link")
+
+đã có mầm mống từ trong xã hội nào? **Chiếm hữu nô lệ**  
+đã hình thành trong xã hội nào? **Phong kiến**  
+xuất hiện lần đầu tiên ở xã hội nào? **Tư bản chủ nghĩa**  
+  
+  
+  
+Cách mạng công nghiệp lần thứ nhất diễn ra trong thời gian **Từ giữa thế kỷ XVIII đến giữa thế kỷ XIX**  
+Cách mạng công nghiệp lần thứ hai diễn ra trong giai đoạn **Từ nửa cuối thế kỷ XIX đến đầu thế kỷ XX**  
+Cách mạng công nghiệp lần thứ ba diễn ra trong giai đoạn **Từ đầu thập niên 60 của thế kỷ XX đến cuối thế kỷ XX**
