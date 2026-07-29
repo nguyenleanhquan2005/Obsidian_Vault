@@ -180,3 +180,5 @@ Khi nghiên cứu VLA, thách thức lớn nhất không phải là "ngôn ngữ
 1. **DynamicVLA giúp robot NHANH hơn:** Điểm đột phá là _Continuous Inference_ (vừa nghĩ vừa làm) và _LAAS_ (luôn ghi đè lệnh cũ bằng lệnh mới nhất). Điều này giúp robot loại bỏ hoàn toàn "độ trễ nhận thức", biến nó thành chuyên gia bắt/gắp các vật thể đang bay hoặc lăn nhanh.
 2. **SmolVLA giúp robot RẺ hơn:** Điểm mới là dùng _Asynchronous Inference_ và loại bỏ các lớp dư thừa của VLM/Vision. Nó cho phép đưa trí tuệ nhân tạo VLA xuống các robot đồ chơi hoặc robot tự chế (in 3D) chạy bằng CPU máy tính thường, tận dụng dữ liệu "cây nhà lá vườn" nhưng vẫn thông minh như mô hình lớn,.
 3. **X-VLA giúp robot ĐA NĂNG hơn:** Điểm đột phá nằm ở _Soft Prompts_. Trước đây mỗi khi đổi robot (đổi số lượng camera, đổi cánh tay), người ta phải thiết kế lại các "Action heads" (đầu ra hành động). X-VLA coi phần cứng robot chỉ là "một loại văn bản ngầm", gán cho nó vài token học được. Nhờ đó, 1 mô hình duy nhất có thể điều khiển xe tự lái, tay gắp Franka, và robot gập quần áo 2 tay AgileX cùng một lúc,.
+
+một hai ba bốn năm sáu bảy tám chín mười 
