@@ -50,3 +50,8 @@ train_sizes, train_scores, val_scores = learning_curve(
 - [[Regularization Algorithms]]
 - [[Cross Validation]]
 - [[Bias Variance Tradeoff]]
+
+
+$$
+a_t = \arg\max_{a} Q(s_t, a; \theta)
+$$
