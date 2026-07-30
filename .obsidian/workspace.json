@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "bao_cao_hoi_quy_MLN111(1).md",
+                "file": "slide_extraction_chapter_2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "bao_cao_hoi_quy_MLN111(1)"
+              "title": "slide_extraction_chapter_2"
             }
           }
         ],
@@ -267,21 +267,25 @@
   },
   "active": "f71b82f6b7909516",
   "lastOpenFiles": [
-    "bao_cao_hoi_quy_MLN111.md",
+    "slide_extraction_chapter_3.md",
+    "slide_extraction_chapter_2.md",
+    "slide_extraction_chapter_5.md",
+    "slide_extraction_chapter_4.md",
+    "IMP302_Master_Syllabus.md",
+    "PMG201c_All_In_One.md",
+    "README - Setup Guide.md",
+    "DPL302_TensorFlow_All_In_One.md",
+    "Dictionary.md",
     "bao_cao_hoi_quy_MLN111(1).md",
+    "bao_cao_hoi_quy_MLN111.md",
     "Untitleddd.md",
     "Untitled.base",
     "Untitled 1.md",
     "Untitled.canvas",
     "REL301m_Master_Syllabus.md",
-    "IMP302_Master_Syllabus.md",
     "IMP302_Image_Video_Processing.md",
-    "DPL302_TensorFlow_All_In_One.md",
-    "Dictionary.md",
     "conflict-files-obsidian-git.md",
     "Calculus/Precalculus foundations.md",
-    "PMG201c_All_In_One.md",
-    "README - Setup Guide.md",
     "Computer VIsion/IMP302/Chapter2_Image_and_Video_Processing.md",
     "Computer VIsion/IMP302/Chapter3_Image_Degradation_Restoration.md",
     "Computer VIsion/IMP302/Chapter4_Image and Video Analysis.md",
@@ -293,9 +297,6 @@
     "PMG201c/PMG201c_Deep_Study_Upgraded.md",
     "PMG201c/PMG201c_Full_Exam_With_Answers.md",
     "PMG201c/PMG201c_Practice_Exams.md",
-    "PMG201c/PMG201c_Practice_Exams_ANSWERS.md",
-    "2026-04-15.md",
-    "2026-01-13.md",
     "Images/canvas.png",
     "Images/daoham.png",
     "Images/daoham1.png",
