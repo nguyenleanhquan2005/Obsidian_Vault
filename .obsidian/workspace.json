@@ -90,9 +90,21 @@
               "icon": "lucide-file",
               "title": "slide_extraction_chapter_2"
             }
+          },
+          {
+            "id": "87e7b1b790a3e065",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.13.4"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.13.4"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -112,7 +124,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -265,7 +279,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f71b82f6b7909516",
+  "active": "87e7b1b790a3e065",
   "lastOpenFiles": [
     "slide_extraction_chapter_3.md",
     "slide_extraction_chapter_2.md",

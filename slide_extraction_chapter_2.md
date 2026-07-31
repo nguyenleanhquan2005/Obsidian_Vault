@@ -46,6 +46,9 @@ Sản xuất hàng hóa không xuất hiện ngay từ đầu trong lịch sử 
    - Khởi thủy do chế độ tư hữu về tư liệu sản xuất quy định. Tư liệu sản xuất thuộc về các chủ sở hữu khác nhau, làm cho sản phẩm làm ra thuộc quyền sở hữu riêng của họ.
    - *Hệ quả:* Người sản xuất hoàn toàn độc lập, tự chủ trong việc quyết định sản xuất cái gì, sản xuất như thế nào $\Rightarrow$ Muốn tiêu dùng sản phẩm của nhau, bắt buộc phải thông qua trao đổi mua bán bình đẳng dưới hình thức hàng hóa.
 
+Mỗi người làm việc độc lập và tự sở hữu sản phẩm của mình, nên khi mang ra chợ, sản phẩm của họ mới gặp nhau dưới dạng hàng hóa để mua bán, đổi chác. Không phụ thuộc vào nhau: Anh làm áo, tôi làm bàn, thích làm gì tùy mỗi người. Đối diện với nhau: Mang ra chợ đọ giá trị để đổi lấy nhau (hoặc đổi
+
+
  📊 **Sơ đồ logic tổng hợp:**
 > ```
 > Phân công lao động xã hội (Chuyên môn hóa ──> Phụ thuộc về tiêu dùng) ──┐
@@ -239,6 +242,11 @@ Tiền tệ không xuất hiện ngay từ đầu mà là kết quả của mộ
 > - *Tiền dấu hiệu (Tiền giấy, QR Code):* Được dùng khi làm chức năng **Phương tiện lưu thông** & **Phương tiện thanh toán**.
 > - *Tiền tưởng tượng:* Dùng khi làm chức năng **Thước đo giá trị**.
 
+- **Đo**: thước đo giá trị.
+- **Lưu**: phương tiện lưu thông.
+- **Cất**: phương tiện cất trữ.
+- **Thanh**: phương tiện thanh toán.
+- **Thế**: tiền tệ thế giới.
 #### 5.4. Dịch vụ và Một số hàng hóa đặc biệt
 
 ##### a) Dịch vụ – Hàng hóa vô hình
