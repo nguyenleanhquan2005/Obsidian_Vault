@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "bao_cao_hoi_quy_MLN111(1).md",
+                "file": "Untitleddd.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "bao_cao_hoi_quy_MLN111(1)"
+              "title": "Untitleddd"
             }
           }
         ],
@@ -112,7 +112,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -267,8 +269,9 @@
   },
   "active": "f71b82f6b7909516",
   "lastOpenFiles": [
-    "bao_cao_hoi_quy_MLN111.md",
+    "slide_extraction_chapter_3.md",
     "bao_cao_hoi_quy_MLN111(1).md",
+    "bao_cao_hoi_quy_MLN111.md",
     "Untitleddd.md",
     "Untitled.base",
     "Untitled 1.md",

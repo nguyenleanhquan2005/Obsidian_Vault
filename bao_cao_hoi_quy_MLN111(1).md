@@ -387,27 +387,10 @@ Dựa trên kết quả phân tích thống kê định lượng trên, chúng t
 
 > **Mối quan hệ giữa Tồn tại xã hội và Ý thức xã hội trong Kỷ nguyên số:** Cơ sở hạ tầng thông tin, thuật toán AI và ma trận tin giả là những biểu hiện mới của "Tồn tại xã hội số". Ý thức xã hội của sinh viên phản ánh tồn tại này một cách chủ động và có tính độc lập tương đối. Sự chuyển hóa từ nhận thức về mối nguy hiểm của tin giả (P4_2) sang hành động thực tiễn củng cố niềm tin thể chế (P5_1) chính là minh chứng cho thấy ý thức xã hội có khả năng tác động mạnh mẽ trở lại, định hướng cho các hành vi thực tiễn nhằm cải tạo không gian mạng ngày một văn minh hơn.
 
-## 5. ĐỀ XUẤT VÀ GIẢI PHÁP KIẾN NGHỊ
-
-Từ các kết luận thống kê trên, đề xuất hướng tới việc nâng cao năng lực nhận thức và ứng xử của sinh viên FPT Univ. gồm:
-
-1. **Chuyển đổi chiến lược giáo dục thông tin:** Thay vì tập trung ngăn chặn hay hạn chế sinh viên tiếp xúc với tin tức chưa kiểm chứng một cách cơ học (bởi mô hình P1_1 -> P5_1 đã chứng minh việc tiếp xúc cơ học này không có ý nghĩa quyết định), nhà trường cần tập trung nâng cao năng lực **Nhận thức lý tính** cho sinh viên. Cần đưa các khóa học về Tư duy phản biện (Critical Thinking) và Thẩm định thông tin số (Digital Literacy) vào chương trình chính khóa một cách rộng rãi hơn.
-    
-2. **Đồng bộ hóa Không gian tâm lý số:** Thống kê chỉ ra rằng các yếu tố hoang mang cảm tính và sốc trực quan trước AI (P2_3, P2_4) có tác động rất lớn đến việc tái cấu trúc lòng tin. Do đó, các cơ quan truyền thông chính thống cần hiện diện tích cực trên không gian mạng xã hội bằng các định dạng hiện đại, trực quan sinh động để giải tỏa kịp thời các hoài nghi cảm tính của giới trẻ, định hình một không gian tâm lý an toàn và tích cực.
-## 7. Tài Liệu Tham Khảo (Phương pháp thống kê)
-
-- Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences* (2nd ed.). Lawrence Erlbaum Associates.
-- Field, A. (2018). *Discovering Statistics Using IBM SPSS Statistics* (5th ed.). SAGE Publications.
-- Hair, J. F., et al. (2019). *Multivariate Data Analysis* (8th ed.). Cengage Learning.
-- Seabold, S., & Perktold, J. (2010). Statsmodels: Econometric and statistical modeling with Python. *Proceedings of the 9th Python in Science Conference*.
-
----
-
-*Báo cáo được tạo tự động từ dữ liệu khảo sát thực tế (n = 60) bằng Python 3.12 — statsmodels OLS, scipy.stats.pearsonr.*  
-*Ngày phân tích: tháng 6 năm 2026*
 
 
-### **Key thời gian :**​[](https://fuoverflow.com/members/minthep.4808/#-key-thoi-gian "Permanent link")
+
+### **Key thời gian :
 
 - Cách mạng công nghiệp lần thứ tư được đề cập lần đầu tiên: **Tại đức Năm 2011**  
 - Mô hình công nghiệp hóa của Nhật Bản và các nước công nghiệp mới diễn ra trong khoảng bao nhiêu năm? **Từ 20-30 năm**  
@@ -434,7 +417,7 @@ Từ các kết luận thống kê trên, đề xuất hướng tới việc nâ
 - "Nghiên cứu về cách mạng công nghiệp lần thứ nhất, C. Mác đã khái quát tính quy luật của cách mạng công nghiệp qua mấy giai đoạn phát triển? **Ba giai đoạn  
 -** Quan điểm về "xây dựng nền kinh tế tự chủ phải dựa trên cơ sở làm chủ công nghệ và chủ động, tích cực hội nhập, đa dạng hóa thị trường, nâng cao khả năng thích ứng của nền kinh tế" **Chiến lược phát triển kinh tế - xã hội 2021-2030**  
 
-### **Key Đại hội đảng:**​[](https://fuoverflow.com/members/minthep.4808/#-key-dai-hoi-dang "Permanent link")
+### **Key Đại hội đảng:
 
 **- Đổi mới cơ chế quản lý kinh tế -> Đảng 6**  
 - Kinh tế thị trường vừa dựa trên cơ sở -> Đảng 9  
@@ -451,18 +434,18 @@ Từ các kết luận thống kê trên, đề xuất hướng tới việc nâ
 **Cách mạng công nghiệp lần thứ ba**: Công nghệ thông tin, máy tính, tự động hóa…  
 **Cách mạng công nghiệp lần thứ tư (4.0)**: Trí tuệ nhân tạo, IoT, dữ liệu lớn, công nghệ nano...  
 
-### ​[](https://fuoverflow.com/members/minthep.4808/#- "Permanent link")
 
-### **Công cuộc đại phân công lao động xã hội lần thứ:**​[](https://fuoverflow.com/members/minthep.4808/#-cong-cuoc-dai-phan-cong-lao-dong-xa-hoi-lan-thu "Permanent link")
+### **Công cuộc đại phân công lao động xã hội lần thứ:**
 
-### **lần thứ nhất là chăn nuôi tách trông trọt**​[](https://fuoverflow.com/members/minthep.4808/#-lan-thu-nhat-la-chan-nuoi-tach-trong-trot "Permanent link")
+### **lần thứ nhất là chăn nuôi tách trông trọt**​
 
 lần thứ hai là **Thủ công nghiệp tách khỏi nông nghiệp**  
 lần thứ ba là **ngành thương nghiệp ra đời**.  
-  
-  
 
-### Hình thức liên kết độc quyền: Cartel → Syndicate → Trust → Consortium.​[](https://fuoverflow.com/members/minthep.4808/#-hinh-thuc-lien-ket-doc-quyen-cartel-syndicate-trust-consortium "Permanent link")
+
+Lĩnh vực nghiên cứu trọng tâm của chủ nghĩa trọng thương là lĩnh vực lưu thông  
+
+### Hình thức liên kết độc quyền: Cartel → Syndicate → Trust → Consortium.​
 
 Cartel → thỏa thuận ngầm  
 Syndicate → phân phối tập trung  
@@ -470,19 +453,18 @@ Trust → mất quyền độc lập
 Consortium → liên minh dự án ngắn hạn  
   
 
-### Mối quan hệ giữa giá trị và cường độ, năng suất lao động:​[](https://fuoverflow.com/members/minthep.4808/#-moi-quan-he-giua-gia-tri-va-cuong-do-nang-suat-lao-dong "Permanent link")
+### Mối quan hệ giữa giá trị và cường độ, năng suất lao động:​
 
 **Năng suất** tăng → **giá trị** giảm  
 **Cường độ** tăng → **giá trị** không đổi (**Note:** Tổng sản phẩm vẫn tăng nha)  
   
 
-### Kinh tế thị trường​[](https://fuoverflow.com/members/minthep.4808/#-kinh-te-thi-truong "Permanent link")
-
+### Kinh tế thị trường
 đã có mầm mống từ trong xã hội nào? **Chiếm hữu nô lệ**  
 đã hình thành trong xã hội nào? **Phong kiến**  
 xuất hiện lần đầu tiên ở xã hội nào? **Tư bản chủ nghĩa**  
   
-  
+  Cộng sản nguyên thủy →Chiếm hữu nô lệ →**Phong kiến** →**Tư bản chủ nghĩa** →(tiến tới) Cộng sản chủ nghĩa
   
 Cách mạng công nghiệp lần thứ nhất diễn ra trong thời gian **Từ giữa thế kỷ XVIII đến giữa thế kỷ XIX**  
 Cách mạng công nghiệp lần thứ hai diễn ra trong giai đoạn **Từ nửa cuối thế kỷ XIX đến đầu thế kỷ XX**  
