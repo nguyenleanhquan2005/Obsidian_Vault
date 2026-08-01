@@ -466,6 +466,18 @@ xuất hiện lần đầu tiên ở xã hội nào? **Tư bản chủ nghĩa**
   
   Cộng sản nguyên thủy →Chiếm hữu nô lệ →**Phong kiến** →**Tư bản chủ nghĩa** →(tiến tới) Cộng sản chủ nghĩa
   
-Cách mạng công nghiệp lần thứ nhất diễn ra trong thời gian **Từ giữa thế kỷ XVIII đến giữa thế kỷ XIX**  
-Cách mạng công nghiệp lần thứ hai diễn ra trong giai đoạn **Từ nửa cuối thế kỷ XIX đến đầu thế kỷ XX**  
-Cách mạng công nghiệp lần thứ ba diễn ra trong giai đoạn **Từ đầu thập niên 60 của thế kỷ XX đến cuối thế kỷ XX**
+| Cuộc cách mạng        | Mốc thời gian thường dùng                                       | Công nghệ tiêu biểu                                          |
+| --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
+| **CMCN lần thứ nhất** | **Giữa thế kỷ XVIII – giữa thế kỷ XIX**; khoảng **1760–1840**   | Máy hơi nước, cơ khí hóa, ngành dệt, đường sắt               |
+| **CMCN lần thứ hai**  | **Nửa sau thế kỷ XIX – đầu thế kỷ XX**; khoảng **1870–1914**    | Điện, động cơ đốt trong, dây chuyền sản xuất hàng loạt       |
+| **CMCN lần thứ ba**   | **Đầu thập niên 1960 – cuối thế kỷ XX**                         | Điện tử, máy tính, công nghệ thông tin, tự động hóa          |
+| **CMCN lần thứ tư**   | **Đầu thế kỷ XXI đến nay**, thường nhấn mạnh từ khoảng **2011** | AI, IoT, dữ liệu lớn, robot, điện toán đám mây, công nghệ số |
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-# 📘 CHƯƠNG 3: GIÁ TRỊ THẶNG DƯ TRONG NỀN KINH TẾ THỊ TRƯỜNG
+# CHƯƠNG 3: GIÁ TRỊ THẶNG DƯ TRONG NỀN KINH TẾ THỊ TRƯỜNG
 
 > **Môn học:** Kinh tế Chính trị Mác - Lênin (MLN122)  
 > **Tài liệu:** Tóm tắt & Hệ thống hóa kiến thức toàn bộ Chương 3  
